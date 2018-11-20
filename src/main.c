@@ -1,4 +1,4 @@
-#include "main.h"
+О╩©#include "main.h"
 
 void mainPtr(void);
 
@@ -23,23 +23,23 @@ int main(void)
 		switch (POS) {
 		case 0:
 			SetColor(3);
-			gotoxy(53, 15); printf("╩У╥н го╠Б");
+			gotoxy(53, 15); printf("Л┐┬К║° М∙≤Й╦╟");
 			SetColor(15);
-			gotoxy(53, 17); printf("юл╬Н го╠Б");
-			gotoxy(53, 19); printf("╟тюс а╬╥А");
+			gotoxy(53, 17); printf("Л²╢Л√╢ М∙≤Й╦╟");
+			gotoxy(53, 19); printf("Й╡▄Л·└ Л╒┘Кё▄");
 			break;
 		case 1:
-			gotoxy(53, 15); printf("╩У╥н го╠Б");
+			gotoxy(53, 15); printf("Л┐┬К║° М∙≤Й╦╟");
 			SetColor(3);
-			gotoxy(53, 17); printf("юл╬Н го╠Б");
+			gotoxy(53, 17); printf("Л²╢Л√╢ М∙≤Й╦╟");
 			SetColor(15);
-			gotoxy(53, 19); printf("╟тюс а╬╥А");
+			gotoxy(53, 19); printf("Й╡▄Л·└ Л╒┘Кё▄");
 			break;
 		case 2:
-			gotoxy(53, 15); printf("╩У╥н го╠Б");
-			gotoxy(53, 17); printf("юл╬Н го╠Б");
+			gotoxy(53, 15); printf("Л┐┬К║° М∙≤Й╦╟");
+			gotoxy(53, 17); printf("Л²╢Л√╢ М∙≤Й╦╟");
 			SetColor(3);
-			gotoxy(53, 19); printf("╟тюс а╬╥А");
+			gotoxy(53, 19); printf("Й╡▄Л·└ Л╒┘Кё▄");
 			SetColor(15);
 			break;
 		default: break;
@@ -47,8 +47,8 @@ int main(void)
 		Sleep(100);
 	}
 	CLS;
-	if (POS == 0) puts("╩У╥н");
-	else if (POS == 1) puts("юл╬Н");
+	if (POS == 0) puts("Л┐┬К║°");
+	else if (POS == 1) puts("Л²╢Л√╢");
 	
 	PAUSE;
 	return 0;
@@ -68,7 +68,7 @@ void mainPtr(void)
 	);
 	*/
 
-	gotoxy(53, 15); printf("╩У╥н го╠Б");
-	gotoxy(53, 17); printf("юл╬Н го╠Б");
-	gotoxy(53, 19); printf("╟тюс а╬╥А");
+	gotoxy(53, 15); printf("Л┐┬К║° М∙≤Й╦╟");
+	gotoxy(53, 17); printf("Л²╢Л√╢ М∙≤Й╦╟");
+	gotoxy(53, 19); printf("Й╡▄Л·└ Л╒┘Кё▄");
 }
