@@ -9,14 +9,9 @@
 */
 #include "sha256.h"
 #include "main.h"
+#include "player.h"
 
 #define SAVESIZE 5 // 최대 세이브 개수를 지정하는 상수입니다.
-
-typedef struct player // 세이브를 위한 플레이어 구조체로, 후에 player.h로 이동할 수도 있습니다.
-{
-    unsigned cleared; // 무엇을 클리어했는지 2진수 마스킹 형태로 저장하는 멤버입니다.
-    unsigned playTime; // 플레이 시간을 저장하는 멤버입니다.
-} Player;
 
 // 세이브 리스트를 초기화하고, 포인터를 반환합니다.
 Player * InitSave(void);

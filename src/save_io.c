@@ -39,13 +39,12 @@ int InternelSave(Player *player, Player *save, int id)
 	{
 		save[id].cleared = player->cleared;
 		save[id].playTime = player->playTime;
+		return 1;
 	}
 	else
 	{
-		perror("세이브 실패입니다.\n");
 		return 0;
 	}
-	return 1;
 }
 
 int SaveToFile(Player *player)
@@ -71,14 +70,21 @@ int LoadFromFile(Player *player)
 
 	for (i = 0; i < SAVESIZE; i++)
 	{
-		fscanf(saveFile, "%d %d\n", &(player[i].cleared), &(player[i].playTime));
+		if (fscanf(saveFile, "%d %d\n", &(player[i].cleared), &(player[i].playTime)) <= 0)
+		{
+			fclose(saveFile);
+			return 0;
+		}
 	}
-	fscanf("%d", &fileHash);
-	close(saveFile);
+	if (fscanf("%d", &fileHash) <= 0)
+	{
+		fclose(saveFile);
+		return 0;
+	}
+	fclose(saveFile);
 	sha256(player, sizeof(Player) * SAVESIZE, &newHash);
 	if (fileHash != newHash)
 	{
-		perror("세이브 파일이 손상되었습니다!!!!\n");
 		return 0;
 	}
 	return 1;

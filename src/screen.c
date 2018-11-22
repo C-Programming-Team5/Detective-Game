@@ -1,4 +1,5 @@
 ﻿#include "main.h"
+#include "screen.h"
 
 void SetColor(int color)
 {
@@ -22,4 +23,14 @@ void gotoxy(int x, int y)
 {
 	COORD pos = { x, y };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+}
+
+void mainPtr(void)
+{
+	CLS;
+	system("title ESCAPE");
+
+	gotoxy(53, 15); printf("새로 하기");
+	gotoxy(53, 17); printf("이어 하기");
+	gotoxy(53, 19); printf("게임 종료");
 }

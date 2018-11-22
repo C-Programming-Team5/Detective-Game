@@ -1,6 +1,5 @@
 ﻿#include "main.h"
-
-void mainPtr(void);
+#include "screen.h"
 
 int main(void)
 {
@@ -54,21 +53,3 @@ int main(void)
 	return 0;
 }
 
-void mainPtr(void)
-{
-	system("title ESCAPE");
-	/*
-	puts
-	(
-		"___________ _________    ____  ______\n"
-		"/ ____ / ___// ____/   |  / __  / ____/\n"
-		"/ __ / ___ / / / / | | / / _ / / __ /\n"
-		"/ / ___ ___ / / / ___ / ___ | / ____ / / ___\n"
-		"/ _____//____/_____/_/  |_/_/   /_____/   "
-	);
-	*/
-
-	gotoxy(53, 15); printf("새로 하기");
-	gotoxy(53, 17); printf("이어 하기");
-	gotoxy(53, 19); printf("게임 종료");
-}
