@@ -7,4 +7,4 @@ void CursorView(char show);
 // 커서를 콘솔의 특정 위치로 이동시키는 함수입니다.
 void gotoxy(int x, int y);
 // 처음 화면을 띄우는 함수입니다.
-void mainPtr(void);
+void InitialPrint(void);

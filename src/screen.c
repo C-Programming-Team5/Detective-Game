@@ -25,7 +25,7 @@ void gotoxy(int x, int y)
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 
-void mainPtr(void)
+void InitialPrint(void)
 {
 	CLS;
 	system("title ESCAPE");

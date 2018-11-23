@@ -3,22 +3,17 @@
 
 int main(void)
 {
-	CursorView(0);
-	system("COLOR 0F");
-	mainPtr();
 	int POS = 3;
 	CursorView(0);
 	system("COLOR 0F");
-	mainPtr();
-	while (1) {
+	InitialPrint();
+	while (!GetAsyncKeyState(VK_RETURN)) {
 		if (GetAsyncKeyState(VK_UP))
 			if (POS == 0) POS = 2;
 			else POS -= 1;
 		else if (GetAsyncKeyState(VK_DOWN))
 			if (POS == 2) POS = 0;
 			else POS += 1;
-		else if (GetAsyncKeyState(VK_RETURN))
-			break;
 		switch (POS) {
 		case 0:
 			SetColor(3);
