@@ -29,9 +29,9 @@ void PrintSaveList(Player * player) // 수정 필요
 	{
 		printf("%d번째 세이브\n", i);
 		printf("맞힌 퀴즈 개수: %d\n", GetClearedQuizCount(player, i));
-		printf("플레이 시간: ");
-		// 플레이시간을 측정하는 함수가 필요합니다.
+		printf("플레이 시간: %d\n\n", player[i].playTime);
 	}
+	return;
 }
 
 int InternelSave(Player *player, Player *save, int id)
@@ -40,11 +40,11 @@ int InternelSave(Player *player, Player *save, int id)
 	{
 		save[id].cleared = player->cleared;
 		save[id].playTime = player->playTime;
-		return 1;
+		return SUCCESS;
 	}
 	else
 	{
-		return 0;
+		return FAIL;
 	}
 }
 
@@ -53,6 +53,10 @@ int SaveToFile(Player *player)
 	FILE *saveFile = fopen("save.sav", "wb");
 	uint8_t hash = 0;
 	int i = 0;
+	if (saveFile == EOF)
+	{
+		return FAIL;
+	}
 	sha256(player, sizeof(Player) * SAVESIZE, &hash);
 	
 	for (i = 0; i < SAVESIZE; i++)
@@ -61,6 +65,7 @@ int SaveToFile(Player *player)
 	}
 	fprintf("%d", hash);
 	close(saveFile);
+	return SUCCESS;
 }
 
 int LoadFromFile(Player *player)
@@ -74,21 +79,21 @@ int LoadFromFile(Player *player)
 		if (fscanf(saveFile, "%d %d\n", &(player[i].cleared), &(player[i].playTime)) <= 0)
 		{
 			fclose(saveFile);
-			return 0;
+			return FAIL;
 		}
 	}
 	if (fscanf("%d", &fileHash) <= 0)
 	{
 		fclose(saveFile);
-		return 0;
+		return FAIL;
 	}
 	fclose(saveFile);
 	sha256(player, sizeof(Player) * SAVESIZE, &newHash);
 	if (fileHash != newHash)
 	{
-		return 0;
+		return FAIL;
 	}
-	return 1;
+	return SUCCESS;
 }
 
 void FreeCaller(void)

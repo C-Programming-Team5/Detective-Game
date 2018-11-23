@@ -13,17 +13,23 @@
 
 #define SAVESIZE 5 // 최대 세이브 개수를 지정하는 상수입니다.
 
+enum
+{
+	FAIL,
+	SUCCESS
+};
+
 // 세이브 리스트를 초기화하고, 포인터를 반환합니다.
 Player * InitSave(void);
 // 클리어한 퀴즈의 개수를 반환하는 함수입니다.
 int GetClearedQuizCount(Player *player, int id);
 // 화면을 비우고, 세이브 목록을 나타내는 함수입니다.
 void PrintSaveList(Player *player);
-// 구조체 리스트에 플레이어 데이터를 저장합니다. 성공시 1을, 실패시 0을 반환합니다.
+// 구조체 리스트에 플레이어 데이터를 저장합니다. 성공시 SUCCESS, 실패시 FAIL을 반환합니다.
 int InternelSave(Player *player, Player *save, int id);
-// 파일에 세이브를 저장합니다. 성공시 1을, 실패시 0을 반환합니다.
+// 파일에 세이브를 저장합니다. 성공시 SUCCESS, 실패시 FAIL을 반환합니다.
 int SaveToFile(Player *player);
-// 파일로부터 세이브를 불러옵니다. 성공시 1을, 실패시 0을 반환합니다.
+// 파일로부터 세이브를 불러옵니다. 성공시 SUCCESS, 실패시 FAIL을 반환합니다.
 int LoadFromFile(Player *player);
 // atexit 함수에서 호출되어 FreeExecuter 함수를 호출합니다.
 void FreeCaller(void);
