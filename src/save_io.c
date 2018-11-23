@@ -20,7 +20,7 @@ int GetClearedQuizCount(Player * player, int id)
 	return result;
 }
 
-void PrintSaveList(Player * player)
+void PrintSaveList(Player * player) // 수정 필요
 {
 	int i = 0;
 
@@ -29,7 +29,8 @@ void PrintSaveList(Player * player)
 	{
 		printf("%d번째 세이브\n", i);
 		printf("맞힌 퀴즈 개수: %d\n", GetClearedQuizCount(player, i));
-		printf("플레이 시간: "); 
+		printf("플레이 시간: ");
+		// 플레이시간을 측정하는 함수가 필요합니다.
 	}
 }
 
