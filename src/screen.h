@@ -8,3 +8,5 @@ void CursorView(char show);
 void gotoxy(int x, int y);
 // 처음 화면을 띄우는 함수입니다.
 void InitialPrint(void);
+// 시작 선택화면을 띄우는 함수입니다. 새로시작 선택시 0을, 이어하기 선택시 1을, 종료하기 선택시 2를 반환합니다.
+int StartScreen(void);
