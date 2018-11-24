@@ -2,14 +2,23 @@
 #include "screen.h"
 #include "save_io.h"
 
+void CallAtExit(void)
+{
+	FreeExecuter(NULL);
+	return;
+}
+
 int main(void)
 {
 	int selected = 0;
-	Player *save = InitSave(); // 세이브용 배열
+	Player *save = NULL; // 세이브용 배열
 	Player player = {0, 0}; // 플레이용 임시 데이터
-	if (save == NULL)
+
+	atexit(CallAtExit); // 프로그램이 종료될 시 실행되어, 프로그램을 정리합니다.
+
+	if (InitSave(save) == FAIL)
 	{
-		perror("프로그램 실행 중 오류가 발생하였습니다. \n프로그램을 종료합니다.\n");
+		perror("초기화 오류가 발생하였습니다. \n프로그램을 종료합니다.\n");
 		return 1;
 	}
 	selected = StartScreen();

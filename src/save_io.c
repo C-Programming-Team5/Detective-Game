@@ -1,26 +1,29 @@
 ﻿#include "save_io.h"
 #include "main.h"
 
-Player * InitSave(void)
+int InitSave(Player *save)
 {
-	Player *save = (Player *)calloc(SAVESIZE, sizeof(Player));
-	FreeExecuter(save);
-	atexit(FreeCaller); // 게임이 종료될 시 호출되어, 동적할당된 배열을 해제합니다.
-	return save;
+	save = (Player *)calloc(SAVESIZE, sizeof(Player));
+	if (save == NULL)
+	{
+		return FAIL;
+	}
+	ExecuteFree(save);
+	return SUCCESS;
 }
 
-int GetClearedQuizCount(Player * player, int id)
+int GetClearedQuizCount(Player save[], int id)
 {
 	int i = 0, result = 0;
 
 	for (i = 0; i < QUIZCOUNT; i++)
 	{
-		result += (player->cleared & (1 << i)) && 1;
+		result += (save[id].cleared & (1 << i)) && 1;
 	}
 	return result;
 }
 
-void PrintSaveList(Player * player) // 수정 필요
+void PrintSaveList(Player save[])
 {
 	int i = 0;
 
@@ -28,14 +31,18 @@ void PrintSaveList(Player * player) // 수정 필요
 	for (i = 0; i < SAVESIZE; i++)
 	{
 		printf("%d번째 세이브\n", i);
-		printf("맞힌 퀴즈 개수: %d\n", GetClearedQuizCount(player, i));
-		printf("플레이 시간: %d\n\n", player[i].playTime);
+		printf("맞힌 퀴즈 개수: %d\n", GetClearedQuizCount(save, i));
+		printf("플레이 시간: %d\n\n", save[i].playTime);
 	}
 	return;
 }
 
-int InternelSave(Player *player, Player *save, int id)
+int Save(Player *player, Player save[], int id)
 {
+	FILE *saveFile = fopen("save.sav", "wb");
+	uint8_t hash = 0;
+	int i = 0;
+
 	if (player != NULL && save != NULL)
 	{
 		save[id].cleared = player->cleared;
@@ -46,29 +53,23 @@ int InternelSave(Player *player, Player *save, int id)
 	{
 		return FAIL;
 	}
-}
 
-int SaveToFile(Player *player)
-{
-	FILE *saveFile = fopen("save.sav", "wb");
-	uint8_t hash = 0;
-	int i = 0;
 	if (saveFile == EOF)
 	{
 		return FAIL;
 	}
-	sha256(player, sizeof(Player) * SAVESIZE, &hash);
+	sha256(save, sizeof(Player) * SAVESIZE, &hash);
 	
 	for (i = 0; i < SAVESIZE; i++)
 	{
-		fprintf("%d %d\n", player[i].cleared, player[i].playTime);
+		fprintf("%d %d\n", save[i].cleared, save[i].playTime);
 	}
 	fprintf("%d", hash);
 	close(saveFile);
 	return SUCCESS;
 }
 
-int LoadFromFile(Player *player)
+int LoadFromFile(Player save[])
 {
 	FILE *saveFile = fopen("save.sav", "rb");
 	int i = 0;
@@ -81,7 +82,7 @@ int LoadFromFile(Player *player)
 
 	for (i = 0; i < SAVESIZE; i++)
 	{
-		if (fscanf(saveFile, "%d %d\n", &(player[i].cleared), &(player[i].playTime)) <= 0)
+		if (fscanf(saveFile, "%d %d\n", &(save[i].cleared), &(save[i].playTime)) <= 0)
 		{
 			fclose(saveFile);
 			return FAIL;
@@ -93,7 +94,7 @@ int LoadFromFile(Player *player)
 		return FAIL;
 	}
 	fclose(saveFile);
-	sha256(player, sizeof(Player) * SAVESIZE, &newHash);
+	sha256(save, sizeof(Player) * SAVESIZE, &newHash);
 	if (fileHash != newHash)
 	{
 		return FAIL;
@@ -101,13 +102,7 @@ int LoadFromFile(Player *player)
 	return SUCCESS;
 }
 
-void FreeCaller(void)
-{
-	FreeExecuter(NULL);
-	return;
-}
-
-void FreeExecuter(Player * save)
+void ExecuteFree(Player save[])
 {
 	static int count = 0;
 	static Player *saved = NULL;

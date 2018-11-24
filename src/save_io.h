@@ -19,19 +19,20 @@ enum
 	SUCCESS
 };
 
-// 세이브 리스트를 초기화하고, 포인터를 반환합니다.
-Player * InitSave(void);
+// 세이브 리스트를 초기화합니다. 성공시 SUCCESS, 실패시 FAIL을 반환합니다.
+int InitSave(Player *save);
+
 // 클리어한 퀴즈의 개수를 반환하는 함수입니다.
-int GetClearedQuizCount(Player *player, int id);
+int GetClearedQuizCount(Player save[], int id);
+
 // 화면을 비우고, 세이브 목록을 나타내는 함수입니다.
-void PrintSaveList(Player *player);
-// 구조체 리스트에 플레이어 데이터를 저장합니다. 성공시 SUCCESS, 실패시 FAIL을 반환합니다.
-int InternelSave(Player *player, Player *save, int id);
-// 파일에 세이브를 저장합니다. 성공시 SUCCESS, 실패시 FAIL을 반환합니다.
-int SaveToFile(Player *player);
+void PrintSaveList(Player save[]);
+
+// 플레이어 데이터를 저장합니다. 성공시 SUCCESS, 실패시 FAIL을 반환합니다.
+int Save(Player *player, Player save[], int id);
+
 // 파일로부터 세이브를 불러옵니다. 성공시 SUCCESS, 실패시 FAIL을 반환합니다.
-int LoadFromFile(Player *player);
-// atexit 함수에서 호출되어 FreeExecuter 함수를 호출합니다.
-void FreeCaller(void);
-// 플레이어 세이브 리스트의 포인터를 저장하고, 이미 호출된 상태라면, 저장된 동적 리스트를 해제합니다.
-void FreeExecuter(Player *save);
+int LoadFromFile(Player save[]);
+
+// 처음 호출시 플레이어 세이브 리스트의 포인터를 저장하고, 다음 호출시, 저장된 동적 리스트를 해제합니다.
+void ExecuteFree(Player save[]);
