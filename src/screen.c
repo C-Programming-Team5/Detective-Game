@@ -37,7 +37,7 @@ void InitialPrint(void)
 
 int StartScreen(void)
 {
-	int POS = 3;
+	int POS = 2;
 	CursorView(0);
 	system("COLOR 0F");
 	InitialPrint();
@@ -45,7 +45,7 @@ int StartScreen(void)
 	{
 		if (GetAsyncKeyState(VK_UP))
 		{
-			if (POS == 0)
+			if (POS <= 0)
 			{
 				POS = 2;
 			}
@@ -56,7 +56,7 @@ int StartScreen(void)
 		}
 		else if (GetAsyncKeyState(VK_DOWN))
 		{
-			if (POS == 2)
+			if (POS >= 2)
 			{
 				POS = 0;
 			}
@@ -94,4 +94,5 @@ int StartScreen(void)
 		Sleep(100);
 	}
 	CLS;
+	return POS;
 }

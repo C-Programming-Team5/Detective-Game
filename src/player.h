@@ -14,4 +14,4 @@ typedef struct player // 세이브를 위한 플레이어 구조체입니다.
 } Player;
 
 // START를 받으면 시간을 초기화하고, END를 받으면 초기화 때부터 현재까지 지난 초를 반환합니다.
-clock_t StopWatch(int flag)
+clock_t StopWatch(int flag);

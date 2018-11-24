@@ -74,6 +74,11 @@ int LoadFromFile(Player *player)
 	int i = 0;
 	uint8_t fileHash = 0, newHash = 0;
 
+	if (saveFile == NULL)
+	{
+		return FAIL;
+	}
+
 	for (i = 0; i < SAVESIZE; i++)
 	{
 		if (fscanf(saveFile, "%d %d\n", &(player[i].cleared), &(player[i].playTime)) <= 0)
