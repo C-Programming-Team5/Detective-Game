@@ -4,7 +4,7 @@
 
 void CallAtExit(void)
 {
-	FreeExecuter(NULL);
+	ExecuteFree(NULL);
 	return;
 }
 

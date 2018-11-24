@@ -1,6 +1,7 @@
 ﻿#include "main.h"
 #include "screen.h"
 #include "player.h"
+#include "save_io.h"
 
 void SetColor(int color)
 {
@@ -128,6 +129,20 @@ void PrintEnding(int flag)
 			);
 		default:
 			break;
+	}
+	return;
+}
+
+void PrintSaveList(Player save[])
+{
+	int i = 0;
+
+	CLS;
+	for (i = 0; i < SAVESIZE; i++)
+	{
+		printf("%d번째 세이브\n", i);
+		printf("맞힌 퀴즈 개수: %d\n", GetClearedQuizCount(save, i));
+		printf("플레이 시간: %d\n\n", save[i].playTime);
 	}
 	return;
 }

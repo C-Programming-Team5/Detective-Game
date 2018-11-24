@@ -1,5 +1,6 @@
 ﻿#include "save_io.h"
 #include "main.h"
+#include "screen.h"
 
 int InitSave(Player **save)
 {
@@ -23,20 +24,6 @@ int GetClearedQuizCount(Player save[], int id)
 	return result;
 }
 
-void PrintSaveList(Player save[])
-{
-	int i = 0;
-
-	CLS;
-	for (i = 0; i < SAVESIZE; i++)
-	{
-		printf("%d번째 세이브\n", i);
-		printf("맞힌 퀴즈 개수: %d\n", GetClearedQuizCount(save, i));
-		printf("플레이 시간: %d\n\n", save[i].playTime);
-	}
-	return;
-}
-
 int Save(Player *player, Player save[], int id)
 {
 	FILE *saveFile = fopen("save.sav", "wb");
@@ -54,7 +41,7 @@ int Save(Player *player, Player save[], int id)
 		return FAIL;
 	}
 
-	if (saveFile == EOF)
+	if (saveFile == NULL)
 	{
 		return FAIL;
 	}
@@ -62,10 +49,10 @@ int Save(Player *player, Player save[], int id)
 	
 	for (i = 0; i < SAVESIZE; i++)
 	{
-		fprintf("%d %d\n", save[i].cleared, save[i].playTime);
+		fprintf(saveFile, "%d %d\n", save[i].cleared, save[i].playTime);
 	}
-	fprintf("%d", hash);
-	close(saveFile);
+	fprintf(saveFile, "%d", hash);
+	fclose(saveFile);
 	return SUCCESS;
 }
 
@@ -88,7 +75,7 @@ int LoadFromFile(Player save[])
 			return FAIL;
 		}
 	}
-	if (fscanf("%d", &fileHash) <= 0)
+	if (fscanf(saveFile, "%d", &fileHash) <= 0)
 	{
 		fclose(saveFile);
 		return FAIL;

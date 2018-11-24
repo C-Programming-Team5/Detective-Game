@@ -25,9 +25,6 @@ int InitSave(Player **save);
 // 클리어한 퀴즈의 개수를 반환하는 함수입니다.
 int GetClearedQuizCount(Player save[], int id);
 
-// 화면을 비우고, 세이브 목록을 나타내는 함수입니다.
-void PrintSaveList(Player save[]);
-
 // 플레이어 데이터를 저장합니다. 성공시 SUCCESS, 실패시 FAIL을 반환합니다.
 int Save(Player *player, Player save[], int id);
 
