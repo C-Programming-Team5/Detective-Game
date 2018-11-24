@@ -1,14 +1,14 @@
 ﻿#include "save_io.h"
 #include "main.h"
 
-int InitSave(Player *save)
+int InitSave(Player **save)
 {
-	save = (Player *)calloc(SAVESIZE, sizeof(Player));
+	*save = (Player *)calloc(SAVESIZE, sizeof(Player));
 	if (save == NULL)
 	{
 		return FAIL;
 	}
-	ExecuteFree(save);
+	ExecuteFree(*save);
 	return SUCCESS;
 }
 

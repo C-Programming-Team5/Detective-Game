@@ -1,5 +1,6 @@
 ﻿#include "main.h"
 #include "screen.h"
+#include "player.h"
 
 void SetColor(int color)
 {
@@ -95,4 +96,38 @@ int StartScreen(void)
 	}
 	CLS;
 	return POS;
+}
+
+void PrintClues(Player *player)
+{
+	CLS;
+	puts((player->cleared & 1) ? "힌트 1: 그것은 어디에도 없다." : "");
+	puts((player->cleared & 2) ? "힌트 2: 세상의 그 무엇보다 강하기도 하지만, 그 무엇보다 약하기도 하다." : "");
+	puts((player->cleared & 4) ? "힌트 3: 눈에 보이진 않지만, 많은 이름을 갖고 있다." : "");
+	puts((player->cleared & 8) ? "힌트 4: 그것에게 멈춤이란 곧 죽음이다." : "");
+	puts((player->cleared & 16) ? "힌트 5: 그것은 세상에서 가장 가볍고 자유로운 존재이다." : "");
+	return;
+}
+
+void PrintEnding(int flag)
+{
+	CLS;
+	switch (flag)
+	{
+		case GAME_OVER:
+			puts("GAME OVER");
+			puts("Game Over 단서를 모아 다시 도전하자.");
+			break;
+		case GAME_CLEAR:
+			puts
+			(
+				"문이 열렷다.\n"
+				"문을 열자 보이는 것은 전산실이었다.\n"
+				"아무래도 전산실 입구를 나가는 문이라고 착각한 것 같다.\n"
+				"다시 강의실로 돌아가 도어락이 없는 평범한 문을 열고 밖으로 나왔다."
+			);
+		default:
+			break;
+	}
+	return;
 }

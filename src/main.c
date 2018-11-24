@@ -16,7 +16,7 @@ int main(void)
 
 	atexit(CallAtExit); // 프로그램이 종료될 시 실행되어, 프로그램을 정리합니다.
 
-	if (InitSave(save) == FAIL)
+	if (InitSave(&save) == FAIL)
 	{
 		perror("초기화 오류가 발생하였습니다. \n프로그램을 종료합니다.\n");
 		return 1;
@@ -25,6 +25,7 @@ int main(void)
 	switch (selected)
 	{
 		case 0: // 게임 시작
+			StopWatch(START);
 			break;
 		case 1: // 이어 하기
 			if (LoadFromFile(save) == FAIL)

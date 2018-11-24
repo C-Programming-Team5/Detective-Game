@@ -20,7 +20,7 @@ enum
 };
 
 // 세이브 리스트를 초기화합니다. 성공시 SUCCESS, 실패시 FAIL을 반환합니다.
-int InitSave(Player *save);
+int InitSave(Player **save);
 
 // 클리어한 퀴즈의 개수를 반환하는 함수입니다.
 int GetClearedQuizCount(Player save[], int id);
