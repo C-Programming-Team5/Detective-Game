@@ -32,9 +32,9 @@ void InitialPrint(void)
 	CLS;
 	system("title ESCAPE");
 
-	gotoxy(53, 15); printf("새로 하기");
-	gotoxy(53, 17); printf("이어 하기");
-	gotoxy(53, 19); printf("게임 종료");
+	gotoxy(53, 15); fputs("새로 하기", stdout);
+	gotoxy(53, 17); fputs("이어 하기", stdout);
+	gotoxy(53, 19); fputs("게임 종료", stdout);
 }
 
 int StartScreen(void)
@@ -55,11 +55,11 @@ int StartScreen(void)
 		}
 
 		SetColor(POS == 0 ? 3 : 15);
-		gotoxy(53, 15); printf("새로 하기");
+		gotoxy(53, 15); fputs("새로 하기", stdout);
 		SetColor(POS == 1 ? 3 : 15);
-		gotoxy(53, 17); printf("이어 하기");
+		gotoxy(53, 17); fputs("이어 하기", stdout);
 		SetColor(POS == 2 ? 3 : 15);
-		gotoxy(53, 19); printf("게임 종료");
+		gotoxy(53, 19); fputs("게임 종료", stdout);
 		SetColor(15);
 		
 		Sleep(100);
