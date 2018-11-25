@@ -47,52 +47,21 @@ int StartScreen(void)
 	{
 		if (GetAsyncKeyState(VK_UP))
 		{
-			if (POS <= 0)
-			{
-				POS = 2;
-			}
-			else
-			{
-				POS -= 1;
-			}
+			POS = (POS + 2) % 3;
 		}
 		else if (GetAsyncKeyState(VK_DOWN))
 		{
-			if (POS >= 2)
-			{
-				POS = 0;
-			}
-			else
-			{
-				POS ++;
-			}
+			POS = (POS + 1) % 3;
 		}
-		switch (POS)
-		{
-		case 0:
-			SetColor(3);
-			gotoxy(53, 15); printf("새로 하기");
-			SetColor(15);
-			gotoxy(53, 17); printf("이어 하기");
-			gotoxy(53, 19); printf("게임 종료");
-			break;
-		case 1:
-			gotoxy(53, 15); printf("새로 하기");
-			SetColor(3);
-			gotoxy(53, 17); printf("이어 하기");
-			SetColor(15);
-			gotoxy(53, 19); printf("게임 종료");
-			break;
-		case 2:
-			gotoxy(53, 15); printf("새로 하기");
-			gotoxy(53, 17); printf("이어 하기");
-			SetColor(3);
-			gotoxy(53, 19); printf("게임 종료");
-			SetColor(15);
-			break;
-		default:
-			break;
-		}
+
+		SetColor(POS == 0 ? 3 : 15);
+		gotoxy(53, 15); printf("새로 하기");
+		SetColor(POS == 1 ? 3 : 15);
+		gotoxy(53, 17); printf("이어 하기");
+		SetColor(POS == 2 ? 3 : 15);
+		gotoxy(53, 19); printf("게임 종료");
+		SetColor(15);
+		
 		Sleep(100);
 	}
 	CLS;
