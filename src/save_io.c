@@ -28,30 +28,36 @@ int Save(Player *player, Player save[], int id)
 {
 	FILE *saveFile = fopen("save.sav", "wb");
 	uint8_t hash = 0;
-	int i = 0;
-
-	if (player != NULL && save != NULL)
-	{
-		save[id].cleared = player->cleared;
-		save[id].playTime = player->playTime;
-		return SUCCESS;
-	}
-	else
-	{
-		return FAIL;
-	}
 
 	if (saveFile == NULL)
 	{
 		return FAIL;
 	}
+
+	if (player != NULL && save != NULL)
+	{
+		save[id] = *player;
+	}
+	else
+	{
+		fclose(saveFile);
+		return FAIL;
+	}
+
 	sha256(save, sizeof(Player) * SAVESIZE, &hash);
 	
-	for (i = 0; i < SAVESIZE; i++)
+	if (fwrite(save, sizeof(Player), SAVESIZE, saveFile) < (sizeof(Player) * SAVESIZE))
 	{
-		fprintf(saveFile, "%d %d\n", save[i].cleared, save[i].playTime);
+		fclose(saveFile);
+		return FAIL;
 	}
-	fprintf(saveFile, "%d", hash);
+
+	if (fwrite(&hash, 8, 1, saveFile) < 8)
+	{
+		fclose(saveFile);
+		return FAIL;
+	}
+
 	fclose(saveFile);
 	return SUCCESS;
 }
@@ -59,7 +65,6 @@ int Save(Player *player, Player save[], int id)
 int LoadFromFile(Player save[])
 {
 	FILE *saveFile = fopen("save.sav", "rb");
-	int i = 0;
 	uint8_t fileHash = 0, newHash = 0;
 
 	if (saveFile == NULL)
@@ -67,25 +72,27 @@ int LoadFromFile(Player save[])
 		return FAIL;
 	}
 
-	for (i = 0; i < SAVESIZE; i++)
-	{
-		if (fscanf(saveFile, "%d %d\n", &(save[i].cleared), &(save[i].playTime)) <= 0)
-		{
-			fclose(saveFile);
-			return FAIL;
-		}
-	}
-	if (fscanf(saveFile, "%d", &fileHash) <= 0)
+	if (fread(save, sizeof(Player), SAVESIZE, saveFile) < (sizeof(Player) * SAVESIZE))
 	{
 		fclose(saveFile);
 		return FAIL;
 	}
+
+	if (fread(&fileHash, 8, 1, saveFile) < 8)
+	{
+		fclose(saveFile);
+		return FAIL;
+	}
+
 	fclose(saveFile);
+
 	sha256(save, sizeof(Player) * SAVESIZE, &newHash);
+
 	if (fileHash != newHash)
 	{
 		return FAIL;
 	}
+
 	return SUCCESS;
 }
 
