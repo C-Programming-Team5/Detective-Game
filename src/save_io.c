@@ -2,6 +2,8 @@
 #include "main.h"
 #include "screen.h"
 
+#define SALT 20181224
+
 int InitSave(Player **save)
 {
 	*save = (Player *)calloc(SAVESIZE, sizeof(Player));
@@ -27,7 +29,7 @@ int GetClearedQuizCount(Player save[], int id)
 int Save(Player *player, Player save[], int id)
 {
 	FILE *saveFile = fopen("save.sav", "wb");
-	uint8_t hash = 0;
+	uint8_t firstHash = 0, secondHash = 0;
 
 	if (saveFile == NULL)
 	{
@@ -44,7 +46,10 @@ int Save(Player *player, Player save[], int id)
 		return FAIL;
 	}
 
-	sha256(save, sizeof(Player) * SAVESIZE, &hash);
+	// 두 번의 해싱 과정과 중간 SALT값 추가를 통해, 보안성을 약간 강화하였습니다.
+	sha256(save, sizeof(Player) * SAVESIZE, &firstHash);
+	firstHash += SALT;
+	she256(&firstHash, 8, &secondHash);
 	
 	if (fwrite(save, sizeof(Player), SAVESIZE, saveFile) < (sizeof(Player) * SAVESIZE))
 	{
@@ -52,7 +57,7 @@ int Save(Player *player, Player save[], int id)
 		return FAIL;
 	}
 
-	if (fwrite(&hash, 8, 1, saveFile) < 8)
+	if (fwrite(&secondHash, 8, 1, saveFile) < 8)
 	{
 		fclose(saveFile);
 		return FAIL;
@@ -65,7 +70,7 @@ int Save(Player *player, Player save[], int id)
 int LoadFromFile(Player save[])
 {
 	FILE *saveFile = fopen("save.sav", "rb");
-	uint8_t fileHash = 0, newHash = 0;
+	uint8_t fileHash = 0, firstHash = 0, secondHash = 0;
 
 	if (saveFile == NULL)
 	{
@@ -86,9 +91,12 @@ int LoadFromFile(Player save[])
 
 	fclose(saveFile);
 
-	sha256(save, sizeof(Player) * SAVESIZE, &newHash);
+	// 저장시에 사용한 방식을 사용해서 해시를 만듭니다.
+	sha256(save, sizeof(Player) * SAVESIZE, &firstHash);
+	firstHash += SALT;
+	sha256(&firstHash, 8, &secondHash);
 
-	if (fileHash != newHash)
+	if (fileHash != secondHash)
 	{
 		return FAIL;
 	}
