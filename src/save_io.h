@@ -12,6 +12,7 @@
 #include "player.h"
 
 #define SAVESIZE 5 // 최대 세이브 개수를 지정하는 상수입니다.
+#define SALT 20181224 // 해시에 쓰이는 SALT 입니다.
 
 enum
 {

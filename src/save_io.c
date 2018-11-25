@@ -2,8 +2,6 @@
 #include "main.h"
 #include "screen.h"
 
-#define SALT 20181224
-
 int InitSave(Player **save)
 {
 	*save = (Player *)calloc(SAVESIZE, sizeof(Player));
