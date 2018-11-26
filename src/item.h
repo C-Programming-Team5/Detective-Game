@@ -10,4 +10,4 @@
 
 void SetColor(int color);
 void CursorView(char show);
-void gotoxy(int x, int y);
+void gotoxy(int x, int y); #pragma once
