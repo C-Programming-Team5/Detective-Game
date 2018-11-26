@@ -92,11 +92,5 @@
             Sleep(100);
         }
         cls;
-        switch (POS)
-        {
-        case 0:
-            LobbyScreen();
-            SelectItem();
-        }
         return POS;
     }
