@@ -79,6 +79,29 @@ void PrintClues(const Player * const player)
 	return;
 }
 
+void PrintEnding(int flag)
+{
+	CLS;
+	switch (flag)
+	{
+		case GAME_OVER:
+			puts("GAME OVER");
+			puts("Game Over 단서를 모아 다시 도전하자.");
+			break;
+		case GAME_CLEAR:
+			puts
+			(
+				"문이 열렸다.\n"
+				"문을 열자 보이는 것은 전산실이었다.\n"
+				"아무래도 전산실 입구를 나가는 문이라고 착각한 것 같다.\n"
+				"다시 강의실로 돌아가 도어락이 없는 평범한 문을 열고 밖으로 나왔다."
+			);
+		default:
+			break;
+	}
+	return;
+}
+
 void PrintSaveList(const Player save[])
 {
 	int i = 0;
