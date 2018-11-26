@@ -68,7 +68,7 @@ int StartScreen(void)
 	return POS;
 }
 
-void PrintClues(Player *player)
+void PrintClues(const Player * const player)
 {
 	CLS;
 	puts((player->cleared & 1) ? "힌트 1: 그것은 어디에도 없다." : "");
@@ -102,7 +102,7 @@ void PrintEnding(int flag)
 	return;
 }
 
-void PrintSaveList(Player save[])
+void PrintSaveList(const Player const save[])
 {
 	int i = 0;
 

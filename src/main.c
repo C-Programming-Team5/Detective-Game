@@ -2,7 +2,7 @@
 #include "screen.h"
 #include "save_io.h"
 
-void CallAtExit(void)
+void CallAtExit(int argc, char *argv[])
 {
 	ExecuteFree(NULL);
 	return;

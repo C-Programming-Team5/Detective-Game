@@ -19,10 +19,10 @@ void InitialPrint(void);
 int StartScreen(void);
 
 // 플레이어 데이터를 받아 단서를 출력합니다.
-void PrintClues(Player *player);
+void PrintClues(const Player * const player);
 
 // GAME_CLEAR가 주어지면 클리어 엔딩을, GAME_OVER가 주어지면 실패 엔딩을 출력합니다.
 void PrintEnding(int flag);
 
 // 화면을 비우고, 세이브 목록을 나타내는 함수입니다.
-void PrintSaveList(Player save[]);
+void PrintSaveList(const Player const save[]);

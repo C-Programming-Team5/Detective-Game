@@ -13,7 +13,7 @@ int InitSave(Player **save)
 	return SUCCESS;
 }
 
-int GetClearedQuizCount(Player save[], int id)
+int GetClearedQuizCount(const Player const save[], const int id)
 {
 	int i = 0, result = 0;
 
@@ -24,7 +24,7 @@ int GetClearedQuizCount(Player save[], int id)
 	return result;
 }
 
-int Save(Player *player, Player save[], int id)
+int Save(const Player * const player, Player save[], const int id)
 {
 	FILE *saveFile = fopen("save.sav", "wb");
 	uint8_t firstHash = 0, secondHash = 0;
