@@ -23,3 +23,12 @@ void PrintClues(const Player * const player);
 
 // 화면을 비우고, 세이브 목록을 나타내는 함수입니다.
 void PrintSaveList(const Player save[]);
+
+// 아스키 아트로 된 로비 화면을 띄우는 함수입니다.
+void LobbyScreen(void);
+
+// 로비에서의 선택 화면을 띄우는 함수입니다.
+int LobbyPlay(int choice);
+
+// 아이템 선택 화면을 띄우는 함수입니다.
+int SelectItem(int item);
