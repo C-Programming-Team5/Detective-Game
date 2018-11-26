@@ -1,6 +1,6 @@
 ﻿#include "prologue.h"
 
-void prologue(void)
+void Prologue(void)
 {
     gotoxy(1, 25); printf(".");
     Sleep(1000);
@@ -15,7 +15,7 @@ void prologue(void)
     gotoxy(6, 25); printf(".");
     Sleep(2000);
     gotoxy(1, 25); printf("지끈거리는 머리를 붙잡으며 정신을 차렸다.");
-    Sleep(5000);
+    Sleep(5000); 
     gotoxy(1, 25); printf("                                                                                       ");
     Sleep(100);
     gotoxy(1, 25); printf("어제 나는 분명 집에 간 것 같았는데, 강의실 안이다.");
@@ -36,5 +36,5 @@ void prologue(void)
     Sleep(100);
     gotoxy(1, 25); printf("혹시라도 조교가 두고 간 비밀번호 종이가 있을 수도 있기 때문에 강의실 내부를 찾아보기로 했다.");
     Sleep(5000);
-    system("cls");
+    system("cls"); //프롤로그 대사창을 모두 지웁니다.
 }

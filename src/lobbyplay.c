@@ -1,6 +1,6 @@
 ﻿#include "lobbyplay.h"
 
-    int lobbyplay(int choice)
+    int LobbyPlay(int choice)
     {
         gotoxy(2, 25);  printf("이제 무엇을 할까?");
         int POS = 5;
