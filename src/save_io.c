@@ -1,6 +1,5 @@
 ﻿#include "save_io.h"
 #include "main.h"
-#include "screen.h"
 
 int InitSave(Player **save)
 {
