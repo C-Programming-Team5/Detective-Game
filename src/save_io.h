@@ -12,7 +12,6 @@
 #include "player.h"
 
 #define SAVESIZE 5 // 최대 세이브 개수를 지정하는 상수입니다.
-#define SALT 20181224 // 해시에 쓰이는 SALT 입니다.
 
 enum
 {
@@ -24,10 +23,10 @@ enum
 int InitSave(Player **save);
 
 // 클리어한 퀴즈의 개수를 반환하는 함수입니다.
-int GetClearedQuizCount(const Player const save[], const int id);
+int GetClearedQuizCount(const Player save[], int id);
 
 // 플레이어 데이터를 저장합니다. 성공시 SUCCESS, 실패시 FAIL을 반환합니다.
-int Save(const Player * const player, Player save[], const int id);
+int Save(const Player * const player, Player save[], int id);
 
 // 파일로부터 세이브를 불러옵니다. 성공시 SUCCESS, 실패시 FAIL을 반환합니다.
 int LoadFromFile(Player save[]);

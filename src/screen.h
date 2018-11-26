@@ -25,4 +25,4 @@ void PrintClues(const Player * const player);
 void PrintEnding(int flag);
 
 // 화면을 비우고, 세이브 목록을 나타내는 함수입니다.
-void PrintSaveList(const Player const save[]);
+void PrintSaveList(const Player save[]);

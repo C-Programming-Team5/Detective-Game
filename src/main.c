@@ -2,13 +2,13 @@
 #include "screen.h"
 #include "save_io.h"
 
-void CallAtExit(int argc, char *argv[])
+void CallAtExit(void)
 {
 	ExecuteFree(NULL);
 	return;
 }
 
-int main(void)
+int main(int argc, char *argv[])
 {
 	int selected = 0;
 	Player *save = NULL; // 세이브용 배열

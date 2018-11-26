@@ -13,7 +13,7 @@ int InitSave(Player **save)
 	return SUCCESS;
 }
 
-int GetClearedQuizCount(const Player const save[], const int id)
+int GetClearedQuizCount(const Player save[], int id)
 {
 	int i = 0, result = 0;
 
@@ -24,7 +24,7 @@ int GetClearedQuizCount(const Player const save[], const int id)
 	return result;
 }
 
-int Save(const Player * const player, Player save[], const int id)
+int Save(const Player * const player, Player save[], int id)
 {
 	FILE *saveFile = fopen("save.sav", "wb");
 	uint8_t firstHash = 0, secondHash = 0;
@@ -44,10 +44,9 @@ int Save(const Player * const player, Player save[], const int id)
 		return FAIL;
 	}
 
-	// 두 번의 해싱 과정과 중간 SALT값 추가를 통해, 보안성을 약간 강화하였습니다.
+	// 두 번의 해싱 과정을 통해 보안성을 약간 강화하였습니다.
 	sha256(save, sizeof(Player) * SAVESIZE, &firstHash);
-	firstHash += SALT;
-	she256(&firstHash, 8, &secondHash);
+	sha256(&firstHash, SHA256_BYTES, &secondHash);
 	
 	if (fwrite(save, sizeof(Player), SAVESIZE, saveFile) < (sizeof(Player) * SAVESIZE))
 	{
@@ -55,7 +54,7 @@ int Save(const Player * const player, Player save[], const int id)
 		return FAIL;
 	}
 
-	if (fwrite(&secondHash, 8, 1, saveFile) < 8)
+	if (fwrite(&secondHash, 1, SHA256_BYTES, saveFile) < SHA256_BYTES)
 	{
 		fclose(saveFile);
 		return FAIL;
@@ -81,7 +80,7 @@ int LoadFromFile(Player save[])
 		return FAIL;
 	}
 
-	if (fread(&fileHash, 8, 1, saveFile) < 8)
+	if (fread(&fileHash, 1, SHA256_BYTES, saveFile) < SHA256_BYTES)
 	{
 		fclose(saveFile);
 		return FAIL;
@@ -91,8 +90,7 @@ int LoadFromFile(Player save[])
 
 	// 저장시에 사용한 방식을 사용해서 해시를 만듭니다.
 	sha256(save, sizeof(Player) * SAVESIZE, &firstHash);
-	firstHash += SALT;
-	sha256(&firstHash, 8, &secondHash);
+	sha256(&firstHash, SHA256_BYTES, &secondHash);
 
 	if (fileHash != secondHash)
 	{

@@ -102,7 +102,7 @@ void PrintEnding(int flag)
 	return;
 }
 
-void PrintSaveList(const Player const save[])
+void PrintSaveList(const Player save[])
 {
 	int i = 0;
 
