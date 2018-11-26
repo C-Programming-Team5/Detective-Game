@@ -90,15 +90,7 @@
                 break;
             }
             Sleep(100);
-
         }
         cls;
-        switch (POS)
-        {
-        case 0:
-            LobbyScreen();
-            SelectItem(); //물건 선택창으로 넘어갑니다.
-
-        }
         return POS;
     }

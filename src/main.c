@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
             LobbyScreen();
             Prologue();
             LobbyScreen();
-            LobbyPlay();
+            LobbyPlay(action);
 			break;
 		case 1: // 이어 하기
 			if (LoadFromFile(save) == FAIL)
