@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <stdio.h>
 #include <windows.h>
@@ -10,4 +10,4 @@
 
 void SetColor(int color);
 void CursorView(char show);
-void gotoxy(int x, int y); #pragma once
+void gotoxy(int x, int y);
