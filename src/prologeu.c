@@ -1,4 +1,4 @@
-#include "prologue.h"
+ï»¿#include "prologue.h"
 
 void prologue(void)
 {
@@ -14,27 +14,27 @@ void prologue(void)
     Sleep(1000);
     gotoxy(6, 25); printf(".");
     Sleep(2000);
-    gotoxy(1, 25); printf("Áö²ö°Å¸®´Â ¸Ó¸®¸¦ ºÙÀâÀ¸¸ç Á¤½ÅÀ» Â÷·È´Ù.");
+    gotoxy(1, 25); printf("ì§€ëˆê±°ë¦¬ëŠ” ë¨¸ë¦¬ë¥¼ ë¶™ìž¡ìœ¼ë©° ì •ì‹ ì„ ì°¨ë ¸ë‹¤.");
     Sleep(5000);
     gotoxy(1, 25); printf("                                                                                       ");
     Sleep(100);
-    gotoxy(1, 25); printf("¾îÁ¦ ³ª´Â ºÐ¸í Áý¿¡ °£ °Í °°¾Ò´Âµ¥, °­ÀÇ½Ç ¾ÈÀÌ´Ù.");
+    gotoxy(1, 25); printf("ì–´ì œ ë‚˜ëŠ” ë¶„ëª… ì§‘ì— ê°„ ê²ƒ ê°™ì•˜ëŠ”ë°, ê°•ì˜ì‹¤ ì•ˆì´ë‹¤.");
     Sleep(5000);
     gotoxy(1, 25); printf("                                                                                       ");
     Sleep(100);
-    gotoxy(1, 25); printf("Áý¿¡ °¡±â À§ÇØ °­ÀÇ½Ç¹®À» ¿­¾ú´Ù.");
+    gotoxy(1, 25); printf("ì§‘ì— ê°€ê¸° ìœ„í•´ ê°•ì˜ì‹¤ë¬¸ì„ ì—´ì—ˆë‹¤.");
     Sleep(5000);
     gotoxy(1, 25); printf("                                                                                       ");
     Sleep(100);
-    gotoxy(1, 25); printf("ÀÚ¹°¼è°¡ ³»ºÎ¿¡ ¼³Ä¡ µÇ¾îÀÖ¾î ¿­¸®Áö ¾Ê´Â´Ù.");
+    gotoxy(1, 25); printf("ìžë¬¼ì‡ ê°€ ë‚´ë¶€ì— ì„¤ì¹˜ ë˜ì–´ìžˆì–´ ì—´ë¦¬ì§€ ì•ŠëŠ”ë‹¤.");
     Sleep(5000);
     gotoxy(1, 25); printf("                                                                                       ");
     Sleep(100);
-    gotoxy(1, 25); printf("ÈÞ´ëÆùµµ ÄÑÁöÁö ¾Ê´Â´Ù. °­ÀÇ½ÇÀ» ³ª°¡±â À§ÇØ¼± 5°³ÀÇ ºñ¹Ð¹øÈ£°¡ ÇÊ¿äÇÑ °Í °°´Ù.");
+    gotoxy(1, 25); printf("íœ´ëŒ€í°ë„ ì¼œì§€ì§€ ì•ŠëŠ”ë‹¤. ê°•ì˜ì‹¤ì„ ë‚˜ê°€ê¸° ìœ„í•´ì„  5ê°œì˜ ë¹„ë°€ë²ˆí˜¸ê°€ í•„ìš”í•œ ê²ƒ ê°™ë‹¤.");
     Sleep(5000);
     gotoxy(1, 25); printf("                                                                                       ");
     Sleep(100);
-    gotoxy(1, 25); printf("È¤½Ã¶óµµ Á¶±³°¡ µÎ°í °£ ºñ¹Ð¹øÈ£ Á¾ÀÌ°¡ ÀÖÀ» ¼öµµ ÀÖ±â ¶§¹®¿¡ °­ÀÇ½Ç ³»ºÎ¸¦ Ã£¾Æº¸±â·Î Çß´Ù.");
+    gotoxy(1, 25); printf("í˜¹ì‹œë¼ë„ ì¡°êµê°€ ë‘ê³  ê°„ ë¹„ë°€ë²ˆí˜¸ ì¢…ì´ê°€ ìžˆì„ ìˆ˜ë„ ìžˆê¸° ë•Œë¬¸ì— ê°•ì˜ì‹¤ ë‚´ë¶€ë¥¼ ì°¾ì•„ë³´ê¸°ë¡œ í–ˆë‹¤.");
     Sleep(5000);
     system("cls");
     return 0;

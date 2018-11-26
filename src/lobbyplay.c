@@ -1,8 +1,8 @@
-#include "lobbyplay.h"
+ï»¿#include "lobbyplay.h"
 
     int lobbyplay(int choice)
     {
-        gotoxy(2, 25);  printf("ÀÌÁ¦ ¹«¾ùÀ» ÇÒ±î?");
+        gotoxy(2, 25);  printf("ì´ì œ ë¬´ì—‡ì„ í• ê¹Œ?");
         int POS = 5;
         CursorView(0);
         system("COLOR 0F");
@@ -34,56 +34,56 @@
             {
             case 0:
                 SetColor(3);
-                gotoxy(1, 27); printf("1.¹°°ÇÀ» Ã£¾Æº»´Ù");
+                gotoxy(1, 27); printf("1.ë¬¼ê±´ì„ ì°¾ì•„ë³¸ë‹¤");
                 SetColor(15);
-                gotoxy(21, 27); printf("2.´Ü¼­¸¦ º»´Ù");
-                gotoxy(41, 27); printf("3.ÀÚ¹°¼è¸¦ ¿¬´Ù");
-                gotoxy(61, 27); printf("4.ÀúÀåÇÑ´Ù");
-                gotoxy(81, 27); printf("5.Á¾·áÇÑ´Ù");
+                gotoxy(21, 27); printf("2.ë‹¨ì„œë¥¼ ë³¸ë‹¤");
+                gotoxy(41, 27); printf("3.ìë¬¼ì‡ ë¥¼ ì—°ë‹¤");
+                gotoxy(61, 27); printf("4.ì €ì¥í•œë‹¤");
+                gotoxy(81, 27); printf("5.ì¢…ë£Œí•œë‹¤");
                 break;
             case 1:
                 SetColor(3);
-                gotoxy(1, 27); printf("1.¹°°ÇÀ» Ã£¾Æº»´Ù");
+                gotoxy(1, 27); printf("1.ë¬¼ê±´ì„ ì°¾ì•„ë³¸ë‹¤");
                 SetColor(15);
-                gotoxy(21, 27); printf("2.´Ü¼­¸¦ º»´Ù");
-                gotoxy(41, 27); printf("3.ÀÚ¹°¼è¸¦ ¿¬´Ù");
-                gotoxy(61, 27); printf("4.ÀúÀåÇÑ´Ù");
-                gotoxy(81, 27); printf("5.Á¾·áÇÑ´Ù");
+                gotoxy(21, 27); printf("2.ë‹¨ì„œë¥¼ ë³¸ë‹¤");
+                gotoxy(41, 27); printf("3.ìë¬¼ì‡ ë¥¼ ì—°ë‹¤");
+                gotoxy(61, 27); printf("4.ì €ì¥í•œë‹¤");
+                gotoxy(81, 27); printf("5.ì¢…ë£Œí•œë‹¤");
                 break;
             case 2:
-                gotoxy(1, 27); printf("1.¹°°ÇÀ» Ã£¾Æº»´Ù");
+                gotoxy(1, 27); printf("1.ë¬¼ê±´ì„ ì°¾ì•„ë³¸ë‹¤");
                 SetColor(3);
-                gotoxy(21, 27); printf("2.´Ü¼­¸¦ º»´Ù");
+                gotoxy(21, 27); printf("2.ë‹¨ì„œë¥¼ ë³¸ë‹¤");
                 SetColor(15);
-                gotoxy(41, 27); printf("3.ÀÚ¹°¼è¸¦ ¿¬´Ù");
-                gotoxy(61, 27); printf("4.ÀúÀåÇÑ´Ù");
-                gotoxy(81, 27); printf("5.Á¾·áÇÑ´Ù");
+                gotoxy(41, 27); printf("3.ìë¬¼ì‡ ë¥¼ ì—°ë‹¤");
+                gotoxy(61, 27); printf("4.ì €ì¥í•œë‹¤");
+                gotoxy(81, 27); printf("5.ì¢…ë£Œí•œë‹¤");
                 break;
             case 3:
-                gotoxy(1, 27); printf("1.¹°°ÇÀ» Ã£¾Æº»´Ù");
-                gotoxy(21, 27); printf("2.´Ü¼­¸¦ º»´Ù");
+                gotoxy(1, 27); printf("1.ë¬¼ê±´ì„ ì°¾ì•„ë³¸ë‹¤");
+                gotoxy(21, 27); printf("2.ë‹¨ì„œë¥¼ ë³¸ë‹¤");
                 SetColor(3);
-                gotoxy(41, 27); printf("3.ÀÚ¹°¼è¸¦ ¿¬´Ù");
+                gotoxy(41, 27); printf("3.ìë¬¼ì‡ ë¥¼ ì—°ë‹¤");
                 SetColor(15);
-                gotoxy(61, 27); printf("4.ÀúÀåÇÑ´Ù");
-                gotoxy(81, 27); printf("5.Á¾·áÇÑ´Ù");
+                gotoxy(61, 27); printf("4.ì €ì¥í•œë‹¤");
+                gotoxy(81, 27); printf("5.ì¢…ë£Œí•œë‹¤");
                 break;
             case 4:
-                gotoxy(1, 27); printf("1.¹°°ÇÀ» Ã£¾Æº»´Ù");
-                gotoxy(21, 27); printf("2.´Ü¼­¸¦ º»´Ù");
-                gotoxy(41, 27); printf("3.ÀÚ¹°¼è¸¦ ¿¬´Ù");
+                gotoxy(1, 27); printf("1.ë¬¼ê±´ì„ ì°¾ì•„ë³¸ë‹¤");
+                gotoxy(21, 27); printf("2.ë‹¨ì„œë¥¼ ë³¸ë‹¤");
+                gotoxy(41, 27); printf("3.ìë¬¼ì‡ ë¥¼ ì—°ë‹¤");
                 SetColor(3);
-                gotoxy(61, 27); printf("4.ÀúÀåÇÑ´Ù");
+                gotoxy(61, 27); printf("4.ì €ì¥í•œë‹¤");
                 SetColor(15);
-                gotoxy(81, 27); printf("5.Á¾·áÇÑ´Ù");
+                gotoxy(81, 27); printf("5.ì¢…ë£Œí•œë‹¤");
                 break;
             case 5:
-                gotoxy(1, 27); printf("1.¹°°ÇÀ» Ã£¾Æº»´Ù");
-                gotoxy(21, 27); printf("2.´Ü¼­¸¦ º»´Ù");
-                gotoxy(41, 27); printf("3.ÀÚ¹°¼è¸¦ ¿¬´Ù");
-                gotoxy(61, 27); printf("4.ÀúÀåÇÑ´Ù");
+                gotoxy(1, 27); printf("1.ë¬¼ê±´ì„ ì°¾ì•„ë³¸ë‹¤");
+                gotoxy(21, 27); printf("2.ë‹¨ì„œë¥¼ ë³¸ë‹¤");
+                gotoxy(41, 27); printf("3.ìë¬¼ì‡ ë¥¼ ì—°ë‹¤");
+                gotoxy(61, 27); printf("4.ì €ì¥í•œë‹¤");
                 SetColor(3);
-                gotoxy(81, 27); printf("5.Á¾·áÇÑ´Ù");
+                gotoxy(81, 27); printf("5.ì¢…ë£Œí•œë‹¤");
                 SetColor(15);
                 break;
             default:
