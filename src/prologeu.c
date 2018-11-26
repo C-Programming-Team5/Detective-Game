@@ -37,5 +37,4 @@ void prologue(void)
     gotoxy(1, 25); printf("혹시라도 조교가 두고 간 비밀번호 종이가 있을 수도 있기 때문에 강의실 내부를 찾아보기로 했다.");
     Sleep(5000);
     system("cls");
-    return 0;
 }
