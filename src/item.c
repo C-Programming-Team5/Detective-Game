@@ -3,7 +3,7 @@
 int SelectItem(int item)
 {
     gotoxy(2, 25); printf("어떤 물건부터 찾아볼까?");
-    int POS = 5;
+    int POS = 6;
     CursorView(0);
     system("COLOR 0F");
     while (!GetAsyncKeyState(VK_RETURN))
@@ -12,7 +12,7 @@ int SelectItem(int item)
         {
             if (POS <= 0)
             {
-                POS = 5;
+                POS = 6;
             }
             else
             {
@@ -21,7 +21,7 @@ int SelectItem(int item)
         }
         else if (GetAsyncKeyState(VK_RIGHT))
         {
-            if (POS >= 5)
+            if (POS >= 6)
             {
                 POS = 0;
             }
@@ -40,6 +40,7 @@ int SelectItem(int item)
             gotoxy(41, 27); printf("3.책상 위");
             gotoxy(61, 27); printf("4.칠판");
             gotoxy(81, 27); printf("5.포스터");
+            gotoxy(101, 27); printf("6.돌아간다");
             break;
         case 1:
             SetColor(3);
@@ -49,6 +50,7 @@ int SelectItem(int item)
             gotoxy(41, 27); printf("3.책상 위");
             gotoxy(61, 27); printf("4.칠판");
             gotoxy(81, 27); printf("5.포스터");
+            gotoxy(101, 27); printf("6.돌아간다");
             break;
         case 2:
             gotoxy(1, 27); printf("1.컴퓨터");
@@ -58,6 +60,7 @@ int SelectItem(int item)
             gotoxy(41, 27); printf("3.책상 위");
             gotoxy(61, 27); printf("4.칠판");
             gotoxy(81, 27); printf("5.포스터");
+            gotoxy(101, 27); printf("6.돌아간다");
             break;
         case 3:
             gotoxy(1, 27); printf("1.컴퓨터");
@@ -67,6 +70,7 @@ int SelectItem(int item)
             SetColor(15);
             gotoxy(61, 27); printf("4.칠판");
             gotoxy(81, 27); printf("5.포스터");
+            gotoxy(101, 27); printf("6.돌아간다");
             break;
         case 4:
             gotoxy(1, 27); printf("1.컴퓨터");
@@ -76,6 +80,7 @@ int SelectItem(int item)
             gotoxy(61, 27); printf("4.칠판");
             SetColor(15);
             gotoxy(81, 27); printf("5.포스터");
+            gotoxy(101, 27); printf("6.돌아간다");
             break;
         case 5:
             gotoxy(1, 27); printf("1.컴퓨터");
@@ -85,6 +90,17 @@ int SelectItem(int item)
             SetColor(3);
             gotoxy(81, 27); printf("5.포스터");
             SetColor(15);
+            gotoxy(101, 27); printf("6.돌아간다");
+            break;
+        case 6:
+            gotoxy(1, 27); printf("1.컴퓨터");
+            gotoxy(21, 27); printf("2.책상 밑");
+            gotoxy(41, 27); printf("3.책상 위");
+            gotoxy(61, 27); printf("4.칠판");
+            gotoxy(81, 27); printf("5.포스터");
+            SetColor(3);
+            gotoxy(101, 27); printf("6.돌아간다");
+            SetColor(15);
             break;
         default:
             break;
@@ -92,5 +108,6 @@ int SelectItem(int item)
         Sleep(100);
     }
     cls;
+
     return POS;
 }
