@@ -3,6 +3,7 @@
 
 #define PAUSE system("pause > nul")
 #define CLS system("cls")
+#define CLSLINE(X) gotoxy(1, (X)); puts("                                                                                                                        ")
 
 // 글자색을 설정하는 함수입니다.
 void SetColor(int color);

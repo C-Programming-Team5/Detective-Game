@@ -18,7 +18,6 @@ int main(int argc, char *argv[])
 			StopWatch(START);
 			LobbyScreen();
 			Prologue();
-			LobbyScreen();
 			LobbyPlay(action);
 			break;
 		case 1: // 이어 하기
