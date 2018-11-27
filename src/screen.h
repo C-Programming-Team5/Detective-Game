@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "player.h"
 
+#define PAUSE system("pause > nul")
 #define CLS system("cls")
 
 // 글자색을 설정하는 함수입니다.
