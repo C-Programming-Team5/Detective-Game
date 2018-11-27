@@ -164,92 +164,32 @@ void LobbyScreen(void) //아스키 코드로 구현한 그림입니다.
 int LobbyPlay(int choice)
 {
 	gotoxy(2, 25);  printf("이제 무엇을 할까?");
-	int POS = 5;
+	int POS = 0;
 	CursorView(0);
 	system("COLOR 0F");
 	while (!GetAsyncKeyState(VK_RETURN))
 	{
 		if (GetAsyncKeyState(VK_LEFT))
 		{
-			if (POS <= 0)
-			{
-				POS = 5;
-			}
-			else
-			{
-				POS -= 1;
-			}
+			POS = (POS + 4) % 5;
 		}
 		else if (GetAsyncKeyState(VK_RIGHT))
 		{
-			if (POS >= 5)
-			{
-				POS = 0;
-			}
-			else
-			{
-				POS++;
-			}
+			POS = (POS + 1) % 5;
 		}
-		switch (POS)
-		{
-		case 0:
-			SetColor(3);
-			gotoxy(1, 27); printf("1.물건을 찾아본다");
-			SetColor(15);
-			gotoxy(21, 27); printf("2.단서를 본다");
-			gotoxy(41, 27); printf("3.자물쇠를 연다");
-			gotoxy(61, 27); printf("4.저장한다");
-			gotoxy(81, 27); printf("5.종료한다");
-			break;
-		case 1:
-			SetColor(3);
-			gotoxy(1, 27); printf("1.물건을 찾아본다");
-			SetColor(15);
-			gotoxy(21, 27); printf("2.단서를 본다");
-			gotoxy(41, 27); printf("3.자물쇠를 연다");
-			gotoxy(61, 27); printf("4.저장한다");
-			gotoxy(81, 27); printf("5.종료한다");
-			break;
-		case 2:
-			gotoxy(1, 27); printf("1.물건을 찾아본다");
-			SetColor(3);
-			gotoxy(21, 27); printf("2.단서를 본다");
-			SetColor(15);
-			gotoxy(41, 27); printf("3.자물쇠를 연다");
-			gotoxy(61, 27); printf("4.저장한다");
-			gotoxy(81, 27); printf("5.종료한다");
-			break;
-		case 3:
-			gotoxy(1, 27); printf("1.물건을 찾아본다");
-			gotoxy(21, 27); printf("2.단서를 본다");
-			SetColor(3);
-			gotoxy(41, 27); printf("3.자물쇠를 연다");
-			SetColor(15);
-			gotoxy(61, 27); printf("4.저장한다");
-			gotoxy(81, 27); printf("5.종료한다");
-			break;
-		case 4:
-			gotoxy(1, 27); printf("1.물건을 찾아본다");
-			gotoxy(21, 27); printf("2.단서를 본다");
-			gotoxy(41, 27); printf("3.자물쇠를 연다");
-			SetColor(3);
-			gotoxy(61, 27); printf("4.저장한다");
-			SetColor(15);
-			gotoxy(81, 27); printf("5.종료한다");
-			break;
-		case 5:
-			gotoxy(1, 27); printf("1.물건을 찾아본다");
-			gotoxy(21, 27); printf("2.단서를 본다");
-			gotoxy(41, 27); printf("3.자물쇠를 연다");
-			gotoxy(61, 27); printf("4.저장한다");
-			SetColor(3);
-			gotoxy(81, 27); printf("5.종료한다");
-			SetColor(15);
-			break;
-		default:
-			break;
-		}
+
+		SetColor(POS == 0 ? 3 : 15);
+		gotoxy(1, 27); printf("1.물건을 찾아본다");
+		SetColor(POS == 1 ? 3 : 15);
+		gotoxy(21, 27); printf("2.단서를 본다");
+		SetColor(POS == 2 ? 3 : 15);
+		gotoxy(41, 27); printf("3.자물쇠를 연다");
+		SetColor(POS == 3 ? 3 : 15);
+		gotoxy(61, 27); printf("4.저장한다");
+		SetColor(POS == 4 ? 3 : 15);
+		gotoxy(81, 27); printf("5.종료한다");
+		SetColor(15);
+
 		Sleep(100);
 	}
 	CLS;
@@ -266,85 +206,25 @@ int SelectItem(int item)
 	{
 		if (GetAsyncKeyState(VK_LEFT))
 		{
-			if (POS <= 0)
-			{
-				POS = 5;
-			}
-			else
-			{
-				POS -= 1;
-			}
+			POS = (POS + 4) % 5;
 		}
 		else if (GetAsyncKeyState(VK_RIGHT))
 		{
-			if (POS >= 5)
-			{
-				POS = 0;
-			}
-			else
-			{
-				POS++;
-			}
+			POS = (POS + 1) % 5;
 		}
-		switch (POS)
-		{
-		case 0:
-			SetColor(3);
-			gotoxy(1, 27); printf("1.컴퓨터");
-			SetColor(15);
-			gotoxy(21, 27); printf("2.책상 밑");
-			gotoxy(41, 27); printf("3.책상 위");
-			gotoxy(61, 27); printf("4.칠판");
-			gotoxy(81, 27); printf("5.포스터");
-			break;
-		case 1:
-			SetColor(3);
-			gotoxy(1, 27); printf("1.컴퓨터");
-			SetColor(15);
-			gotoxy(21, 27); printf("2.책상 밑");
-			gotoxy(41, 27); printf("3.책상 위");
-			gotoxy(61, 27); printf("4.칠판");
-			gotoxy(81, 27); printf("5.포스터");
-			break;
-		case 2:
-			gotoxy(1, 27); printf("1.컴퓨터");
-			SetColor(3);
-			gotoxy(21, 27); printf("2.책상 밑");
-			SetColor(15);
-			gotoxy(41, 27); printf("3.책상 위");
-			gotoxy(61, 27); printf("4.칠판");
-			gotoxy(81, 27); printf("5.포스터");
-			break;
-		case 3:
-			gotoxy(1, 27); printf("1.컴퓨터");
-			gotoxy(21, 27); printf("2.책상 밑");
-			SetColor(3);
-			gotoxy(41, 27); printf("3.책상 위");
-			SetColor(15);
-			gotoxy(61, 27); printf("4.칠판");
-			gotoxy(81, 27); printf("5.포스터");
-			break;
-		case 4:
-			gotoxy(1, 27); printf("1.컴퓨터");
-			gotoxy(21, 27); printf("2.책상 밑");
-			gotoxy(41, 27); printf("3.책상 위");
-			SetColor(3);
-			gotoxy(61, 27); printf("4.칠판");
-			SetColor(15);
-			gotoxy(81, 27); printf("5.포스터");
-			break;
-		case 5:
-			gotoxy(1, 27); printf("1.컴퓨터");
-			gotoxy(21, 27); printf("2.책상 밑");
-			gotoxy(41, 27); printf("3.책상 위");
-			gotoxy(61, 27); printf("4.칠판");
-			SetColor(3);
-			gotoxy(81, 27); printf("5.포스터");
-			SetColor(15);
-			break;
-		default:
-			break;
-		}
+
+		SetColor(POS == 0 ? 3 : 15);
+		gotoxy(1, 27); printf("1.컴퓨터");
+		SetColor(POS == 1 ? 3 : 15);
+		gotoxy(21, 27); printf("2.책상 밑");
+		SetColor(POS == 2 ? 3 : 15);
+		gotoxy(41, 27); printf("3.책상 위");
+		SetColor(POS == 3 ? 3 : 15);
+		gotoxy(61, 27); printf("4.칠판");
+		SetColor(POS == 4 ? 3 : 15);
+		gotoxy(81, 27); printf("5.포스터");
+		SetColor(15);
+
 		Sleep(100);
 	}
 	CLS;
