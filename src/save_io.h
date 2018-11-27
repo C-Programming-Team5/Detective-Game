@@ -19,9 +19,6 @@ enum
 	SUCCESS
 };
 
-// 세이브 리스트를 초기화합니다. 성공시 SUCCESS, 실패시 FAIL을 반환합니다.
-int InitSave(Player **save);
-
 // 클리어한 퀴즈의 개수를 반환하는 함수입니다.
 int GetClearedQuizCount(const Player save[], int id);
 
@@ -30,6 +27,3 @@ int Save(const Player * const player, Player save[], int id);
 
 // 파일로부터 세이브를 불러옵니다. 성공시 SUCCESS, 실패시 FAIL을 반환합니다.
 int LoadFromFile(Player save[]);
-
-// 처음 호출시 플레이어 세이브 리스트의 포인터를 저장하고, 다음 호출시, 저장된 동적 리스트를 해제합니다.
-void ExecuteFree(Player save[]);

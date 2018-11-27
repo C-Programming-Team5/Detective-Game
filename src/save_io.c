@@ -1,17 +1,6 @@
 ﻿#include "save_io.h"
 #include "main.h"
 
-int InitSave(Player **save)
-{
-	*save = (Player *)calloc(SAVESIZE, sizeof(Player));
-	if (save == NULL)
-	{
-		return FAIL;
-	}
-	ExecuteFree(*save);
-	return SUCCESS;
-}
-
 int GetClearedQuizCount(const Player save[], int id)
 {
 	int i = 0, result = 0;
