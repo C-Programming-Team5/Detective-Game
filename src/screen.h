@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "player.h"
 
+#define PAUSE system("pause > nul")
 #define CLS system("cls")
 
 // 글자색을 설정하는 함수입니다.
@@ -23,3 +24,15 @@ void PrintClues(const Player * const player);
 
 // 화면을 비우고, 세이브 목록을 나타내는 함수입니다.
 void PrintSaveList(const Player save[]);
+
+// 프롤로그를 출력하는 함수입니다.
+void Prologue(void);
+
+// 로비 배경화면을 출력하는 함수입니다.
+void LobbyScreen(void);
+
+// 로비 선택지 화면을 출력하고 결과값을 받아오는 함수입니다.
+int LobbyPlay(int choice);
+
+// 아이템 선택화면을 출력하고 결과값을 받아오는 함수입니다.
+int SelectItem(int item);
