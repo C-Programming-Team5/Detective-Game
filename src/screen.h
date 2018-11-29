@@ -5,6 +5,9 @@
 #define CLS system("cls")
 #define CLSLINE(Y) gotoxy(1, (Y)); fputs("                                                                                                                        ", stdout)
 
+// getch를 표준 + Win32API 로 구현한 코드입니다. 안정성이 높습니다.
+TCHAR Getch();
+
 // 글자색을 설정하는 함수입니다.
 void SetColor(int color);
 
