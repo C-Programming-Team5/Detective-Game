@@ -181,7 +181,7 @@ int LobbyPlay(int choice)
 {
     LobbyScreen();
 	gotoxy(2, 25);  printf("이제 무엇을 할까?");
-	int POS = 0;
+	int POS = 4;
 	CursorView(0);
 	system("COLOR 0F");
 	while (!GetAsyncKeyState(VK_RETURN))
@@ -222,7 +222,7 @@ int LobbyPlay(int choice)
 int SelectItem(int item)
 {
     gotoxy(2, 25); printf("어떤 물건부터 찾아볼까?");
-    int POS = 6;
+    int POS = 5;
     CursorView(0);
     system("COLOR 0F");
     while (!GetAsyncKeyState(VK_RETURN))
