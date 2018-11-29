@@ -110,6 +110,7 @@ void PrintSaveList(const Player save[])
 
 void Prologue(void)
 {
+    LobbyScreen();
 	gotoxy(1, 25); printf(".");
 	Sleep(1000);
 	gotoxy(2, 25); printf(".");
@@ -144,7 +145,7 @@ void Prologue(void)
 	Sleep(100);
 	gotoxy(1, 25); printf("혹시라도 조교가 두고 간 비밀번호 종이가 있을 수도 있기 때문에 강의실 내부를 찾아보기로 했다.");
 	Sleep(5000);
-	CLSLINE(25); //프롤로그 대사창을 모두 지웁니다.
+	CLS; //프롤로그 대사창을 모두 지웁니다.
 }
 
 void LobbyScreen(void) //아스키 코드로 구현한 그림입니다.
@@ -178,6 +179,7 @@ void LobbyScreen(void) //아스키 코드로 구현한 그림입니다.
 
 int LobbyPlay(int choice)
 {
+    LobbyScreen();
 	gotoxy(2, 25);  printf("이제 무엇을 할까?");
 	int POS = 0;
 	CursorView(0);
@@ -208,40 +210,52 @@ int LobbyPlay(int choice)
 		Sleep(100);
 	}
 	CLS;
-	return POS;
+    if (POS == 0)
+    {
+        LobbyScreen();
+        SelectItem(POS);
+    }
+    else
+     return 0;
 }
 
 int SelectItem(int item)
 {
-	gotoxy(2, 25); printf("어떤 물건부터 찾아볼까?");
-	int POS = 5;
-	CursorView(0);
-	system("COLOR 0F");
-	while (!GetAsyncKeyState(VK_RETURN))
-	{
-		if (GetAsyncKeyState(VK_LEFT))
-		{
-			POS = (POS + 4) % 5;
-		}
-		else if (GetAsyncKeyState(VK_RIGHT))
-		{
-			POS = (POS + 1) % 5;
-		}
+    gotoxy(2, 25); printf("어떤 물건부터 찾아볼까?");
+    int POS = 6;
+    CursorView(0);
+    system("COLOR 0F");
+    while (!GetAsyncKeyState(VK_RETURN))
+    {
+        if (GetAsyncKeyState(VK_LEFT))
+        {
+            POS = (POS + 5) % 6;
+        }
+        else if (GetAsyncKeyState(VK_RIGHT))
+        {
+            POS = (POS + 1) % 6;
+        }
 
-		SetColor(POS == 0 ? 3 : 15);
-		gotoxy(1, 27); printf("1.컴퓨터");
-		SetColor(POS == 1 ? 3 : 15);
-		gotoxy(21, 27); printf("2.책상 밑");
-		SetColor(POS == 2 ? 3 : 15);
-		gotoxy(41, 27); printf("3.책상 위");
-		SetColor(POS == 3 ? 3 : 15);
-		gotoxy(61, 27); printf("4.칠판");
-		SetColor(POS == 4 ? 3 : 15);
-		gotoxy(81, 27); printf("5.포스터");
-		SetColor(15);
+        SetColor(POS == 0 ? 3 : 15);
+        gotoxy(1, 27); printf("1.컴퓨터");
+        SetColor(POS == 1 ? 3 : 15);
+        gotoxy(21, 27); printf("2.책상 밑");
+        SetColor(POS == 2 ? 3 : 15);
+        gotoxy(41, 27); printf("3.책상 위");
+        SetColor(POS == 3 ? 3 : 15);
+        gotoxy(61, 27); printf("4.칠판");
+        SetColor(POS == 4 ? 3 : 15);
+        gotoxy(81, 27); printf("5.포스터");
+        SetColor(POS == 5 ? 3 : 15);
+        gotoxy(101, 27); printf("6.돌아가기");
+        SetColor(15);
 
-		Sleep(100);
-	}
-	CLS;
+        Sleep(100);
+    }
+    if (POS == 5)
+    {
+        CLS;
+        LobbyPlay(POS);
+}
 	return POS;
 }

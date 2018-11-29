@@ -5,7 +5,7 @@
 int main(int argc, char *argv[])
 {
 	int selected = 0;
-	int *action = 0;
+	int action = 0;
 	Player save[SAVESIZE]; // 세이브용 배열
 	Player player = {0, 0}; // 플레이용 임시 데이터
 
@@ -16,7 +16,6 @@ int main(int argc, char *argv[])
 	{
 		case 0: // 게임 시작
 			StopWatch(START);
-			LobbyScreen();
 			Prologue();
 			LobbyPlay(action);
 			break;
