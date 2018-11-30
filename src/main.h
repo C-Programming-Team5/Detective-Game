@@ -12,6 +12,3 @@ enum
 	GAME_OVER,
 	GAME_CLEAR
 };
-
-// 프로그램이 종료될 때 atexit함수로부터 호출되어, 프로그램을 정리합니다.
-void CallAtExit(void);
