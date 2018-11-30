@@ -123,6 +123,7 @@ void Prologue(void)
 	Sleep(1000);
 	gotoxy(6, 25); printf(".");
 	Sleep(2000);
+    PlaySound(TEXT("searching.wav"), NULL, SND_ASYNC);
 	gotoxy(1, 25); printf("지끈거리는 머리를 붙잡으며 정신을 차렸다.");
 	Sleep(5000);
 	gotoxy(1, 25); printf("                                                                                       ");
@@ -135,6 +136,7 @@ void Prologue(void)
 	Sleep(5000);
 	gotoxy(1, 25); printf("                                                                                       ");
 	Sleep(100);
+    PlaySound(TEXT("lock.wav"), NULL, SND_ASYNC);
 	gotoxy(1, 25); printf("자물쇠가 내부에 설치 되어있어 열리지 않는다.");
 	Sleep(5000);
 	gotoxy(1, 25); printf("                                                                                       ");
@@ -212,17 +214,19 @@ int LobbyPlay(int choice)
 	CLS;
     if (POS == 0)
     {
+        PlaySound(TEXT("walking.wav"), NULL, SND_ASYNC);
         LobbyScreen();
         SelectItem(POS);
     }
     else
-     return 0;
+     return POS;
 }
 
 int SelectItem(int item)
 {
     gotoxy(2, 25); printf("어떤 물건부터 찾아볼까?");
     int POS = 5;
+    int ans5, quiz5;
     CursorView(0);
     system("COLOR 0F");
     while (!GetAsyncKeyState(VK_RETURN))
@@ -252,10 +256,136 @@ int SelectItem(int item)
 
         Sleep(100);
     }
-    if (POS == 5)
+    switch (POS)
     {
-        CLS;
-        LobbyPlay(POS);
+    case 0:
+        PlaySound(TEXT("click.wav"), NULL, SND_ASYNC);
+        return 0;
+    case 1:
+
+        return 0;
+    case 2:
+        return 0;
+    case 3:
+        return 0;
+    case 4:
+    { CLS;
+    Quiz5(quiz5);
+    Answer5(ans5); 
+    }
+    case 5:
+    {    CLS;
+    LobbyPlay(POS); }
+    default:
+        return POS;
+    }
+	//return POS;
 }
-	return POS;
+
+int Quiz5(int quiz5)
+
+{
+    char *text[] =
+   {
+       "Q. 슈뢰딩거의 다이어리\n\n슈뢰딩거의 다이어리에는 요일마다 알 수 없는 숫자가 적혀 있다.\n물음표에 들어갈 숫자는 무엇인가 ?",
+       "MON = 3\nTUE = 5\nWED = 4\nTHU = ?",
+    };
+   int i = 0;
+
+    for (i = 0; i < 2; i++)
+   {
+       gotoxy(1, 25);
+       puts(text[i]);
+       Getch();
+       system("cls");
+    }
+
+}
+
+int Answer5(int ans5)
+{
+
+    int POS = 4;
+    CursorView(0);
+    system("COLOR 0F");
+    while (1) {
+        if (GetAsyncKeyState(VK_LEFT))
+            if (POS == 0) POS = 3;
+            else POS -= 1;
+        else if (GetAsyncKeyState(VK_RIGHT))
+            if (POS == 3) POS = 0;
+            else POS += 1;
+        else if (GetAsyncKeyState(VK_RETURN))
+            break;
+
+
+        switch (POS) {
+        case 0:
+            SetColor(3);
+            gotoxy(21, 27); printf("1. 2");
+            SetColor(15);
+            gotoxy(41, 27); printf("2. 4");
+            gotoxy(61, 27); printf("3. 6");
+            gotoxy(81, 27); printf("4. 8");
+            break;
+
+        case 1:
+            SetColor(3);
+            gotoxy(41, 27); printf("2. 4");
+            SetColor(15);
+            gotoxy(21, 27); printf("1. 2");
+            gotoxy(61, 27); printf("3. 6");
+            gotoxy(81, 27); printf("4. 8");
+            break;
+
+        case 2:
+            SetColor(3);
+            gotoxy(61, 27); printf("3. 6");
+            SetColor(15);
+            gotoxy(21, 27); printf("1. 2");
+            gotoxy(41, 27); printf("2. 4");
+            gotoxy(81, 27); printf("4. 8");
+            break;
+
+        case 3:
+            SetColor(3);
+            gotoxy(81, 27); printf("4. 8");
+            SetColor(15);
+            gotoxy(21, 27); printf("1. 2");
+            gotoxy(41, 27); printf("2. 4");
+            gotoxy(61, 27); printf("3. 6");
+            break;
+
+        default: break;
+        }
+        Sleep(100);
+    }
+    system("cls");
+
+    if (POS == 0)
+    {
+        gotoxy(1, 25); printf("단서가 나타났다!");
+        gotoxy(1, 26); printf(" 단서5: 그 무엇보다 가볍고, 그 무엇보다 자유로운 것");
+        return 0;
+    }
+
+    else if (POS == 1)
+    {
+        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        return 0;
+    }
+
+    else if (POS == 2)
+    {
+        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        return 0;
+    }
+    else if (POS == 3)
+    {
+        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        return 0;
+    }
+    else
+        return 0;
+    
 }

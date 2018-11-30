@@ -1,5 +1,7 @@
 ﻿#pragma once
 #include "player.h"
+#include <mmsystem.h>
+#pragma comment(lib, "winmm.lib")
 
 #define PAUSE system("pause > nul")
 #define CLS system("cls")
@@ -40,3 +42,9 @@ int LobbyPlay(int choice);
 
 // 아이템 선택화면을 출력하고 결과값을 받아오는 함수입니다.
 int SelectItem(int item);
+
+// 5번문제를 출력하는 함수입니다.
+int Quiz5(int quiz5);
+
+// 5번문제의 답을 출력하고 결과값을 받아오는 함수입니다.
+int Answer5(int ans5);
