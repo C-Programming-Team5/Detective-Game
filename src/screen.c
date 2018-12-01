@@ -153,6 +153,7 @@ void Prologue(void)
 
 void LobbyScreen(void) //아스키 코드로 구현한 그림입니다.
 {
+    
 	printf("\n");
 	printf("                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
 	printf("                   ┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃\n");
@@ -220,14 +221,13 @@ int LobbyPlay(int choice)
         SelectItem(POS);
     }
     else
-     return POS;
+     return 0;
 }
 
 int SelectItem(int item)
 {
     gotoxy(2, 25); printf("어떤 물건부터 찾아볼까?");
     int POS = 5;
-    int ans5, quiz5;
     CursorView(0);
     system("COLOR 0F");
     while (!GetAsyncKeyState(VK_RETURN))
@@ -260,8 +260,12 @@ int SelectItem(int item)
     switch (POS)
     {
     case 0:
-        PlaySound(TEXT("click.wav"), NULL, SND_ASYNC);
-        return 0;
+    {
+    PlaySound(TEXT("click.wav"), NULL, SND_ASYNC);
+    Quiz1();
+    Answer1();
+    }
+        
     case 1:
 
         return 0;
@@ -270,123 +274,96 @@ int SelectItem(int item)
     case 3:
         return 0;
     case 4:
-    { CLS;
-    Quiz5(quiz5);
-    Answer5(ans5); 
-    }
+        return 0;
     case 5:
-    {    CLS;
+    {    
     LobbyPlay(POS); }
     default:
-        return POS;
+        return 0;
     }
-	//return POS;
+    return 0;
 }
 
-int Quiz5(int quiz5)
+
+void Quiz1(void)
 
 {
+
+    CLS;
     char *text[] =
-   {
-       "Q. 슈뢰딩거의 다이어리\n\n슈뢰딩거의 다이어리에는 요일마다 알 수 없는 숫자가 적혀 있다.\n물음표에 들어갈 숫자는 무엇인가 ?",
-       "MON = 3\nTUE = 5\nWED = 4\nTHU = ?",
+    {
+        "'n'을 누르면 다음 페이지로 넘어갑니다", "Q. 신분을 밝혀라!\n\n 내가 A에게 다음과 같이 물었다고 해보자.\n 나: 여러분 가운데 기사는 몇 분이나 되십니까 ? \n이에 A가 대답했으나 발음이 불분명하여 B가 추가적으로 대답했다.\nB : A는 우리중 기사는 한 명이라고 말했다.그 순간 C가 끼어들었다.\nC : B는 지금 거짓말을 하고있습니다.",
+        "B와 C의 신분을 밝혀라.(신분은 건달 혹은 기사이다)",
     };
-   int i = 0;
-
-    for (i = 0; i < 2; i++)
-   {
-       gotoxy(1, 25);
-       puts(text[i]);
-       Getch();
-       system("cls");
+    int i = 0;
+    for (i = 0; i < 3; i++)
+    {
+        LobbyScreen();
+        gotoxy(1, 25);
+        puts(text[i]);
+        WAITFORKEY('n');
+        system("cls");
     }
-
+    return 0;
 }
 
-int Answer5(int ans5)
+void Answer1(void)
 {
-
-    int POS = 4;
+    CLS;
+    LobbyScreen();
+    int ANS = 4;
     CursorView(0);
     system("COLOR 0F");
-    while (1) {
+    while (!GetAsyncKeyState(VK_RETURN)) 
+    {
         if (GetAsyncKeyState(VK_LEFT))
-            if (POS == 0) POS = 3;
-            else POS -= 1;
-        else if (GetAsyncKeyState(VK_RIGHT))
-            if (POS == 3) POS = 0;
-            else POS += 1;
-        else if (GetAsyncKeyState(VK_RETURN))
-            break;
-
-
-        switch (POS) {
-        case 0:
-            SetColor(3);
-            gotoxy(21, 27); printf("1. 2");
-            SetColor(15);
-            gotoxy(41, 27); printf("2. 4");
-            gotoxy(61, 27); printf("3. 6");
-            gotoxy(81, 27); printf("4. 8");
-            break;
-
-        case 1:
-            SetColor(3);
-            gotoxy(41, 27); printf("2. 4");
-            SetColor(15);
-            gotoxy(21, 27); printf("1. 2");
-            gotoxy(61, 27); printf("3. 6");
-            gotoxy(81, 27); printf("4. 8");
-            break;
-
-        case 2:
-            SetColor(3);
-            gotoxy(61, 27); printf("3. 6");
-            SetColor(15);
-            gotoxy(21, 27); printf("1. 2");
-            gotoxy(41, 27); printf("2. 4");
-            gotoxy(81, 27); printf("4. 8");
-            break;
-
-        case 3:
-            SetColor(3);
-            gotoxy(81, 27); printf("4. 8");
-            SetColor(15);
-            gotoxy(21, 27); printf("1. 2");
-            gotoxy(41, 27); printf("2. 4");
-            gotoxy(61, 27); printf("3. 6");
-            break;
-
-        default: break;
+        {
+            ANS = (ANS + 3) % 4;
         }
-        Sleep(100);
+        else if (GetAsyncKeyState(VK_RIGHT))
+        {
+            ANS = (ANS + 1) % 4;
+        }
+            
+            SetColor(ANS == 0 ? 3 : 15);
+            gotoxy(21, 27); printf("1. 기사/기사");
+            SetColor(ANS == 1 ? 3 : 15);
+            gotoxy(41, 27); printf("2. 기사/건달");
+            SetColor(ANS== 2 ? 3 : 15);
+            gotoxy(61, 27); printf("3. 건달/기사");
+            SetColor(ANS == 3 ? 3 : 15);
+            gotoxy(81, 27); printf("4. 건달/건달");
+          
+            Sleep(100);
     }
     system("cls");
 
-    if (POS == 0)
+    LobbyScreen();
+    switch (ANS)
+    {
+    case 0:
+    {
+        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        return 0;
+    }
+    case 1:
+    {
+        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        return 0;
+    }
+    case 2:
     {
         gotoxy(1, 25); printf("단서가 나타났다!");
-        gotoxy(1, 26); printf(" 단서5: 그 무엇보다 가볍고, 그 무엇보다 자유로운 것");
+        gotoxy(1, 26); printf(" 단서1: 그것은 세상 어디에도 묶여있지 않다.");
+        return 0;
+    }
+    case 3:
+    {
+        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        return 0;
+    }
+    default:
         return 0;
     }
 
-    else if (POS == 1)
-    {
-        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
-        return 0;
-    }
-
-    else if (POS == 2)
-    {
-        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
-        return 0;
-    }
-    else if (POS == 3)
-    {
-        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
-        return 0;
-    }
-    else
-        return 0;
-    
 }
