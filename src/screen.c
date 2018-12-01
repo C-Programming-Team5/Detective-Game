@@ -3,7 +3,7 @@
 #include "player.h"
 #include "save_io.h"
 
-TCHAR Getch()
+TCHAR Getch(void)
 {
 	DWORD mode, cc;
 	HANDLE h = GetStdHandle(STD_INPUT_HANDLE); // 입력 핸들러를 가져옵니다. 이를 통해 입력을 제어할 수 있습니다.
