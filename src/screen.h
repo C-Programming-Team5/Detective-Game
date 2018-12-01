@@ -12,7 +12,7 @@
 #define WAITFORKEY(VK) while (!GetAsyncKeyState((VK))) Sleep(1000)
 
 // getch를 표준 + Win32API 로 구현한 코드입니다. 안정성이 높습니다.
-TCHAR Getch();
+TCHAR Getch(void);
 
 // 글자색을 설정하는 함수입니다.
 void SetColor(int color);

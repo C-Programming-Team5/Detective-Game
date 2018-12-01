@@ -7,7 +7,8 @@ TCHAR Getch()
 {
 	DWORD mode, cc;
 	HANDLE h = GetStdHandle(STD_INPUT_HANDLE); // 입력 핸들러를 가져옵니다. 이를 통해 입력을 제어할 수 있습니다.
-	if (h == NULL) {
+	if (h == NULL)
+	{
 		return 0; // console not found
 	}
 	GetConsoleMode(h, &mode); // 원래 콘솔의 입력모드를 가져옵니다.
