@@ -7,9 +7,8 @@
 #define CLS system("cls")
 #define CLSLINE(Y) gotoxy(1, (Y)); fputs("                                                                                                                        ", stdout)
 
-// 특정한 키 입력을 받기 전까지 기다리는 매크로함수 입니다. 1초마다 키 입력을 감지합니다. 이 미만으로 타이밍을 조절하면 키 입력이 두번 될 위험이 존재합니다.
-// 사용법은 GetAsyncKeyState 함수와 동일합니다.
-#define WAITFORKEY(VK) while (!GetAsyncKeyState((VK))) Sleep(1000)
+// 특정한 키 입력을 받기 전까지 기다리는 매크로 함수입니다.
+#define WAITFORKEY(KEYCHAR) while (Getch() != (KEYCHAR))
 
 // getch를 표준 + Win32API 로 구현한 코드입니다. 안정성이 높습니다.
 TCHAR Getch(void);
