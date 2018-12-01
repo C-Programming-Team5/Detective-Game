@@ -84,14 +84,34 @@ int StartScreen(void)
 	return POS;
 }
 
-void PrintClues(const Player * const player)
+void PrintClues(const Player * const player, int number)
 {
+	char *clues[] = 
+	{
+		"단서1: 그것은 세상 어디에도 묶여있지 않다.",
+		"단서2 : 세상의 그 무엇보다 강하기도 하지만, 그 무엇보다 약하기도 하다.",
+		"단서3 : 눈에 보이진 않지만, 정말 많은 이름을 갖고 있다.",
+		"단서4 : 그것에게 멈춤이란 곧 죽음이다.",
+		"단서5: 그 무엇보다 가볍고, 그 무엇보다 자유로운 것",
+	};
 	CLS;
-	puts((player->cleared & 1) ? "힌트 1: 그것은 어디에도 없다." : "");
-	puts((player->cleared & 2) ? "힌트 2: 세상의 그 무엇보다 강하기도 하지만, 그 무엇보다 약하기도 하다." : "");
-	puts((player->cleared & 4) ? "힌트 3: 눈에 보이진 않지만, 많은 이름을 갖고 있다." : "");
-	puts((player->cleared & 8) ? "힌트 4: 그것에게 멈춤이란 곧 죽음이다." : "");
-	puts((player->cleared & 16) ? "힌트 5: 그것은 세상에서 가장 가볍고 자유로운 존재이다." : "");
+
+	if (number == -1)
+	{
+		fputs((player->cleared & 1) ? clues[0] : "", stdout);
+		fputs((player->cleared & 2) ? clues[1] : "", stdout);
+		fputs((player->cleared & 4) ? clues[2] : "", stdout);
+		fputs((player->cleared & 8) ? clues[3] : "", stdout);
+		fputs((player->cleared & 16) ? clues[4] : "", stdout);
+	}
+	else
+	{
+		if (0 <= number && number <= 4)
+		{
+			fputs((player->cleared & (1 << number)) ? clues[number] : "", stdout);
+		}
+	}
+	
 	return;
 }
 
@@ -181,7 +201,7 @@ void LobbyScreen(void) //아스키 코드로 구현한 그림입니다.
 	//아래는 대사를 입력할 공간입니다.
 }
 
-int LobbyPlay(int choice)
+int LobbyPlay(int choice, Player *player, Player save[])
 {
 	CLS;
 	LobbyScreen();
@@ -215,14 +235,19 @@ int LobbyPlay(int choice)
 		Sleep(100);
 	}
 	CLS;
-	if (POS == 0)
+	
+	switch (POS)
 	{
-		PlaySound(TEXT("walking.wav"), NULL, SND_ASYNC);
-		LobbyScreen();
-		SelectItem(POS);
+		case 0:
+			PlaySound(TEXT("walking.wav"), NULL, SND_ASYNC);
+			LobbyScreen();
+			SelectItem(POS);
+			break;
+		case 1:
+			break;
+		case 2:
+
 	}
-	else
-	 return 0;
 }
 
 int SelectItem(int item)
@@ -325,7 +350,7 @@ void Quiz1(void)
 	return 0;
 }
 
-void Answer1(void)
+void Answer1(Player *player)
 {
 	CLS;
 	LobbyScreen();
@@ -378,7 +403,8 @@ void Answer1(void)
 	case 2:
 	{
 		gotoxy(1, 25); printf("단서가 나타났다!");
-		gotoxy(1, 26); printf(" 단서1: 그것은 세상 어디에도 묶여있지 않다.");
+		player->cleared |= 1;
+		gotoxy(1, 26); PrintClues(player, 0);
 		gotoxy(1, 27); printf("'n'을 눌러 다른 물건도 찾아보자");
 		WAITFORKEY('n');
 		CLS;
@@ -419,7 +445,7 @@ void Quiz2(void)
 	return 0;
 }
 
-void Answer2(void)
+void Answer2(Player *player)
 {
 	CLS;
 	LobbyScreen();
@@ -458,7 +484,8 @@ void Answer2(void)
 	{
 		
 		gotoxy(1, 25); printf("단서가 나타났다!");
-		gotoxy(1, 26); printf("단서2 : 세상의 그 무엇보다 강하기도 하지만, 그 무엇보다 약하기도 하다.");
+		player->cleared |= 2;
+		gotoxy(1, 26); PrintClues(player, 1);
 		gotoxy(1, 27); printf("'n'을 눌러 다른 물건도 찾아보자");
 		WAITFORKEY('n');
 		CLS;
@@ -521,7 +548,7 @@ void Quiz3(void)
 	return 0;
 }
 
-void Answer3(void)
+void Answer3(Player *player)
 {
 	CLS;
 	LobbyScreen();
@@ -573,7 +600,8 @@ void Answer3(void)
 	case 2:
 	{
 		gotoxy(1, 25); printf("단서가 나타났다!");
-		gotoxy(1, 26); printf("단서3 : 눈에 보이진 않지만, 정말 많은 이름을 갖고 있다.");
+		player->cleared |= 4;
+		gotoxy(1, 26); PrintClues(player, 2);
 		gotoxy(1, 27); printf("'n'을 눌러 다른 물건도 찾아보자");
 		WAITFORKEY('n');
 		CLS;
@@ -606,7 +634,7 @@ void Quiz4(void)
 	return 0;
 }
 
-void Answer4(void)
+void Answer4(Player *player)
 {
 	CLS;
 	LobbyScreen();
@@ -643,7 +671,8 @@ void Answer4(void)
 	case 0:
 	{
 		gotoxy(1, 25); printf("단서가 나타났다!");
-		gotoxy(1, 26); printf("힌트 : 그것에게 멈춤이란 곧 죽음이다.");
+		player->cleared |= 8;
+		gotoxy(1, 26); PrintClues(player, 3);
 		gotoxy(1, 27); printf("'n'을 눌러 다른 물건도 찾아보자");
 		WAITFORKEY('n');
 		CLS;
@@ -700,7 +729,7 @@ void Quiz5(void)
 	return 0;
 }
 
-void Answer5(void)
+void Answer5(Player *player)
 {
 	CLS;
 	LobbyScreen();
@@ -738,7 +767,8 @@ void Answer5(void)
 	case 0:
 	{
 		gotoxy(1, 25); printf("단서가 나타났다!");
-		gotoxy(1, 26); printf(" 단서5: 그 무엇보다 가볍고, 그 무엇보다 자유로운 것");
+		player->cleared |= 16;
+		gotoxy(1, 26); PrintClues(player, 4);
 		gotoxy(1, 27); printf("'n'을 눌러 다른 물건도 찾아보자");
 		WAITFORKEY('n');
 		CLS;

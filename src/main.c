@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 		case 0: // 게임 시작
 			StopWatch(START);
 			Prologue();
-			LobbyPlay(action);
+			LobbyPlay(action, &player, save);
 			break;
 		case 1: // 이어 하기
 			if (LoadFromFile(save) == FAIL)

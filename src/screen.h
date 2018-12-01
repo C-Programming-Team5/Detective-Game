@@ -29,8 +29,8 @@ void InitialPrint(void);
 // 시작 선택화면을 띄우는 함수입니다. 새로시작 선택시 0을, 이어하기 선택시 1을, 종료하기 선택시 2를 반환합니다.
 int StartScreen(void);
 
-// 플레이어 데이터를 받아 단서를 출력합니다.
-void PrintClues(const Player * const player);
+// number가 -1이면 플레이어 데이터에 저장된 모든 단서를, 0~4라면 저장되어있는 해당 번호의 단서를 출력합니다.
+void PrintClues(const Player * const player, int number);
 
 // 화면을 비우고, 세이브 목록을 나타내는 함수입니다.
 void PrintSaveList(const Player save[]);
@@ -42,7 +42,7 @@ void Prologue(void);
 void LobbyScreen(void);
 
 // 로비 선택지 화면을 출력하고 결과값을 받아오는 함수입니다.
-int LobbyPlay(int choice);
+int LobbyPlay(int choice, Player *player, Player save[]);
 
 // 아이템 선택화면을 출력하고 결과값을 받아오는 함수입니다.
 int SelectItem(int item);
