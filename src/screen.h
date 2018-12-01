@@ -9,7 +9,7 @@
 
 // 특정한 키 입력을 받기 전까지 기다리는 매크로 함수입니다.
 // ex) 엔터키 입력을 받을 경우, WAITFORKEY('r');
-#define WAITFORKEY(KEYCHAR) while (Getch() != (KEYCHAR))
+#define WAITFORKEY(KEYCHAR) while (Getch() != (KEYCHAR));
 
 // getch를 표준 + Win32API 로 구현한 코드입니다. 안정성이 높습니다.
 TCHAR Getch(void);
