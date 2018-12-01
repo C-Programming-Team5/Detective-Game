@@ -87,20 +87,3 @@ int LoadFromFile(Player save[])
 
 	return SUCCESS;
 }
-
-void ExecuteFree(Player save[])
-{
-	static int count = 0;
-	static Player *saved = NULL;
-
-	if (count == 0)
-	{
-		saved = save;
-		count = 1;
-	}
-	else
-	{
-		free(saved);
-	}
-	return;
-}
