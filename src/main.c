@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 	{
 		case 0: // 게임 시작
 			StopWatch(START);
-            Prologue();
+			Prologue();
 			LobbyPlay(action);
 			break;
 		case 1: // 이어 하기
