@@ -7,13 +7,13 @@ TCHAR Getch(void)
 {
 	DWORD mode, cc;
 	HANDLE h = GetStdHandle(STD_INPUT_HANDLE); // 입력 핸들러를 가져옵니다. 이를 통해 입력을 제어할 수 있습니다.
+	TCHAR c = 0;
 	if (h == NULL)
 	{
 		return 0; // console not found
 	}
 	GetConsoleMode(h, &mode); // 원래 콘솔의 입력모드를 가져옵니다.
 	SetConsoleMode(h, mode & ~(ENABLE_LINE_INPUT | ENABLE_ECHO_INPUT)); // 원래 콘솔의 입력 모드에서 엔터 줄바꿈과 에코 기능을 비활성화 합니다.
-	TCHAR c = 0;
 	ReadConsole(h, &c, 1, &cc, NULL); // 콘솔 입력을 읽습니다.
 	SetConsoleMode(h, mode); // 콘솔의 모드를 원래 상태로 되돌립니다.
 	return c;
