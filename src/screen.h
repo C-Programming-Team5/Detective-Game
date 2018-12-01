@@ -53,8 +53,26 @@ void Quiz1(void);
 // 1번문제의 답을 출력하고 결과값을 받아오는 함수입니다.
 void Answer1(void);
 
+// 2번문제를 출력하는 함수입니다.
+void Quiz2(void);
+
+// 2번문제의 답을 출력하고 결과값을 받아오는 함수입니다.
+void Answer2(void);
+
+// 3번문제를 출력하는 함수입니다.
+void Quiz3(void);
+
+// 3번문제의 답을 출력하고 결과값을 받아오는 함수입니다.
+void Answer3(void);
+
+// 4번문제를 출력하는 함수입니다.
+void Quiz4(void);
+
+// 4번문제의 답을 출력하고 결과값을 받아오는 함수입니다.
+void Answer4(void);
+
 // 5번문제를 출력하는 함수입니다.
-int Quiz5(int quiz5);
+void Quiz5(void);
 
 // 5번문제의 답을 출력하고 결과값을 받아오는 함수입니다.
-int Answer5(int ans5);
+void Answer5(void);

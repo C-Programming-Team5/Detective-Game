@@ -267,14 +267,25 @@ int SelectItem(int item)
     }
         
     case 1:
-
-        return 0;
+    {
+        Quiz2();
+        Answer2();
+    }
     case 2:
-        return 0;
+    {
+        Quiz3();
+        Answer3();
+    }
     case 3:
-        return 0;
+    {
+        Quiz4();
+        Answer4();
+    }
     case 4:
-        return 0;
+    {
+        Quiz5();
+        Answer5();
+    }
     case 5:
     {    
     LobbyPlay(POS); }
@@ -344,26 +355,414 @@ void Answer1(void)
     case 0:
     {
         gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        gotoxy(1, 26); printf("'n'을 눌러 다른 물건도 찾아보자");
+        WAITFORKEY('n');
+        CLS;
         return 0;
     }
     case 1:
     {
         gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        gotoxy(1, 26); printf("'n'을 눌러 다른 물건도 찾아보자");
+        WAITFORKEY('n');
+        CLS;
         return 0;
     }
     case 2:
     {
         gotoxy(1, 25); printf("단서가 나타났다!");
         gotoxy(1, 26); printf(" 단서1: 그것은 세상 어디에도 묶여있지 않다.");
+        gotoxy(1, 27); printf("'n'을 눌러 다른 물건도 찾아보자");
+        WAITFORKEY('n');
+        CLS;
         return 0;
     }
     case 3:
     {
         gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        gotoxy(1, 26); printf("'n'을 눌러 다른 물건도 찾아보자");
+        WAITFORKEY('n');
+        CLS;
         return 0;
     }
     default:
         return 0;
     }
 
+}
+
+void Quiz2(void)
+{
+    CLS;
+    char *text[] =
+    {
+        "'n'을 누르면 다음 페이지로 넘어갑니다", "Q.물고기 주인의 국적은 ? \n\n색깔이 다른 집이 일렬로 5채 있다.그리고 각 집에는 서로 다른 국적을 가진 사람들이 살고 있다.\n다섯 사람은 어떤 음료를 마시고, 어느 꽃을 기르고, 어느 동물을 키우고 있다.\n어느 두 사람도 마시는 음료, 기르는 꽃, 키우는 동물은 일치하지 않는다.",
+        "영국인은 빨간 집에 살고, 스웨덴인은 개를 키우며, 덴마크인은 차를 마신다.\n초록집은 하얀 집의 왼쪽 집이며, 초록집에 사는 사람은 커피를 마신다.\n장미를 기르는 사람은 새를 키우고, 노란집 사람은 라일락을 기른다.\n 한 가운데 사는 사람은 우유를 마시고, 노르웨이인은 첫번째 집에 산다.\n안개꽃을 기르는 사람은 고양이를 키우는 사람의 옆집에 산다.",
+        "프리지아를 기르는 사람은 맥주를 마신다.\n독일인은 사루비아를 기르며, 노르웨이인은 파란집 옆에 산다.\n안개꽃을 기르는 사람은 사람은 생수를 마시는 사람과 이웃이다.\n\n그렇다면 물고기를 키우는 사람은 어느 나라의 사람일까?",
+    };
+    int i = 0;
+    for (i = 0; i < 4; i++)
+    {
+        LobbyScreen();
+        gotoxy(1, 25);
+        puts(text[i]);
+        WAITFORKEY('n');
+        system("cls");
+    }
+    return 0;
+}
+
+void Answer2(void)
+{
+    CLS;
+    LobbyScreen();
+    int ANS = 4;
+    CursorView(0);
+    system("COLOR 0F");
+    while (!GetAsyncKeyState(VK_RETURN)) 
+    {
+        if (GetAsyncKeyState(VK_LEFT))
+        {
+            ANS = (ANS + 4) % 5;
+        }
+        else if (GetAsyncKeyState(VK_RIGHT))
+        {
+            ANS = (ANS + 1) % 5;
+        }
+            
+            SetColor(ANS == 0 ? 3 : 15);
+            gotoxy(21, 27); printf("1. 독일");
+            SetColor(ANS == 1 ? 3 : 15);
+            gotoxy(41, 27); printf("2. 스웨덴");
+            SetColor(ANS == 2 ? 3 : 15);
+            gotoxy(61, 27); printf("3. 영국");
+            SetColor(ANS == 3 ? 3 : 15);
+            gotoxy(81, 27); printf("4. 덴마크");
+            SetColor(ANS == 4 ? 3 : 15);
+            gotoxy(101, 27); printf("5. 노르웨이");
+           
+        Sleep(100);
+    }
+    system("cls");
+    LobbyScreen();
+    switch (ANS)
+    {
+    case 0:
+    {
+        
+        gotoxy(1, 25); printf("단서가 나타났다!");
+        gotoxy(1, 26); printf("단서2 : 세상의 그 무엇보다 강하기도 하지만, 그 무엇보다 약하기도 하다.");
+        gotoxy(1, 27); printf("'n'을 눌러 다른 물건도 찾아보자");
+        WAITFORKEY('n');
+        CLS;
+        return 0;
+    }
+    case 1:
+    {
+        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        gotoxy(1, 26); printf("'n'을 눌러 다른 물건도 찾아보자");
+        WAITFORKEY('n');
+        CLS;
+        return 0;
+    }
+    case 2:
+    {
+        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        gotoxy(1, 26); printf("'n'을 눌러 다른 물건도 찾아보자");
+        WAITFORKEY('n');
+        CLS;
+        return 0;
+    }
+    case 3:
+    {
+        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        gotoxy(1, 26); printf("'n'을 눌러 다른 물건도 찾아보자");
+        WAITFORKEY('n');
+        CLS;
+        return 0;
+    }
+    case 4:
+    {
+        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        gotoxy(1, 26); printf("'n'을 눌러 다른 물건도 찾아보자");
+        WAITFORKEY('n');
+        CLS;
+        return 0;
+    }
+    default:
+        return 0;
+    }
+}
+
+void Quiz3(void)
+{
+    CLS;
+    char *text[] =
+    {
+        "'n'을 누르면 다음 페이지로 넘어갑니다", "Q. 살아남자 미스터 화이트!\n\n세 명의 총잡이가 서로 동시에 결투를 벌인다.\n1. 미스터 블랙은 명중률 100 % 의 사격 실력을 가지고 있다.\n2. 미스터 그레이는 명중률 70 % 의 사격 실력을 갖고 있다.\n",
+        "	3. 미스터 화이트는 명중률 30 % 의 사격 실력을 가지고 있다.\n그리고 총잡이들은 서로의 실력차를 감안해서, 화이트->그레이->블랙 순서대로 발포하기로 하며, 한 번에 한 발만 쏠 수 있다.\n이 때 화이트는 어떻게 쏴야 가장 생존률이 높은가 ?",
+    };
+    int i = 0;
+    for (i = 0; i < 3; i++)
+    {
+        gotoxy(1, 25);
+        puts(text[i]);
+        WAITFORKEY('n');
+        system("cls");
+    }
+    return 0;
+}
+
+void Answer3(void)
+{
+    CLS;
+    LobbyScreen();
+    int ANS = 3;
+    CursorView(0);
+    system("COLOR 0F");
+    while (!GetAsyncKeyState(VK_RETURN)) 
+    {
+        if (GetAsyncKeyState(VK_LEFT))
+        {
+            ANS = (ANS + 2) % 3;
+        }
+        else if (GetAsyncKeyState(VK_RIGHT))
+        {
+            ANS = (ANS + 1) % 3;
+        }
+        
+            SetColor(ANS == 0 ? 3 : 15);
+            gotoxy(21, 27); printf("1. 블랙");
+            SetColor(ANS == 1 ? 3 : 15);
+            gotoxy(41, 27); printf("2. 그레이");
+            SetColor(ANS == 2 ? 3 : 15);
+            gotoxy(61, 27); printf("3. 허공");
+          
+        Sleep(100);
+    }
+    system("cls");
+    LobbyScreen();
+    
+    switch (ANS)
+    {
+    case 0:
+    {
+        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        gotoxy(1, 26); printf("'n'을 눌러 다른 물건도 찾아보자");
+        WAITFORKEY('n');
+        CLS;
+        return 0;
+    }
+    case 1:
+    {
+        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        gotoxy(1, 26); printf("'n'을 눌러 다른 물건도 찾아보자");
+        WAITFORKEY('n');
+        CLS;
+        return 0;
+    }
+    case 2:
+    {
+        gotoxy(1, 25); printf("단서가 나타났다!");
+        gotoxy(1, 26); printf("단서3 : 눈에 보이진 않지만, 정말 많은 이름을 갖고 있다.");
+        gotoxy(1, 27); printf("'n'을 눌러 다른 물건도 찾아보자");
+        WAITFORKEY('n');
+        CLS;
+        return 0;
+    }
+    default:
+        return 0;
+    }
+
+
+}
+
+void Quiz4(void)
+{
+    CLS;
+    char *text[] =
+    {
+        "'n'을 누르면 다음 페이지로 넘어갑니다", "	Q. 범인은 바로 너!\n\n한 마을에 보석 강도 살인 사건이 발생했다.\n용의자는 조상호, 이수억, 최수호, 박홍수로 총 4명이다.\n피해자는 다잉메시지로 '수어어' 라는 글자를 남겼다.",
+        "범인은 누구인가?",
+    };
+    int i = 0;
+    for (i = 0; i < 3; i++)
+    {
+        LobbyScreen();
+        gotoxy(1, 25);
+        puts(text[i]);
+        WAITFORKEY('n');
+        system("cls");
+    }
+    return 0;
+}
+
+void Answer4(void)
+{
+    CLS;
+    LobbyScreen();
+    int ANS = 4;
+    CursorView(0);
+    system("COLOR 0F");
+    while (!GetAsyncKeyState(VK_RETURN)) 
+    {
+        if (GetAsyncKeyState(VK_LEFT))
+        {
+            ANS = (ANS + 3) % 4;
+        }
+        else if (GetAsyncKeyState(VK_RIGHT))
+        {
+            ANS = (ANS + 1) % 4;
+        }
+        
+            SetColor(ANS == 0 ? 3 : 15);
+            gotoxy(21, 27); printf("1. 조상호");
+            SetColor(ANS == 1 ? 3 : 15);
+            gotoxy(41, 27); printf("2. 이수억");
+            SetColor(ANS == 2 ? 3 : 15);
+            gotoxy(61, 27); printf("3. 최수호");
+            SetColor(ANS == 3 ? 3 : 15);
+            gotoxy(81, 27); printf("4. 박홍수");
+           
+        Sleep(100);
+    }
+    system("cls");
+    LobbyScreen();
+
+    switch (ANS)
+    {
+    case 0:
+    {
+        gotoxy(1, 25); printf("단서가 나타났다!");
+        gotoxy(1, 26); printf("힌트 : 그것에게 멈춤이란 곧 죽음이다.");
+        gotoxy(1, 27); printf("'n'을 눌러 다른 물건도 찾아보자");
+        WAITFORKEY('n');
+        CLS;
+        return 0;
+    }
+    case 1:
+    {
+        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        gotoxy(1, 26); printf("'n'을 눌러 다른 물건도 찾아보자");
+        WAITFORKEY('n');
+        CLS;
+        return 0;
+    }
+    case 2:
+    {
+        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        gotoxy(1, 26); printf("'n'을 눌러 다른 물건도 찾아보자");
+        WAITFORKEY('n');
+        CLS;
+        return 0;
+    }
+    case 3:
+    {
+        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        gotoxy(1, 26); printf("'n'을 눌러 다른 물건도 찾아보자");
+        WAITFORKEY('n');
+        CLS;
+        return 0;
+    }
+    default:
+        return 0;
+    }
+
+}
+
+void Quiz5(void)
+
+{
+    CLS;
+    char *text[] =
+    {
+        "'n'을 누르면 다음 페이지로 넘어갑니다", "Q. 슈뢰딩거의 다이어리\n\n슈뢰딩거의 다이어리에는 요일마다 알 수 없는 숫자가 적혀 있다.\n물음표에 들어갈 숫자는 무엇인가 ?",
+        "MON = 3\nTUE = 5\nWED = 4\nTHU = ?",
+    };
+    int i = 0;
+    for (i = 0; i < 3; i++)
+    {
+        LobbyScreen();
+        gotoxy(1, 25);
+        puts(text[i]);
+        WAITFORKEY('n');
+        system("cls");
+    }
+    return 0;
+}
+
+void Answer5(void)
+{
+    CLS;
+    LobbyScreen();
+    int ANS = 4;
+    CursorView(0);
+    system("COLOR 0F");
+    while (!GetAsyncKeyState(VK_RETURN))
+    {
+        if (GetAsyncKeyState(VK_LEFT))
+        {
+            ANS = (ANS + 3) % 4;
+        }
+        else if (GetAsyncKeyState(VK_RIGHT))
+        {
+            ANS = (ANS + 1) % 4;
+        }
+
+        SetColor(ANS == 0 ? 3 : 15);
+        gotoxy(21, 27); printf("1. 2");
+        SetColor(ANS == 1 ? 3 : 15);
+        gotoxy(41, 27); printf("2. 4");
+        SetColor(ANS == 2 ? 3 : 15);
+        gotoxy(61, 27); printf("3. 6");
+        SetColor(ANS == 3 ? 3 : 15);
+        gotoxy(81, 27); printf("4. 8");
+
+        Sleep(100);
+    }
+    system("cls");
+    LobbyScreen();
+
+
+    switch (ANS)
+    {
+    case 0:
+    {
+        gotoxy(1, 25); printf("단서가 나타났다!");
+        gotoxy(1, 26); printf(" 단서5: 그 무엇보다 가볍고, 그 무엇보다 자유로운 것");
+        gotoxy(1, 27); printf("'n'을 눌러 다른 물건도 찾아보자");
+        WAITFORKEY('n');
+        CLS;
+        return 0;
+    }
+
+    case 1:
+    {
+        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        gotoxy(1, 26); printf("'n'을 눌러 다른 물건도 찾아보자");
+        WAITFORKEY('n');
+        CLS;
+        return 0;
+    }
+
+    case 2:
+    {
+        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        gotoxy(1, 26); printf("'n'을 눌러 다른 물건도 찾아보자");
+        WAITFORKEY('n');
+        CLS;
+        return 0;
+    }
+
+    case 3:
+    {
+        gotoxy(1, 25); printf("아무일도 일어나지 않았다.");
+        gotoxy(1, 26); printf("'n'을 눌러 다른 물건도 찾아보자");
+        WAITFORKEY('n');
+        CLS;
+        return 0;
+    }
+    default:
+        return 0;
+    }
 }
