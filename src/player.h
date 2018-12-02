@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include <time.h>
-#include "main.h"
+
 enum
 {
 	START,

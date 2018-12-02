@@ -322,7 +322,7 @@ void Quiz(int number)
 		WAITFORKEY('n');
 		CLS;
 	}
-	return 0;
+	return;
 }
 
 void Answer(Player *player, int number)
