@@ -249,14 +249,14 @@ int LobbyPlay(int choice, Player *player, Player save[])
 		case 2:
 			OpenLock();
 		case 3:
-			while (select < 1 || 5 < select)
+			while (select < '1' || '5' < select)
 			{
 				PrintSaveList(save);
-				fputs("몇 번 세이브에 저장하시겠습니까? : ", stdout);
-				scanf("%d", &select);
-				getchar();
+				gotoxy(1, 27);
+				puts("몇번 세이브에 저장하시겠습니까?");
+				select = Getch();
 			}
-			Save(player, save, select);
+			Save(player, save, select - '0');
 			puts("세이브가 완료되었습니다.");
 			return POS;
 		default:
