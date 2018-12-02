@@ -246,6 +246,7 @@ int LobbyPlay(int choice, Player *player, Player save[])
 			SelectItem(POS, player, save);
 			break;
 		case 1:
+			PrintClues(player, -1);
 			break;
 		case 2:
 			OpenLock();
