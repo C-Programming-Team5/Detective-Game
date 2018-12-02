@@ -15,7 +15,7 @@ int GetClearedQuizCount(const Player save[], int id)
 int Save(const Player * const player, Player save[], int id)
 {
 	FILE *saveFile = fopen("save.sav", "wb");
-	uint8_t firstHash = 0, secondHash = 0;
+	uint8_t firstHash[SHA256_BYTES] = { 0 }, secondHash[SHA256_BYTES] = { 0 };
 
 	if (saveFile == NULL)
 	{
@@ -36,7 +36,7 @@ int Save(const Player * const player, Player save[], int id)
 	sha256(save, sizeof(Player) * SAVESIZE, &firstHash);
 	sha256(&firstHash, SHA256_BYTES, &secondHash);
 	
-	if (fwrite(save, sizeof(Player), SAVESIZE, saveFile) < (sizeof(Player) * SAVESIZE))
+	if (fwrite(save, sizeof(Player), SAVESIZE, saveFile) < SAVESIZE)
 	{
 		fclose(saveFile);
 		return FAIL;
