@@ -201,7 +201,7 @@ void LobbyScreen(void) //아스키 코드로 구현한 그림입니다.
 	//아래는 대사를 입력할 공간입니다.
 }
 
-int LobbyPlay(int choice, Player *player, Player save[])
+int LobbyPlay(void)
 {
 	int select = 0;
 	CLS;
@@ -236,35 +236,10 @@ int LobbyPlay(int choice, Player *player, Player save[])
 		Sleep(100);
 	}
 	CLS;
-	
-	switch (POS)
-	{
-		case 0:
-			PlaySound(TEXT("walking.wav"), NULL, SND_ASYNC);
-			LobbyScreen();
-			SelectItem(POS, player, save);
-			break;
-		case 1:
-			break;
-		case 2:
-			OpenLock();
-		case 3:
-			while (select < '1' || '5' < select)
-			{
-				PrintSaveList(save);
-				gotoxy(1, 27);
-				puts("몇번 세이브에 저장하시겠습니까?");
-				select = Getch();
-			}
-			Save(player, save, select - '0');
-			puts("세이브가 완료되었습니다.");
-			return POS;
-		default:
-			break;
-	}
+	return POS;
 }
 
-int SelectItem(int item, Player *player, Player save[])
+int SelectItem(void)
 {
 	gotoxy(2, 25); printf("어떤 물건부터 찾아볼까?");
 	int POS = 5;
