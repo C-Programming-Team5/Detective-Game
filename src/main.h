@@ -14,4 +14,6 @@ enum
 	GAME_CLEAR
 };
 
+typedef void (*vvfp)(void);
+
 void GameLoop(Player *player, Player save[]);

@@ -280,7 +280,6 @@ int SelectItem(void)
 
 
 void Quiz(int number)
-
 {
 	char *quiz[][4] =
 	{
@@ -312,11 +311,12 @@ void Quiz(int number)
 	};
 	int index[] = {3, 4, 3, 3, 3};
 	int i = 0;
+	vvfp quizScreen[5] = {Quiz1Screen, Quiz2Screen, Quiz3Screen, Quiz4Screen, Quiz5Screen};
 
 	CLS;
 	for (i = 0; i < 3; i++)
 	{
-		Quiz3Screen();
+		quizScreen[number]();
 		gotoxy(1, 25);
 		puts(quiz[number][i]);
 		WAITFORKEY('n');
@@ -363,8 +363,10 @@ void Answer(Player *player, int number)
 	int index[] = {4, 5, 3, 4, 4};
 	int rightAnswer[] = {2, 0, 2, 0, 2};
 	int POS = 0, i = 0;
+	vvfp quizScreen[5] = { Quiz1Screen, Quiz2Screen, Quiz3Screen, Quiz4Screen, Quiz5Screen };
+
 	CLS;
-	LobbyScreen();
+	quizScreen[number]();
 	CursorView(0);
 	SetColor(15);
 	while (!GetAsyncKeyState(VK_RETURN)) 
@@ -387,7 +389,7 @@ void Answer(Player *player, int number)
 		Sleep(100);
 	}
 	CLS;
-	LobbyScreen();
+	quizScreen[number]();
 
 	if (POS == rightAnswer[number])
 	{
