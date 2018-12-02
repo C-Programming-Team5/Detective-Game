@@ -61,6 +61,7 @@ int StartScreen(void)
 	InitialPrint();
 	while (!GetAsyncKeyState(VK_RETURN))
 	{
+        Title();
 		if (GetAsyncKeyState(VK_UP))
 		{
 			POS = (POS + 2) % 3;
@@ -1083,4 +1084,17 @@ void Quiz5Screen(void)
     printf("\n");
     printf("\n");
     printf("________________________________________________________________________________________________________________________\n");
+}
+
+void Title(void)
+{
+    gotoxy(36, 1); printf("\n");
+    gotoxy(36, 2); printf("\n");
+    gotoxy(36, 3); printf("     ___________  __________    ____   ______\n");
+    gotoxy(36, 4); printf("    / ____/ ___/ / ____/    |  / __ ＼/ ____/\n");
+    gotoxy(36, 5); printf("   / __/ ＼__ ＼/ /   / /|  | / /_/  / __/  \n");
+    gotoxy(36, 6); printf("  / /___ ___/ /  /___/ ___  |/ _____/ /___  \n");
+    gotoxy(36, 7); printf(" /_____//____/ ＼____/_/  |_|_/    /_____/\n");
+
+
 }

@@ -103,3 +103,6 @@ void Quiz4Screen(void);
 
 // 포스터 그림을 나타내는 함수입니다.
 void Quiz5Screen(void);
+
+// 시작할때 제목을 나타내는 함수입니다.
+void Title(void);
