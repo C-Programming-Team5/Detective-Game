@@ -77,6 +77,14 @@ void Quiz5(void);
 // 5번문제의 답을 출력하고 결과값을 받아오는 함수입니다.
 void Answer5(void);
 
+// 문 그림을 나타내는 함수입니다.
 void PrintDoor(void);
 
+// 문이 열리는 첫번째 모습을 나타내는 함수입니다.
+void PrintDoor1(void);
+
+// 문이 열리는 두번째 모습을 나타내는 함수입니다.
+void PrintDoor2(void);
+
+// 비밀번호를 입력받는 함수입니다.
 int OpenLock(void);

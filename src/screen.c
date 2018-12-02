@@ -849,6 +849,70 @@ void PrintDoor(void)
 	);
 }
 
+void PrintDoor1(void)
+{
+    CLS;
+    fputs(
+            "                                         MMMMMMMMMMMMMMMMMMMMMMMMM\n"
+            "                                         MM MM■■■■■■■■■MM\n"
+            "                                         MM  MMM■■■■■■■■MM\n"
+            "                                         MM   MM■■■■■■■■MM\n"
+            "                                         MM    MMM■■■■■■■MM\n"
+            "                                         MM     MM■■■■■■■MM\n"
+            "                                         MM      MMM■■■■■■MM\n"
+            "                                         MM       MM■■■■■■MM\n"
+            "                                         MM        MMM■■■■■MM\n"
+            "                                         MM         MM■■■■■MM\n"
+            "                                         MM         MM■■■■■MM\n"
+            "                                         MM         MM■■■■■MM\n"
+            "                                         MM         MM■■■■■MM\n"
+            "                                         MM         MM■■■■■MM\n"
+            "                                         MM      MM MM■■■■■MM\n"
+            "                                         MM      MM MM■■■■■MM\n"
+            "                                         MM         MM■■■■■MM\n"
+            "                                         MM         MM■■■■■MM\n"
+            "                                         MM         MM■■■■■MM\n"
+            "                                         MM         MM■■■■■MM\n"
+            "                                         MM         MM■■■■■MM\n"
+            "                                           MM       MMMMMMMMMMMMMM\n"
+            "                                             MM     MM\n"
+            "                                               MM   MM\n"
+            "                                                  MMMM",
+            stdout
+            );
+}
+
+void PrintDoor2(void)
+{
+    CLS;
+    fputs
+        (
+            "               MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM\n"
+            "               MM                       MM■■■■■■■■■■■MM\n"
+            "               MM                       MM■■■■■■■■■■■MM\n"
+            "               MM                       MM■■■■■■■■■■■MM\n"
+            "               MM                       MM■■■■■■■■■■■MM\n"
+            "               MM                       MM■■■■■■■■■■■MM\n"
+            "               MM                       MM■■■■■■■■■■■MM\n"
+            "               MM                       MM■■■■■■■■■■■MM\n"
+            "               MM                       MM■■■■■■■■■■■MM\n"
+            "               MM                       MM■■■■■■■■■■■MM\n"
+            "               MM                       MM■■■■■■■■■■■MM\n"
+            "               MM                       MM■■■■■■■■■■■MM\n"
+            "               MM                       MM■■■■■■■■■■■MM\n"
+            "               MM                       MM■■■■■■■■■■■MM\n"
+            "               MM                       MM■■■■■■■■■■■MM\n"
+            "               MM                       MM■■■■■■■■■■■MM\n"
+            "               MM                       MM■■■■■■■■■■■MM\n"
+            "               MM                       MM■■■■■■■■■■■MM\n"
+            "               MM                       MM■■■■■■■■■■■MM\n"
+            "               MM                       MM■■■■■■■■■■■MM\n"
+            "               MM                       MM■■■■■■■■■■■MM\n"
+            "               MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+            stdout
+            );
+}
+
 int OpenLock(void)
 {
 	char CorrectPW[] = "wind";
@@ -860,6 +924,9 @@ int OpenLock(void)
 	fgets(answer, 5, stdin);
 	if (strcmp(CorrectPW, answer) == 0)
 	{
+        PrintDoor();
+        PrintDoor1();
+        PrintDoor2();
 		return GAME_CLEAR;
 	}
 	else
