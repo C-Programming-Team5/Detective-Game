@@ -45,7 +45,7 @@ void LobbyScreen(void);
 int LobbyPlay(int choice, Player *player, Player save[]);
 
 // 아이템 선택화면을 출력하고 결과값을 받아오는 함수입니다.
-int SelectItem(int item);
+int SelectItem(int item, Player *player, Player save[]);
 
 // 1번문제를 출력하는 함수입니다.
 void Quiz1(void);

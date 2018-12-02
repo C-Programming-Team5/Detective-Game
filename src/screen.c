@@ -203,7 +203,7 @@ void LobbyScreen(void) //아스키 코드로 구현한 그림입니다.
 
 int LobbyPlay(int choice, Player *player, Player save[])
 {
-	int choice = 0;
+	int select = 0;
 	CLS;
 	LobbyScreen();
 	gotoxy(2, 25);  printf("이제 무엇을 할까? <키보드로 조작하고 엔터키를 눌러 결정한다.>");
@@ -242,21 +242,21 @@ int LobbyPlay(int choice, Player *player, Player save[])
 		case 0:
 			PlaySound(TEXT("walking.wav"), NULL, SND_ASYNC);
 			LobbyScreen();
-			SelectItem(POS);
+			SelectItem(POS, player, save);
 			break;
 		case 1:
 			break;
 		case 2:
 			OpenLock();
 		case 3:
-			while (choice < 1 || 5 < choice)
+			while (select < 1 || 5 < select)
 			{
 				PrintSaveList(save);
 				fputs("몇 번 세이브에 저장하시겠습니까? : ", stdout);
-				scanf("%d", &choice);
+				scanf("%d", &select);
 				getchar();
 			}
-			Save(player, save, choice);
+			Save(player, save, select);
 			puts("세이브가 완료되었습니다.");
 			return POS;
 		default:
@@ -264,7 +264,7 @@ int LobbyPlay(int choice, Player *player, Player save[])
 	}
 }
 
-int SelectItem(int item)
+int SelectItem(int item, Player *player, Player save[])
 {
 	gotoxy(2, 25); printf("어떤 물건부터 찾아볼까?");
 	int POS = 5;
@@ -304,37 +304,37 @@ int SelectItem(int item)
 	{
 	PlaySound(TEXT("click.wav"), NULL, SND_ASYNC);
 	Quiz1();
-	Answer1();
-	LobbyPlay(retrace);
+	Answer1(player);
+	LobbyPlay(retrace, player, save);
 	}
 		
 	case 1:
 	{
 		Quiz2();
-		Answer2();
-		LobbyPlay(retrace);
+		Answer2(player);
+		LobbyPlay(retrace, player, save);
 	}
 	case 2:
 	{
 		Quiz3();
-		Answer3();
-		LobbyPlay(retrace);
+		Answer3(player);
+		LobbyPlay(retrace, player, save);
 	}
 	case 3:
 	{
 		Quiz4();
-		Answer4();
-		LobbyPlay(retrace);
+		Answer4(player);
+		LobbyPlay(retrace, player, save);
 	}
 	case 4:
 	{
 		Quiz5();
-		Answer5();
-		LobbyPlay(retrace);
+		Answer5(player);
+		LobbyPlay(retrace, player, save);
 	}
 	case 5:
 	{    
-	LobbyPlay(POS); }
+	LobbyPlay(POS, player, save); }
 	default:
 		return 0;
 	}
