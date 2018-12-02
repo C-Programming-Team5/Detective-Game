@@ -76,3 +76,7 @@ void Quiz5(void);
 
 // 5번문제의 답을 출력하고 결과값을 받아오는 함수입니다.
 void Answer5(void);
+
+void PrintDoor(void);
+
+int OpenLock(void);

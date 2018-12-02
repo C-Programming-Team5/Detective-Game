@@ -203,6 +203,7 @@ void LobbyScreen(void) //아스키 코드로 구현한 그림입니다.
 
 int LobbyPlay(int choice, Player *player, Player save[])
 {
+	int choice = 0;
 	CLS;
 	LobbyScreen();
 	gotoxy(2, 25);  printf("이제 무엇을 할까? <키보드로 조작하고 엔터키를 눌러 결정한다.>");
@@ -246,7 +247,20 @@ int LobbyPlay(int choice, Player *player, Player save[])
 		case 1:
 			break;
 		case 2:
-
+			OpenLock();
+		case 3:
+			while (choice < 1 || 5 < choice)
+			{
+				PrintSaveList(save);
+				fputs("몇 번 세이브에 저장하시겠습니까? : ", stdout);
+				scanf("%d", &choice);
+				getchar();
+			}
+			Save(player, save, choice);
+			puts("세이브가 완료되었습니다.");
+			return POS;
+		default:
+			break;
 	}
 }
 
@@ -803,5 +817,53 @@ void Answer5(Player *player)
 	}
 	default:
 		return 0;
+	}
+}
+
+void PrintDoor(void)
+{
+	CLS;
+	fputs
+	(
+		"                                         MMMMMMMMMMMMMMMMMMMMMM\n"
+		"                                         MMMMMMMMMMMMMMMMMMMMMM\n"
+		"                                         MMM                MMM\n"
+		"                                         MMM                MMM\n"
+		"                                         MMM                MMM\n"
+		"                                         MMM    MMMMMMMM    MMM\n"
+		"                                         MMM    M M  M M    MMM\n"
+		"                                         MMM    M M  M M    MMM\n"
+		"                                         MMM    M M  M M    MMM\n"
+		"                                         MMM    M M  M M  MMMMM\n"
+		"                                         MMM    MMMMMMMM  MMMMM\n"
+		"                                         MMM    M      M  MMMMM\n"
+		"                                         MMM    M  MM  M    MMM\n"
+		"                                         MMM    M  MM  M    MMM\n"
+		"                                         MMM    M      M    MMM\n"
+		"                                         MMM    MMMMMMMM    MMM\n"
+		"                                         MMM                MMM\n"
+		"                                         MMM                MMM\n"
+		"                                         MMM                MMM\n"
+		"                                         MMN                MMM",
+		stdout
+	);
+}
+
+int OpenLock(void)
+{
+	char CorrectPW[] = "wind";
+	char answer[5] = "";
+
+	PrintDoor();
+	gotoxy(1, 25);
+	fputs("암호를 입력하세요: ____\b\b\b\b", stdout);
+	fgets(answer, 5, stdin);
+	if (strcmp(CorrectPW, answer) == 0)
+	{
+		return GAME_CLEAR;
+	}
+	else
+	{
+		return GAME_OVER;
 	}
 }
