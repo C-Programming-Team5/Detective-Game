@@ -13,3 +13,5 @@ enum
 	GAME_OVER,
 	GAME_CLEAR
 };
+
+void GameLoop(Player *player, Player save[]);

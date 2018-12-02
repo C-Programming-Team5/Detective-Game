@@ -2,8 +2,6 @@
 #include "screen.h"
 #include "save_io.h"
 
-void GameLoop(Player *player, Player save[]);
-
 int main(int argc, char *argv[])
 {
 	int selected = 0;
@@ -53,7 +51,7 @@ void GameLoop(Player *player, Player save[])
 
 		switch (select)
 		{
-			case 0:
+			case 0: // 퀴즈 풀기
 				while (item != 5)
 				{
 					PlaySound(TEXT("walking.wav"), NULL, SND_ASYNC);
@@ -61,18 +59,20 @@ void GameLoop(Player *player, Player save[])
 					item = SelectItem();
 					if (item != 5)
 					{
+						if (item == 1)
+							PlaySound(TEXT("click.wav"), NULL, SND_ASYNC);
 						Quiz(item);
-						Answer(item, player);
+						Answer(player, item);
 					}
 				}
 				break;
-			case 1:
+			case 1: // 단서 보기
 				PrintClues(player, -1);
 				break;
-			case 2:
+			case 2: // 자물쇠 풀기
 				OpenLock();
 				break;
-			case 3:
+			case 3: // 세이브
 				while (saveNum < '1' || '5' < saveNum)
 				{
 					PrintSaveList(save);
@@ -83,8 +83,8 @@ void GameLoop(Player *player, Player save[])
 				Save(player, save, saveNum - '1');
 				puts("세이브가 완료되었습니다.");
 				break;
-			case 4:
-				return;
+			case 4: // 게임 종료
+				break;
 			default:
 				break;
 		}
