@@ -88,3 +88,18 @@ void PrintDoor2(void);
 
 // 비밀번호를 입력받는 함수입니다.
 int OpenLock(void);
+
+// 컴퓨터 그림을 나타내는 함수입니다.
+void Quiz1Screen(void);
+
+// 책상아래 그림을 나타내는 함수입니다.
+void Quiz2Screen(void);
+
+// 책상 위 그림을 나타내는 함수입니다.
+void Quiz3Screen(void);
+
+// 칠판 그림을 나타내는 함수입니다.
+void Quiz4Screen(void);
+
+// 포스터 그림을 나타내는 함수입니다.
+void Quiz5Screen(void);

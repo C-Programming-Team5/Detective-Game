@@ -355,7 +355,7 @@ void Quiz1(void)
 	int i = 0;
 	for (i = 0; i < 3; i++)
 	{
-		LobbyScreen();
+		Quiz1Screen();
 		gotoxy(1, 25);
 		puts(quiz1[i]);
 		WAITFORKEY('n');
@@ -367,7 +367,7 @@ void Quiz1(void)
 void Answer1(Player *player)
 {
 	CLS;
-	LobbyScreen();
+	Quiz1Screen();
 	int ANS1 = 4;
 	CursorView(0);
 	system("COLOR 0F");
@@ -395,7 +395,7 @@ void Answer1(Player *player)
 	}
 	system("cls");
 
-	LobbyScreen();
+	Quiz1Screen();
 	switch (ANS1)
 	{
 	case 0:
@@ -450,7 +450,7 @@ void Quiz2(void)
 	int i = 0;
 	for (i = 0; i < 4; i++)
 	{
-		LobbyScreen();
+		Quiz2Screen();
 		gotoxy(1, 25);
 		puts(quiz2[i]);
 		WAITFORKEY('n');
@@ -462,7 +462,7 @@ void Quiz2(void)
 void Answer2(Player *player)
 {
 	CLS;
-	LobbyScreen();
+	Quiz2Screen();
 	int ANS2 = 4;
 	CursorView(0);
 	system("COLOR 0F");
@@ -491,7 +491,7 @@ void Answer2(Player *player)
 		Sleep(100);
 	}
 	system("cls");
-	LobbyScreen();
+	Quiz2Screen();
 	switch (ANS2)
 	{
 	case 0:
@@ -553,7 +553,7 @@ void Quiz3(void)
 	int i = 0;
 	for (i = 0; i < 3; i++)
 	{
-		LobbyScreen();
+		Quiz3Screen();
 		gotoxy(1, 25);
 		puts(quiz3[i]);
 		WAITFORKEY('n');
@@ -565,7 +565,7 @@ void Quiz3(void)
 void Answer3(Player *player)
 {
 	CLS;
-	LobbyScreen();
+	Quiz3Screen();
 	int ANS3 = 3;
 	CursorView(0);
 	system("COLOR 0F");
@@ -591,7 +591,7 @@ void Answer3(Player *player)
 	}
 	system("cls");
 	SetColor(15);
-	LobbyScreen();
+	Quiz3Screen();
 	
 	switch (ANS3)
 	{
@@ -639,7 +639,7 @@ void Quiz4(void)
 	int i = 0;
 	for (i = 0; i < 3; i++)
 	{
-		LobbyScreen();
+		Quiz4Screen();
 		gotoxy(1, 25);
 		puts(quiz4[i]);
 		WAITFORKEY('n');
@@ -651,7 +651,7 @@ void Quiz4(void)
 void Answer4(Player *player)
 {
 	CLS;
-	LobbyScreen();
+	Quiz4Screen();
 	int ANS4 = 4;
 	CursorView(0);
 	system("COLOR 0F");
@@ -678,7 +678,7 @@ void Answer4(Player *player)
 		Sleep(100);
 	}
 	system("cls");
-	LobbyScreen();
+	Quiz4Screen();
 
 	switch (ANS4)
 	{
@@ -734,7 +734,7 @@ void Quiz5(void)
 	int i = 0;
 	for (i = 0; i < 3; i++)
 	{
-		LobbyScreen();
+		Quiz5Screen();
 		gotoxy(1, 25);
 		puts(quiz5[i]);
 		WAITFORKEY('n');
@@ -746,7 +746,7 @@ void Quiz5(void)
 void Answer5(Player *player)
 {
 	CLS;
-	LobbyScreen();
+	Quiz5Screen();
 	int ANS5 = 4;
 	CursorView(0);
 	system("COLOR 0F");
@@ -773,7 +773,7 @@ void Answer5(Player *player)
 		Sleep(100);
 	}
 	system("cls");
-	LobbyScreen();
+	Quiz5Screen();
 
 
 	switch (ANS5)
@@ -937,4 +937,150 @@ int OpenLock(void)
 	{
 		return GAME_OVER;
 	}
+}
+
+void Quiz1Screen(void) //아스키 코드로 구현한 그림입니다.
+{
+    printf("\n");
+    printf("                              ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    printf("                             ┃  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  ┃\n");
+    printf("                             ┃  ┃                                                          ┃  ┃\n");
+    printf("                             ┃  ┃                                                          ┃  ┃\n");
+    printf("                             ┃  ┃                                                          ┃  ┃\n");
+    printf("                             ┃  ┃                                                          ┃  ┃\n");
+    printf("                             ┃  ┃                                                          ┃  ┃\n");
+    printf("                             ┃  ┃                                                          ┃  ┃\n");
+    printf("                             ┃  ┃                                                          ┃  ┃\n");
+    printf("                             ┃  ┃                                                          ┃  ┃\n");
+    printf("                             ┃  ┃                                                          ┃  ┃\n");
+    printf("                             ┃  ┃                                                          ┃  ┃\n");
+    printf("                             ┃  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  ┃\n");
+    printf("                              ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    printf("      ──────────────────────────────────────────────────┃        ┃─────────────────────────────────────────────\n");
+    printf("     /                              ━━━━━━━━━━━━━━━━━━━━┛        ┗━━━━━━━━━━━━━━━━━━━━                          ＼\n");
+    printf("    /                              ┃                                                  ┃                           ＼\n");
+    printf("   /                                ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━                              ＼\n");
+    printf("  ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐\n");
+    printf("  └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘\n");
+    printf("  │   │                                                                                                          │   │\n");
+    printf("  │   │                                                                                                          │   │\n");
+    printf("________________________________________________________________________________________________________________________\n");
+    //아래는 대사를 입력할 공간입니다.
+}
+
+void Quiz2Screen(void) //아스키 코드로 구현한 그림입니다.
+{
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("      ─────────────────────────────────────────────────────────────────────────────────────────────────────────\n");
+    printf("     /                                                                                                          ＼\n");
+    printf("    /                                                                                                             ＼\n");
+    printf("   /                                                                                                                ＼\n");
+    printf("  ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐\n");
+    printf("  │                                                                                                                  │\n");
+    printf("  └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘\n");
+    printf("  │   │                                  __________                                                              │   │\n");
+    printf("  │   │                                 /         /                                                              │   │\n");
+    printf("  │   │                                / Quiz 2  /                                                               │   │\n");
+    printf("  │   │                               /         /                                                                │   │\n");
+    printf("  │   │                              /_________/                                                                 │   │\n");
+    printf("  │___│                                                                                                          │___│\n");
+    printf("________________________________________________________________________________________________________________________\n");
+    //아래는 대사를 입력할 공간입니다.
+}
+
+void Quiz3Screen(void) //아스키 코드로 구현한 그림입니다.
+{
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("         ───────────────────────────────────────────────────────────────────────────────────────────────\n");
+    printf("        /                                 ____________                                                    ＼\n");
+    printf("       /                                 /           /                                                      ＼\n");
+    printf("      /                                 /  Quiz 3   /                                                         ＼\n");
+    printf("     /                                 /           /                                                            ＼\n");
+    printf("    /                                 /___________/                                                               ＼\n");
+    printf("   /                                                                                                                ＼\n");
+    printf("  ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐\n");
+    printf("  └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘\n");
+    printf("  │   │                                                                                                          │   │\n");
+    printf("  │   │                                                                                                          │   │\n");
+    printf("  │   │                                                                                                          │   │\n");
+    printf("  │   │                                                                                                          │   │\n");
+    printf("  │___│                                                                                                          │___│\n");
+    printf("________________________________________________________________________________________________________________________\n");
+    //아래는 대사를 입력할 공간입니다.
+}
+
+void Quiz4Screen(void)
+{
+    printf("\n");
+    printf("                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    printf("                   ┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃\n");
+    printf("                   ┃ ┃                                                                            ┃ ┃\n");
+    printf("                   ┃ ┃                     ┌─────●────┐                                          ┃ ┃\n");
+    printf("                   ┃ ┃                     │   Quiz 4  │                                          ┃ ┃\n");
+    printf("                   ┃ ┃                     │           │                                          ┃ ┃\n");
+    printf("                   ┃ ┃                     │           │                                          ┃ ┃\n");
+    printf("                   ┃ ┃                     │           │                                          ┃ ┃\n");
+    printf("                   ┃ ┃                     └───────────┘                                          ┃ ┃\n");
+    printf("                   ┃ ┃                                                                            ┃ ┃\n");
+    printf("                   ┃ ┃                                                                            ┃ ┃\n");
+    printf("                   ┃ ┃                                                                            ┃ ┃\n");
+    printf("                   ┃ ┃                                                                            ┃ ┃\n");
+    printf("                   ┃ ┃                                                                            ┃ ┃\n");
+    printf("                   ┃ ┃                                                                            ┃ ┃\n");
+    printf("                   ┃ ┃                                                                            ┃ ┃\n");
+    printf("                   ┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃\n");
+    printf("                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
+    printf("                  =====================================================================================\n");
+
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("________________________________________________________________________________________________________________________\n");
+}
+
+void Quiz5Screen(void)
+{
+    printf("\n");
+    printf("                    ●────────────────────────────────────●\n");
+    printf("                    │                                    │\n");
+    printf("                    │           실습실 이용 방법         │\n");
+    printf("                    │                                    │\n");
+    printf("                    │        1. 이용 시간을 지킨다       │\n");
+    printf("                    │                                    │\n");
+    printf("                    │        2. 다른 SW 설치 금지        │\n");
+    printf("                    │                                    │\n");
+    printf("                    │        3. 음식물 섭취 금지         │\n");
+    printf("                    │                                    │━━●━━━━┓\n");
+    printf("                    │        4. P2P, 유해사이트 금지     │ Quiz 5 ┃\n");
+    printf("                    │                                    │        ┃\n");
+    printf("                    │        5. 사용 후, PC종료          │━━━━━━━━┛\n");
+    printf("                    │                                    │\n");
+    printf("                    │   ※다른 SW 발견시 조교에게 문의   │\n");
+    printf("                    │                                    │\n");
+    printf("                    ●────────────────────────────────────●\n");
+    printf("\n");
+    printf("\n");
+    printf("\n");
+
+    printf("\n");
+    printf("\n");
+    printf("\n");
+    printf("________________________________________________________________________________________________________________________\n");
 }
