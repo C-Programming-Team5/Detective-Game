@@ -82,3 +82,6 @@ void Quiz5Screen(void);
 
 // 시작할때 제목을 나타내는 함수입니다.
 void Title(void);
+
+// 엔딩을 출력하는 함수입니다.
+void PrintEnding(void);

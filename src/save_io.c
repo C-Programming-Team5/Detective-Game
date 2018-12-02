@@ -55,14 +55,14 @@ int Save(const Player * const player, Player save[], int id)
 int LoadFromFile(Player save[])
 {
 	FILE *saveFile = fopen("save.sav", "rb");
-	uint8_t fileHash = 0, firstHash = 0, secondHash = 0;
+	uint8_t fileHash[SHA256_BYTES] = {0}, firstHash[SHA256_BYTES] = {0}, secondHash[SHA256_BYTES] = {0};
 
 	if (saveFile == NULL)
 	{
 		return FAIL;
 	}
 
-	if (fread(save, sizeof(Player), SAVESIZE, saveFile) < (sizeof(Player) * SAVESIZE))
+	if (fread(save, sizeof(Player), SAVESIZE, saveFile) < SAVESIZE)
 	{
 		fclose(saveFile);
 		return FAIL;

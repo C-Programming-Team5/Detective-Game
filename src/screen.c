@@ -79,7 +79,7 @@ int StartScreen(void)
 		gotoxy(53, 19); fputs("게임 종료", stdout);
 		SetColor(15);
 		
-		Sleep(100);
+		Sleep(500);
 	}
 	CLS;
 	return POS;
@@ -234,7 +234,7 @@ int LobbyPlay(void)
 		gotoxy(81, 27); printf("*종료한다");
 		SetColor(15);
 
-		Sleep(100);
+		Sleep(500);
 	}
 	CLS;
 	return POS;
@@ -244,9 +244,9 @@ int SelectItem(void)
 {
 	gotoxy(2, 25); printf("어떤 물건부터 찾아볼까?");
 	int POS = 5;
-	int retrace = 0;
+
 	CursorView(0);
-	system("COLOR 0F");
+	SetColor(15);
 	while (!GetAsyncKeyState(VK_RETURN))
 	{
 		if (GetAsyncKeyState(VK_LEFT))
@@ -272,7 +272,7 @@ int SelectItem(void)
 		gotoxy(101, 27); printf("*돌아가기");
 		SetColor(15);
 
-		Sleep(100);
+		Sleep(500);
 	}
 	
 	return POS;
@@ -305,7 +305,8 @@ void Quiz(int number)
 			"범인은 누구인가?",
 		},
 		{
-			"'n'을 누르면 다음 페이지로 넘어갑니다", "Q.슈뢰딩거의 다이어리\n\n슈뢰딩거의 다이어리에는 요일마다 알 수 없는 숫자가 적혀 있다.\n물음표에 들어갈 숫자는 무엇인가 ?",
+			"'n'을 누르면 다음 페이지로 넘어갑니다",
+			"Q.슈뢰딩거의 다이어리\n\n슈뢰딩거의 다이어리에는 요일마다 알 수 없는 숫자가 적혀 있다.\n물음표에 들어갈 숫자는 무엇인가 ?",
 			"MON = 3\nTUE = 5\nWED = 4\nTHU = ?",
 		},
 	};
@@ -366,6 +367,7 @@ void Answer(Player *player, int number)
 	vvfp quizScreen[5] = { Quiz1Screen, Quiz2Screen, Quiz3Screen, Quiz4Screen, Quiz5Screen };
 
 	CLS;
+	SetColor(15);
 	quizScreen[number]();
 	CursorView(0);
 	SetColor(15);
@@ -386,7 +388,7 @@ void Answer(Player *player, int number)
 			gotoxy(21 + i * 20, 27);
 			fputs(answer[number][i], stdout);
 		}
-		Sleep(100);
+		Sleep(500);
 	}
 	CLS;
 	quizScreen[number]();
@@ -395,7 +397,7 @@ void Answer(Player *player, int number)
 	{
 		gotoxy(1, 25);
 		printf("단서가 나타났다!");
-		player->cleared |= 1;
+		player->cleared |= (1 << number);
 		gotoxy(1, 26);
 		PrintClues(player, number);
 		gotoxy(1, 27);
@@ -408,6 +410,7 @@ void Answer(Player *player, int number)
 		gotoxy(1, 26);
 		printf("'n'을 눌러 다른 물건도 찾아보자.");
 	}
+	WAITFORKEY('n');
 	CLS;
 	return;
 }
@@ -510,10 +513,14 @@ int OpenLock(void)
 	char CorrectPW[] = "wind";
 	char answer[5] = "";
 
+	while (getchar() != '\n');
 	PrintDoor();
 	gotoxy(1, 25);
-	fputs("암호를 입력하세요: ____\b\b\b\b", stdout);
-	fgets(answer, 5, stdin);
+	fputs("암호를 입력하세요: ____", stdout);
+	gotoxy(20, 25);
+	fgets(answer, sizeof(answer), stdin);
+
+	
 	if (strcmp(CorrectPW, answer) == 0)
 	{
         PrintDoor();
@@ -686,6 +693,16 @@ void Title(void)
     gotoxy(36, 5); printf("   / __/ ＼__ ＼/ /   / /|  | / /_/  / __/  \n");
     gotoxy(36, 6); printf("  / /___ ___/ /  /___/ ___  |/ _____/ /___  \n");
     gotoxy(36, 7); printf(" /_____//____/ ＼____/_/  |_|_/    /_____/\n");
+}
 
+void PrintEnding(void)
+{
+	CLS;
+	puts("문이 열렸다.");
+	puts("문을 열자 보이는 것은 전산실이었다.");
+	puts("아무래도 전산실 입구를 나가는 문이라고 착각한 것 같다.");
+	puts("다시 강의실로 돌아가 도어락이 없는 평범한 문을 열고 밖으로 나왔다.\n\n\n");
 
+	puts("게임 클리어 축하드립니다!\n'n'키를 눌러 밖으로 나오실 수 있습니다.");
+	WAITFORKEY('n');
 }
