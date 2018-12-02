@@ -144,31 +144,31 @@ void Prologue(void)
 	gotoxy(5, 25); printf(".");
 	Sleep(1000);
 	gotoxy(6, 25); printf(".");
-	Sleep(2000);
+	Sleep(1500);
 	PlaySound(TEXT("searching.wav"), NULL, SND_ASYNC);//소리를 재생하고 바로 다음코드를 실행합니다.
 	gotoxy(1, 25); printf("지끈거리는 머리를 붙잡으며 정신을 차렸다.");
-	Sleep(5000);
+	Sleep(3000);
 	gotoxy(1, 25); printf("                                                                                       ");
 	Sleep(100);
 	gotoxy(1, 25); printf("어제 나는 분명 집에 간 것 같았는데, 강의실 안이다.");
-	Sleep(5000);
+	Sleep(3000);
 	gotoxy(1, 25); printf("                                                                                       ");
 	Sleep(100);
 	gotoxy(1, 25); printf("집에 가기 위해 강의실문을 열었다.");
-	Sleep(5000);
+	Sleep(3000);
 	gotoxy(1, 25); printf("                                                                                       ");
 	Sleep(100);
 	PlaySound(TEXT("lock.wav"), NULL, SND_ASYNC);
 	gotoxy(1, 25); printf("자물쇠가 내부에 설치 되어있어 열리지 않는다.");
-	Sleep(5000);
+	Sleep(3000);
 	gotoxy(1, 25); printf("                                                                                       ");
 	Sleep(100);
 	gotoxy(1, 25); printf("휴대폰도 켜지지 않는다. 강의실을 나가기 위해선 5개의 비밀번호가 필요한 것 같다.");
-	Sleep(5000);
+	Sleep(3000);
 	gotoxy(1, 25); printf("                                                                                       ");
 	Sleep(100);
 	gotoxy(1, 25); printf("혹시라도 조교가 두고 간 비밀번호 종이가 있을 수도 있기 때문에 강의실 내부를 찾아보기로 했다.");
-	Sleep(5000);
+	Sleep(3000);
 	CLS; //프롤로그 대사창을 모두 지웁니다.
 }
 
@@ -395,7 +395,7 @@ void Answer1(Player *player)
 			Sleep(100);
 	}
 	system("cls");
-
+    SetColor(15);
 	Quiz1Screen();
 	switch (ANS1)
 	{
@@ -479,19 +479,20 @@ void Answer2(Player *player)
 		}
 			
 			SetColor(ANS2 == 0 ? 3 : 15);
-			gotoxy(21, 27); printf("*독일");
+			gotoxy(11, 27); printf("*독일");
 			SetColor(ANS2 == 1 ? 3 : 15);
-			gotoxy(41, 27); printf("*스웨덴");
+			gotoxy(31, 27); printf("*스웨덴");
 			SetColor(ANS2 == 2 ? 3 : 15);
-			gotoxy(61, 27); printf("*영국");
+			gotoxy(51, 27); printf("*영국");
 			SetColor(ANS2 == 3 ? 3 : 15);
-			gotoxy(81, 27); printf("*덴마크");
+			gotoxy(71, 27); printf("*덴마크");
 			SetColor(ANS2 == 4 ? 3 : 15);
-			gotoxy(101, 27); printf("*노르웨이");
+			gotoxy(91, 27); printf("*노르웨이");
 		   
 		Sleep(100);
 	}
 	system("cls");
+    SetColor(15);
 	Quiz2Screen();
 	switch (ANS2)
 	{
@@ -679,6 +680,7 @@ void Answer4(Player *player)
 		Sleep(100);
 	}
 	system("cls");
+    SetColor(15);
 	Quiz4Screen();
 
 	switch (ANS4)
@@ -763,17 +765,18 @@ void Answer5(Player *player)
 		}
 
 		SetColor(ANS5 == 0 ? 3 : 15);
-		gotoxy(21, 27); printf("*1. 2");
+		gotoxy(21, 27); printf("* 2");
 		SetColor(ANS5 == 1 ? 3 : 15);
-		gotoxy(41, 27); printf("*2. 4");
+		gotoxy(41, 27); printf("* 4");
 		SetColor(ANS5 == 2 ? 3 : 15);
-		gotoxy(61, 27); printf("*3. 6");
+		gotoxy(61, 27); printf("* 6");
 		SetColor(ANS5 == 3 ? 3 : 15);
-		gotoxy(81, 27); printf("*4. 8");
+		gotoxy(81, 27); printf("* 8");
 
 		Sleep(100);
 	}
 	system("cls");
+    SetColor(15);
 	Quiz5Screen();
 
 
