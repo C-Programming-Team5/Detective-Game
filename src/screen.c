@@ -925,8 +925,12 @@ int OpenLock(void)
 	if (strcmp(CorrectPW, answer) == 0)
 	{
         PrintDoor();
+        Sleep(2000);
         PrintDoor1();
+        Sleep(2000);
         PrintDoor2();
+        Sleep(2000);
+        CLS;
 		return GAME_CLEAR;
 	}
 	else
