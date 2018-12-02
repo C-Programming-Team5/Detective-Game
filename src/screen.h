@@ -42,40 +42,16 @@ void Prologue(void);
 void LobbyScreen(void);
 
 // 로비 선택지 화면을 출력하고 결과값을 받아오는 함수입니다.
-int LobbyPlay(int choice, Player *player, Player save[]);
+int LobbyPlay(void);
 
 // 아이템 선택화면을 출력하고 결과값을 받아오는 함수입니다.
-int SelectItem(int item, Player *player, Player save[]);
+int SelectItem(void);
 
-// 1번문제를 출력하는 함수입니다.
-void Quiz1(void);
+// 문제를 출력하는 함수입니다.
+void Quiz(int number);
 
-// 1번문제의 답을 출력하고 결과값을 받아오는 함수입니다.
-void Answer1(void);
-
-// 2번문제를 출력하는 함수입니다.
-void Quiz2(void);
-
-// 2번문제의 답을 출력하고 결과값을 받아오는 함수입니다.
-void Answer2(void);
-
-// 3번문제를 출력하는 함수입니다.
-void Quiz3(void);
-
-// 3번문제의 답을 출력하고 결과값을 받아오는 함수입니다.
-void Answer3(void);
-
-// 4번문제를 출력하는 함수입니다.
-void Quiz4(void);
-
-// 4번문제의 답을 출력하고 결과값을 받아오는 함수입니다.
-void Answer4(void);
-
-// 5번문제를 출력하는 함수입니다.
-void Quiz5(void);
-
-// 5번문제의 답을 출력하고 결과값을 받아오는 함수입니다.
-void Answer5(void);
+// 문제의 답을 출력하고 결과값을 받아오는 함수입니다.
+void Answer(Player *player, int number);
 
 // 문 그림을 나타내는 함수입니다.
 void PrintDoor(void);
