@@ -85,3 +85,6 @@ void Title(void);
 
 // 엔딩을 출력하는 함수입니다.
 void PrintEnding(void);
+
+// 실패 엔딩을 출력하는 함수입니다.
+void PrintFail(void);

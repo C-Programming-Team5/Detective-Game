@@ -79,6 +79,10 @@ void GameLoop(Player *player, Player save[])
 					PrintEnding();
 					return;
 				}
+				else
+				{
+					PrintFail();
+				}
 				break;
 			case 3: // 세이브
 				while (saveNum < '1' || '5' < saveNum)

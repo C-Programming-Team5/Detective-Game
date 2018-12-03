@@ -80,7 +80,7 @@ int LoadFromFile(Player save[])
 	sha256(save, sizeof(Player) * SAVESIZE, &firstHash);
 	sha256(&firstHash, SHA256_BYTES, &secondHash);
 
-	if (fileHash != secondHash)
+	if (memcmp(fileHash, secondHash, SHA256_BYTES))
 	{
 		return FAIL;
 	}

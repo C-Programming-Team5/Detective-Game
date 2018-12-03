@@ -313,7 +313,7 @@ void Quiz(int number)
 	int index[] = {3, 4, 3, 3, 3};
 	int i = 0;
 	vvfp quizScreen[5] = {Quiz1Screen, Quiz2Screen, Quiz3Screen, Quiz4Screen, Quiz5Screen};
-
+	SetColor(15);
 	CLS;
 	for (i = 0; i < 3; i++)
 	{
@@ -391,6 +391,7 @@ void Answer(Player *player, int number)
 		Sleep(500);
 	}
 	CLS;
+	SetColor(15);
 	quizScreen[number]();
 
 	if (POS == rightAnswer[number])
@@ -704,5 +705,14 @@ void PrintEnding(void)
 	puts("다시 강의실로 돌아가 도어락이 없는 평범한 문을 열고 밖으로 나왔다.\n\n\n");
 
 	puts("게임 클리어 축하드립니다!\n'n'키를 눌러 밖으로 나오실 수 있습니다.");
+	WAITFORKEY('n');
+}
+
+void PrintFail(void)
+{
+	CLS;
+	puts("저런... 정말로 유감이군요.");
+	puts("GAME OVER");
+	puts("'n'키를 눌러 밖으로 나오실 수 있습니다.");
 	WAITFORKEY('n');
 }
