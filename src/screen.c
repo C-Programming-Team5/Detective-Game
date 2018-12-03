@@ -125,7 +125,7 @@ void PrintSaveList(const Player save[])
 	{
 		printf("%d번째 세이브\n", i + 1);
 		printf("맞힌 퀴즈 개수: %d\n", GetClearedQuizCount(save, i));
-		printf("플레이 시간: %d\n\n", save[i].playTime);
+		printf("플레이 시간: %d 초\n\n", save[i].playTime);
 	}
 	return;
 }

@@ -14,7 +14,6 @@ int main(void)
 	switch (selected)
 	{
 		case 0: // 게임 시작
-			StopWatch(START);
 			Prologue();
 			GameLoop(&player, save);
 			break;
@@ -44,6 +43,8 @@ int main(void)
 void GameLoop(Player *player, Player save[])
 {
 	int select = 0, item = 0, saveNum = 0;
+
+	StopWatch(START);
 	
 	while (select != 4)
 	{
@@ -92,7 +93,7 @@ void GameLoop(Player *player, Player save[])
 					puts("몇번 세이브에 저장하시겠습니까?");
 					saveNum = Getch();
 				}
-				player->playTime = StopWatch(END);
+				player->playTime += StopWatch(END);
 				Save(player, save, saveNum - '1');
 				puts("세이브가 완료되었습니다.");
 				puts("'n'키를 눌러서 빠져나가자");
