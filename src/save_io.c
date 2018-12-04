@@ -24,7 +24,7 @@ int Save(const Player * const player, Player save[], int id)
 
 	if (player != NULL && save != NULL)
 	{
-		save[id] = *player;
+        memcpy(save + id, player, sizeof(Player));
 	}
 	else
 	{
