@@ -281,7 +281,7 @@ int SelectItem(void)
 
 void Quiz(int number)
 {
-	char *quiz[][4] =//포인터 이차원배열
+	char *quiz[][4] =
 	{
 		{
 			"'n'을 누르면 다음 페이지로 넘어갑니다",
@@ -310,17 +310,17 @@ void Quiz(int number)
 			"MON = 3\nTUE = 5\nWED = 4\nTHU = ?",
 		},
 	};
-	int index[] = {3, 4, 3, 3, 3};//문장의 줄
+	int index[] = {3, 4, 3, 3, 3};
 	int i = 0;
-	vvfp quizScreen[5] = {Quiz1Screen, Quiz2Screen, Quiz3Screen, Quiz4Screen, Quiz5Screen};//반환형이 없고 인자가 없는 함수 포인터 배열(그림)
-	SetColor(15);//하얀색
-	CLS;//삭제
+	vvfp quizScreen[5] = {Quiz1Screen, Quiz2Screen, Quiz3Screen, Quiz4Screen, Quiz5Screen};
+	SetColor(15);
+	CLS;
 	for (i = 0; i < index[number]; i++)
 	{
-		quizScreen[number]();//밖에서 물건선택시 받아옴(number)
-		gotoxy(1, 25);//좌표
-		puts(quiz[number][i]);//출력
-		WAITFORKEY('n');//Getch를 특정 아스키코드와 같을때까지 입력값을 받으라는 while문을 묶은것
+		quizScreen[number]();
+		gotoxy(1, 25);
+		puts(quiz[number][i]);
+		WAITFORKEY('n');
 		CLS;
 	}
 	return;
