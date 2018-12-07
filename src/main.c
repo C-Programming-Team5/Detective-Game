@@ -44,6 +44,8 @@ void GameLoop(Player *player, Player save[])
 {
 	int select = 0, item = 0, saveNum = 0;
 
+	memset(player, 0, sizeof(Player));
+
 	StopWatch(START);
 	
 	while (select != 4)
