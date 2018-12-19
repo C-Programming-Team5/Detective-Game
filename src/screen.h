@@ -88,3 +88,7 @@ void PrintEnding(void);
 
 // 실패 엔딩을 출력하는 함수입니다.
 void PrintFail(void);
+
+// ERROR가 발생시 -1을 리턴하고, 정상 입력시 1을 리턴하며 keyCode를 VK값으로 설정하고, 키를 뗄 때 0을 반환하면서, keyCode를 0으로 설정합니다.
+// https://docs.microsoft.com/ko-kr/windows/desktop/inputdev/virtual-key-codes VK값 리스트입니다.
+int GetKey(int *keyCode);

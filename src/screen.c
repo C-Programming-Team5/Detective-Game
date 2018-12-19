@@ -717,3 +717,45 @@ void PrintFail(void)
 	puts("'n'키를 눌러 밖으로 나오실 수 있습니다.");
 	WAITFORKEY('n');
 }
+
+int GetKey(int *keyCode)
+{
+	HANDLE input = GetStdHandle(STD_INPUT_HANDLE);
+	INPUT_RECORD rec;
+	DWORD oldConsoleMode = 0, newConsoleMode = 0, readData = 0;
+
+	if (!SUCCEEDED(input))
+	{
+		return -1;
+	}
+
+	if (!SUCCEEDED(GetConsoleMode(input, &oldConsoleMode)))
+	{
+		return -1;
+	}
+
+	newConsoleMode = 0;
+
+	SetConsoleMode(input, newConsoleMode);
+
+	if (!ReadConsoleInput(input, &rec, 1, &readData))
+	{
+		return -1;
+	}
+
+	if (rec.Event.KeyEvent.bKeyDown == FALSE)
+	{
+		*keyCode = 0;
+		SetConsoleMode(input, oldConsoleMode);
+		return 0;
+	}
+
+	if (rec.EventType == KEY_EVENT)
+	{
+		*keyCode = rec.Event.KeyEvent.wVirtualKeyCode;
+	}
+
+	SetConsoleMode(input, oldConsoleMode);
+
+	return 1;
+}
