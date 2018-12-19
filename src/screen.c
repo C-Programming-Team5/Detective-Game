@@ -720,17 +720,19 @@ void PrintFail(void)
 
 int GetKey(int *keyCode)
 {
-	HANDLE input = GetStdHandle(STD_INPUT_HANDLE);
-	INPUT_RECORD rec;
-	DWORD oldConsoleMode = 0, newConsoleMode = 0, readData = 0;
+	HANDLE input = GetStdHandle(STD_INPUT_HANDLE); // console의 핸들을 얻습니다.
+	INPUT_RECORD rec; // key값을 저장하는 구조체입니다.
+	DWORD oldConsoleMode = 0, newConsoleMode = 0, readData = 0; // 콘솔의 설정을 컨트롤 하는 변수들과, 읽힌 횟수를 세는 변수입니다.
 
-	if (!SUCCEEDED(input))
+	if (!SUCCEEDED(input)) // 만약 핸들을 얻는데 실패했을 경우, keyCode값을 초기화함과 동시에 -1을 리턴합니다.
 	{
+		*keyCode = 0;
 		return -1;
 	}
 
-	if (!SUCCEEDED(GetConsoleMode(input, &oldConsoleMode)))
+	if (!SUCCEEDED(GetConsoleMode(input, &oldConsoleMode))) // 콘솔의 기존 설정을 얻어오고, 만약 실패했을 경우 keyCode값을 초기화함과 동시에 -1을 반환합니다.
 	{
+		*keyCode = 0;
 		return -1;
 	}
 
@@ -738,24 +740,25 @@ int GetKey(int *keyCode)
 
 	SetConsoleMode(input, newConsoleMode);
 
-	if (!ReadConsoleInput(input, &rec, 1, &readData))
+	if (!ReadConsoleInput(input, &rec, 1, &readData)) // 만약 키 값을 읽는 것에 실패할 경우, keyCode값을 초기화하고 -1을 반환합니다.
 	{
+		*keyCode = 0;
 		return -1;
 	}
 
-	if (rec.Event.KeyEvent.bKeyDown == FALSE)
+	if (rec.Event.KeyEvent.bKeyDown == FALSE) // 만약 키 입력이 Press가 아니라 Release일 경우, 이것은 필요가 없기 때문에, keyCode 값을 초기화하며, 0을 반환합니다.
 	{
 		*keyCode = 0;
 		SetConsoleMode(input, oldConsoleMode);
 		return 0;
 	}
 
-	if (rec.EventType == KEY_EVENT)
+	if (rec.EventType == KEY_EVENT) // 실제로 입력이 키보드 입력인지 체크하고, keyCode를 VK값으로 설정합니다.
 	{
 		*keyCode = rec.Event.KeyEvent.wVirtualKeyCode;
 	}
 
-	SetConsoleMode(input, oldConsoleMode);
+	SetConsoleMode(input, oldConsoleMode); // 바꾼 콘솔 설정을 예전 설정으로 되돌립니다.
 
-	return 1;
+	return 1; // 모든 것이 성공적이면, 1을 리턴합니다!
 }
