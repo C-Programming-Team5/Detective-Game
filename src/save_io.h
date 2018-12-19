@@ -8,7 +8,6 @@
 	데이터를 암호화하는 SHA-256 해시 함수를 제공합니다. 세이브의 무결성 검증을 위해 사용합니다.
 */
 #include "sha256.h"
-#include "main.h"
 #include "player.h"
 
 #define SAVESIZE 5 // 최대 세이브 개수를 지정하는 상수입니다.
