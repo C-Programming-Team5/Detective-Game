@@ -91,7 +91,7 @@ void GameLoop(Player *player, Player save[])
 				while (saveNum < '1' || '5' < saveNum)
 				{
 					PrintSaveList(save);
-					gotoxy(1, 27);
+					GotoXY(1, 27);
 					puts("몇번 세이브에 저장하시겠습니까?");
 					saveNum = Getch();
 				}

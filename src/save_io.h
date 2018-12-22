@@ -1,4 +1,5 @@
 ﻿#ifndef _SAVE_IO_H
+#define _SAVE_IO_H
 
 #include <stdio.h>
 #include <stdlib.h>
