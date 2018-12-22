@@ -9,8 +9,12 @@
 #define CLSLINE(Y) gotoxy(1, (Y)); fputs("                                                                                                                        ", stdout)
 
 // 특정한 키 입력을 받기 전까지 기다리는 매크로 함수입니다.
-// ex) 엔터키 입력을 받을 경우, WAITFORKEY('\r');
+// ex) 엔터키 입력을 받을 경우, WAITFORKEY('\r')
 #define WAITFORKEY(KEYCHAR) while (Getch() != (KEYCHAR));
+
+// 특정한 키 입력을 받기 전까지 기다리는 매크로 함수입니다.
+// ex) 엔터키 입력을 받을 경우, WAITFORVK(VK_RETURN)
+#define WAITFORVK(VK) while (GetKey() != (VK));
 
 // getch를 표준 + Win32API 로 구현한 코드입니다. 안정성이 높습니다.
 TCHAR Getch(void);
@@ -92,6 +96,9 @@ void PrintFail(void);
 
 // ERROR가 발생시 -1을 리턴하고, 정상 입력시 1을 리턴하며 keyCode를 VK값으로 설정하고, 키를 뗄 때 0을 반환하면서, keyCode를 0으로 설정합니다.
 // https://docs.microsoft.com/ko-kr/windows/desktop/inputdev/virtual-key-codes VK값 리스트입니다.
-int GetKey(int *keyCode);
+int GetKeyboard(int *keyCode);
+
+// GetKeyboard의 사용을 Getch와 비슷하게 만들어주는 인터페이스입니다. 오류시 혹은 키를 뗄 시 0을, 키 입력시 VK값을 반환합니다.
+int GetKey(void);
 
 #endif

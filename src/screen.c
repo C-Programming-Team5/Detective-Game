@@ -718,7 +718,7 @@ void PrintFail(void)
 	WAITFORKEY('n');
 }
 
-int GetKey(int *keyCode)
+int GetKeyboard(int *keyCode)
 {
 	HANDLE input = GetStdHandle(STD_INPUT_HANDLE); // console의 핸들을 얻습니다.
 	INPUT_RECORD rec; // key값을 저장하는 구조체입니다.
@@ -736,9 +736,9 @@ int GetKey(int *keyCode)
 		return -1;
 	}
 
-	newConsoleMode = 0;
+	newConsoleMode = 0; // 새로운 콘솔 모드는 모든 플래그가 비활성된 상태입니다.
 
-	SetConsoleMode(input, newConsoleMode);
+	SetConsoleMode(input, newConsoleMode); // 콘솔의 모든 모드를 비활성 시킵니다.
 
 	if (!ReadConsoleInput(input, &rec, 1, &readData)) // 만약 키 값을 읽는 것에 실패할 경우, keyCode값을 초기화하고 -1을 반환합니다.
 	{
@@ -761,4 +761,15 @@ int GetKey(int *keyCode)
 	SetConsoleMode(input, oldConsoleMode); // 바꾼 콘솔 설정을 예전 설정으로 되돌립니다.
 
 	return 1; // 모든 것이 성공적이면, 1을 리턴합니다!
+}
+
+int GetKey(void)
+{
+	int key = 0;
+
+	if (GetKeyboard(&key) > 0)
+	{
+		return key;
+	}
+	return 0;
 }
