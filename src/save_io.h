@@ -1,4 +1,4 @@
-﻿#pragma once
+﻿#ifndef _SAVE_IO_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -26,3 +26,5 @@ int Save(const Player * const player, Player save[], int id);
 
 // 파일로부터 세이브를 불러옵니다. 성공시 SUCCESS, 실패시 FAIL을 반환합니다.
 int LoadFromFile(Player save[]);
+
+#endif

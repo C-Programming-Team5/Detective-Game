@@ -1,4 +1,4 @@
-﻿#pragma once
+﻿#ifndef _MAIN_H
 
 #include <stdio.h>
 #include <windows.h>
@@ -18,3 +18,5 @@ enum
 typedef void (*vvfp)(void);
 
 void GameLoop(Player *player, Player save[]);
+
+#endif
