@@ -206,46 +206,37 @@ void PrintSaveList(const Player save[])
 	return;
 }
 
-void Prologue(void)
+
+
+void Prologue(int number)
 {
-	int i = 0;
 
-	LobbyScreen();
+  
+    int i = 0;
+    char Prologe[7][95] =
+    {
+        "'n'을 누르면 다음 페이지로 넘어갑니다.",
+        "지끈거리는 머리를 붙잡으며 정신을 차렸다.",
+        "어제 나는 분명 집에 간 것 같았는데, 강의실 안이다.",
+        "집에 가기 위해 강의실문을 열었다.",
+        "자물쇠가 내부에 설치 되어있어 열리지 않는다.",
+        "휴대폰도 켜지지 않는다. 강의실을 나가기 위해선 5개의 비밀 번호가 필요한 것 같다.",
+        "혹시라도 조교가 두고 간 비밀번호 종이가 있을 수도 있기 때문에 강의실 내부를 찾아보기로 했다.",
 
-	GotoXY(1, 25);
-	for (i = 0; i < 6; i++)
-	{
-		printf(".");
-		Sleep(1000);
-	}
+    };
+    SetColor(15);
+    CLS;
+    for (i = 0; i < 7; i++)
+    {
+        LobbyScreen();
+        GotoXY(1, 25);
+        puts(Prologe[i]);
+        WAITFORKEY('n');
+        CLS;
+    }
+    return;
+    }
 
-	Sleep(1500);
-	PlaySound(TEXT("searching.wav"), NULL, SND_ASYNC);//소리를 재생하고 바로 다음코드를 실행합니다.
-	GotoXY(1, 25); printf("지끈거리는 머리를 붙잡으며 정신을 차렸다.");
-	Sleep(3000);
-	GotoXY(1, 25); printf("                                                                                       ");
-	Sleep(100);
-	GotoXY(1, 25); printf("어제 나는 분명 집에 간 것 같았는데, 강의실 안이다.");
-	Sleep(3000);
-	GotoXY(1, 25); printf("                                                                                       ");
-	Sleep(100);
-	GotoXY(1, 25); printf("집에 가기 위해 강의실문을 열었다.");
-	Sleep(3000);
-	GotoXY(1, 25); printf("                                                                                       ");
-	Sleep(100);
-	PlaySound(TEXT("lock.wav"), NULL, SND_ASYNC);
-	GotoXY(1, 25); printf("자물쇠가 내부에 설치 되어있어 열리지 않는다.");
-	Sleep(3000);
-	GotoXY(1, 25); printf("                                                                                       ");
-	Sleep(100);
-	GotoXY(1, 25); printf("휴대폰도 켜지지 않는다. 강의실을 나가기 위해선 5개의 비밀번호가 필요한 것 같다.");
-	Sleep(3000);
-	GotoXY(1, 25); printf("                                                                                       ");
-	Sleep(100);
-	GotoXY(1, 25); printf("혹시라도 조교가 두고 간 비밀번호 종이가 있을 수도 있기 때문에 강의실 내부를 찾아보기로 했다.");
-	Sleep(3000);
-	CLS; //프롤로그 대사창을 모두 지웁니다.
-}
 
 void LobbyScreen(void) //아스키 코드로 구현한 그림입니다.
 {
@@ -372,6 +363,7 @@ void Quiz(int number)
 		GotoXY(1, 25);
 		puts(quiz[number][i]);
 		WAITFORKEY('n');
+        PlaySound(TEXT("next.wav"), NULL, SND_ASYNC);
 		CLS;
 	}
 	return;
@@ -791,3 +783,4 @@ int GetKey(void)
 	}
 	return 0;
 }
+

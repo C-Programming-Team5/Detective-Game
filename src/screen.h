@@ -9,6 +9,7 @@
 #define CLS system("cls")
 #define CLSLINE(Y) GotoXY(1, (Y)); fputs("                                                                                                                        ", stdout)
 
+
 // 특정한 키 입력을 받기 전까지 기다리는 매크로 함수입니다.
 // ex) 엔터키 입력을 받을 경우, WAITFORKEY('\r')
 #define WAITFORKEY(KEYCHAR) while (Getch() != (KEYCHAR));
@@ -42,7 +43,7 @@ void PrintClues(const Player * const player, int number);
 void PrintSaveList(const Player save[]);
 
 // 프롤로그를 출력하는 함수입니다.
-void Prologue(void);
+void Prologue(int nuber);
 
 // 로비 배경화면을 출력하는 함수입니다.
 void LobbyScreen(void);

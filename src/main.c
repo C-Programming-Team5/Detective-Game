@@ -5,6 +5,7 @@
 int main(void)
 {
 	int selected = 0, saveNum = 0;
+    int number= 0;
 	Player save[SAVESIZE]; // 세이브용 배열
 	Player player = {0, 0}; // 플레이용 임시 데이터
 
@@ -14,7 +15,7 @@ int main(void)
 	switch (selected)
 	{
 		case 0: // 게임 시작
-			Prologue();
+			Prologue(number);
 			GameLoop(&player, save);
 			break;
 		case 1: // 이어 하기
