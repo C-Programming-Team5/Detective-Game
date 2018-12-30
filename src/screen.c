@@ -353,20 +353,32 @@ int SelectItem(void)
 
 void Quiz(int number)
 {
-	int i = 0;
-	vvfp quizScreen[5] = {Quiz1Screen, Quiz2Screen, Quiz3Screen, Quiz4Screen, Quiz5Screen};
-	SetColor(15);
-	CLS;
-	for (i = 0; i < quizIndex[number]; i++)
-	{
-		quizScreen[number]();
-		GotoXY(1, 25);
-		puts(quiz[number][i]);
-		WAITFORKEY('n');
+    int i = 0;
+    int x = 0;
+    int POS = 0;
+
+    vvfp quizScreen[5] = { Quiz1Screen, Quiz2Screen, Quiz3Screen, Quiz4Screen, Quiz5Screen };
+    vvfp MemoList[5] = { Memo1, Memo2, Memo3, Memo4, Memo5 };
+    SetColor(15);
+    CLS;
+    for (i = 0; i < quizIndex[number]; i++)
+    {
+        quizScreen[number]();
+        GotoXY(1, 25);
+        puts(quiz[number][i]);
+        WAITFORKEY('n');
         PlaySound(TEXT("next.wav"), NULL, SND_ASYNC);
-		CLS;
-	}
-	return;
+        CLS;
+    }
+    quizScreen[number]();
+    POS = Memo(POS);
+    if (POS == 2)
+    {
+        CLS;
+        MemoList[number]();
+        scanf("%d", &x);
+    }
+    return;
 }
 
 void Answer(Player *player, int number)
@@ -784,3 +796,110 @@ int GetKey(void)
 	return 0;
 }
 
+
+int Memo(int pos)
+{
+    int select = 0;
+    int key = 0;
+    int POS = 2;
+    int x = 0;
+
+    CursorView(0);
+    SetColor(15);
+
+    do
+    {
+        SetColor(POS == 0 ? 3 : 15);
+        GotoXY(1, 27); printf("*문제를 푼다");
+        SetColor(POS == 1 ? 3 : 15);
+        GotoXY(21, 27); printf("*다시 문제를 본다");
+        SetColor(POS == 2 ? 3 : 15);
+        GotoXY(41, 27); printf("*메모장을 연다");
+        SetColor(15);
+
+        key = GetKey();
+        if (key == VK_LEFT)
+        {
+            POS = (POS + 2) % 3;
+        }
+        else if (key == VK_RIGHT)
+        {
+            POS = (POS + 1) % 3;
+        }
+    } while (key != VK_RETURN);
+    CLS;
+
+    return POS;
+}
+
+void Memo1(void)
+{
+    printf("Q.신분을 밝혀라!\n");
+    printf("내가 A에게 다음과 같이 물었다고 해보자.\n");
+    printf("나: 여러분 가운데 기사는 몇 분이나 되십니까?\n");
+    printf("이에 A가 대답했으나 발음이 불분명하여 B가 추가적으로 대답했다.\n");
+    printf("B: A는 우리 중 기사는 한 명이라고 말했다.\n");
+    printf("그 순간 C가 끼어들었다.\n");
+    printf("C: B는 지금 거짓말을 하고 있습니다.\n");
+    printf("B와 C의 신분을 밝혀라.(신분은 건달 혹은 기사이다.\n\n");
+    printf("*기사/기사  *기사/건달  *건달/기사  *건달/건달\n\n");
+    printf("(엔터키를 누르면 답 선택지로 넘어갑니다.)\n");
+    printf("-----------------------------------------------------------------------------------------------------------------------\n\n");
+}
+
+void Memo2(void)
+{
+    printf("Q.물고기 주인의 국적은?\n");
+    printf("색깔이 다른 집이 일렬로 5채 있다. 그리고 각 집에는 서로다른 국적을 가진 사람들이 살고 있다.\n");
+    printf("다섯 사람은 어떤 음료를 마시고, 어느 꽃을 기르고, 어느 동물을 키우고있다.\n");
+    printf("어느 두 사람도 마시는 음료, 기르는 꽃, 키우는 동물은 일치하지 않는다.\n");
+    printf("영국인은 빨간 집에 살고, 스웨덴인은 개를 키우며, 덴마크 인은 차를 마신다.\n");
+    printf("초록집은 하얀 집의 왼쪽 집이며, 초록집에 사는 사람은 커피를 마신다.\n");
+    printf("장미를 기르는 사람은 새를 키우고, 노란집 사람은 라일락을 기른다.\n");
+    printf("한 가운데 사는 사람은 우유를 마시고, 노르웨이인은 첫번째 집에 산다.\n");
+    printf("안개꽃을 기르는 사람은 고양이를 키우는 사람의 옆집에 산다.\n");
+    printf("프리지아를 기르는 사람은 맥주를 마신다.\n");
+    printf("독일인은 사루비아를 기르며, 노르웨이인은 파란집 옆에 산다.\n");
+    printf("안개꽃을 기르는 사람은 사람은 생수를 마시는 사람과 이웃이다.\n");
+    printf("그렇다면 물고기를 키우는 사람은 어느 나라의 사람일까?\n\n");
+    printf("*독일     *스웨덴    *영국    *덴마크    *노르웨이\n\n");
+    printf("(엔터키를 누르면 답 선택지로 넘어갑니다.)\n");
+    printf("-----------------------------------------------------------------------------------------------------------------------\n\n");
+}
+
+void Memo3(void)
+{
+    printf("Q.살아남자 미스터 화이트!\n");
+    printf("세 명의 총잡이가 서로 동시에 결투를 벌인다.\n");
+    printf("1.미스터 블랙은 명중률 100 % 의 사격 실력을 가지고 있다.\n");
+    printf("2.미스터 그레이는 명중률 70 % 의 사격 실력을 갖고 있다.\n");
+    printf("3.미스터 화이트는 명중률 30 % 의 사격 실력을 가지고 있다.\n");
+    printf("그리고 총잡이들은 서로의 실력차를 감안해서, 화이트->그레이->블랙 순서대로 발포하기로 하며, 한 번에 한 발만 쏠 수 있다.\n");
+    printf("이 때 화이트는 어떻게 쏴야 가장 생존률이 높은가?\n\n");
+    printf("*블랙    *그레이    *허공\n\n");
+    printf("(엔터키를 누르면 답 선택지로 넘어갑니다.)\n");
+    printf("-----------------------------------------------------------------------------------------------------------------------\n\n");
+}
+
+void Memo4(void)
+{
+    printf("Q.범인은 바로 너!\n");
+    printf("한 마을에 보석 강도 살인 사건이 발생했다.\n");
+    printf("용의자는 조상호, 이수억, 최수호, 박홍수로 총 4명이다.\n");
+    printf("피해자는 다잉메시지로 '수어어' 라는 글자를 남겼다.\n");
+    printf("범인은 누구인가?\n\n");
+    printf("*조상호    *이수억    *최수호    *박홍수\n\n");
+    printf("(엔터키를 누르면 답 선택지로 넘어갑니다.)\n");
+    printf("-----------------------------------------------------------------------------------------------------------------------\n\n");
+}
+
+void Memo5(void)
+{
+    printf("Q.슈뢰딩거의 다이어리\n");
+    printf("슈뢰딩거의 다이어리에는 요일마다 알 수 없는 숫자가 적혀 있다.\n");
+    printf("물음표에 들어갈 숫자는 무엇인가?\n");
+    printf("MON = 3    TUE = 5     WED = 4     THU = ?\n\n");
+    printf("*2     *4      *6      *8\n\n");
+    printf("(엔터키를 누르면 답 선택지로 넘어갑니다.)\n");
+    printf("-----------------------------------------------------------------------------------------------------------------------\n\n");
+}
