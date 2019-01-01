@@ -372,7 +372,21 @@ void Quiz(int number)
     }
     quizScreen[number]();
     POS = Memo(POS);
-    if (POS == 2)
+    if(POS==1)
+    {
+        CLS;
+        for (i = 0; i < quizIndex[number]; i++)
+        {
+            quizScreen[number]();
+            GotoXY(1, 25);
+            puts(quiz[number][i]);
+            WAITFORKEY('n');
+            PlaySound(TEXT("next.wav"), NULL, SND_ASYNC);
+            CLS;
+        }
+    }
+
+    else if (POS == 2)
     {
         CLS;
         MemoList[number]();
