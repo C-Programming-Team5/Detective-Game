@@ -103,7 +103,7 @@ int GetKeyboard(int *keyCode);
 // GetKeyboard의 사용을 Getch와 비슷하게 만들어주는 인터페이스입니다. 오류시 혹은 키를 뗄 시 0을, 키 입력시 VK값을 반환합니다.
 int GetKey(void);
 
-int Memo(int pos);
+int Solve(int pos);
 
 void Memo1(void);
 

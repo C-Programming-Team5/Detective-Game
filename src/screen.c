@@ -354,7 +354,7 @@ int SelectItem(void)
 void Quiz(int number)
 {
     int i = 0;
-    int x = 0;
+    char x[100];
     int POS = 0;
 
     vvfp quizScreen[5] = { Quiz1Screen, Quiz2Screen, Quiz3Screen, Quiz4Screen, Quiz5Screen };
@@ -371,7 +371,7 @@ void Quiz(int number)
         CLS;
     }
     quizScreen[number]();
-    POS = Memo(POS);
+    POS = Solve(POS);
     if(POS==1)
     {
         CLS;
@@ -390,7 +390,7 @@ void Quiz(int number)
     {
         CLS;
         MemoList[number]();
-        scanf("%d", &x);
+        scanf("%c", &x);
     }
     return;
 }
@@ -811,7 +811,7 @@ int GetKey(void)
 }
 
 
-int Memo(int pos)
+int Solve(int pos)
 {
     int select = 0;
     int key = 0;

@@ -11,6 +11,7 @@ int main(void)
 
 	memset(save, 0, sizeof(save)); // 세이브 배열을 초기화합니다.
 
+    system("mode con cols=9001 lins=120");
 	selected = StartScreen();
 	switch (selected)
 	{
