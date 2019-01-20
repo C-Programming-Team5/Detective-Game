@@ -34,7 +34,9 @@ int main(void)
 			memcpy(&player, save + saveNum - '1', sizeof(Player));
 			GameLoop(&player, save);
 			break;
-		case 2: // 게임 종료
+        case 2:
+            show_rnk();
+		case 3: // 게임 종료
 			break;
 		default:
 			break;
@@ -82,6 +84,8 @@ void GameLoop(Player *player, Player save[])
 				if (OpenLock() == GAME_CLEAR)
 				{
 					PrintEnding();
+                    create_rnk();
+                    //show_rnk();
 					return;
 				}
 				else

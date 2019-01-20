@@ -3,6 +3,7 @@
 
 #include "player.h"
 #include <mmsystem.h>
+#include<malloc.h>
 #pragma comment(lib, "winmm.lib")
 
 #define PAUSE system("pause > nul")
@@ -115,4 +116,9 @@ void Memo4(void);
 
 void Memo5(void);
 
+void create_rnk(void);
+
+void show_rnk(void);
+
+void Memo_Paper(void);
 #endif

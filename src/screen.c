@@ -131,7 +131,7 @@ void GotoXY(int x, int y)
 
 int StartScreen(void)
 {
-	int POS = 2;
+	int POS = 3;
 	int key = 0;
 
 	CLS;
@@ -149,17 +149,19 @@ int StartScreen(void)
 		SetColor(POS == 1 ? 3 : 15);
 		GotoXY(53, 17); fputs("이어 하기", stdout);
 		SetColor(POS == 2 ? 3 : 15);
-		GotoXY(53, 19); fputs("게임 종료", stdout);
+		GotoXY(53, 19); fputs("등수 보기", stdout);
+        SetColor(POS == 3 ? 3 : 15);
+        GotoXY(53, 21); fputs("게임 종료", stdout);
 		SetColor(15);
 
 		key = GetKey();
 		if (key == VK_UP)
 		{
-			POS = (POS + 2) % 3;
+			POS = (POS + 3) % 4;
 		}
 		else if (key == VK_DOWN)
 		{
-			POS = (POS + 1) % 3;
+			POS = (POS + 1) % 4;
 		}
 
 		
@@ -390,7 +392,7 @@ void Quiz(int number)
     {
         CLS;
         MemoList[number]();
-        scanf("%c", &x);
+        Memo_Paper();
     }
     return;
 }
@@ -916,4 +918,79 @@ void Memo5(void)
     printf("*2     *4      *6      *8\n\n");
     printf("(엔터키를 누르면 답 선택지로 넘어갑니다.)\n");
     printf("-----------------------------------------------------------------------------------------------------------------------\n\n");
+}
+
+void create_rnk()
+{
+    CLS;
+    int i = 0;
+    int rnk_score;
+    char name[20] = { 0 };
+    FILE *fp;
+    printf("랭킹 등록을 위한 이름을 입력하세요[최대 10글자]: ");
+    scanf("%s", name);
+    fp = fopen("score.txt", "at");
+    if (fp == NULL) {
+        fp = fopen("score.txt", "wt");
+    }
+    rnk_score = StopWatch(END);
+    printf("이름: %s 시간: %d초\n", name, rnk_score);
+    fprintf(fp, "%s %d\n", name, rnk_score);
+    fclose(fp);
+    printf("기록이 저장되었습니다!");
+    return;
+
+}
+
+void show_rnk() {
+    CLS;
+    struct user_rnk {
+        char name[20];
+        int rnk_score;
+    }data_rnk[200];
+    int n = 0;
+    struct user_rnk tmp;
+
+    FILE *fp = fopen("score.txt", "r");
+    if (access("score.txt", 0) == -1) {
+        printf("기록이 존재하지 않습니다.\n");
+        return;
+    }
+    while (fscanf(fp, "%s %d", &tmp) != EOF)
+    {
+        fscanf(fp, "%s %d", &data_rnk[n].name, &data_rnk[n].rnk_score);
+        n++;
+    }
+    fclose(fp);
+    n -= 1;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (data_rnk[j].rnk_score > data_rnk[i].rnk_score) {
+                    tmp = data_rnk[j];
+                    data_rnk[j] = data_rnk[i];
+                    data_rnk[i] = tmp;
+                }
+            }
+        }
+        for (int i = 0; i < n; i++)
+        {
+            printf("%d등           %s              %d\n", i + 1, data_rnk[i].name, data_rnk[i].rnk_score);
+        }
+        printf("[랭킹 시스템은 2회차 플레이 이후부터 가능합니다.]\n");
+    }
+
+
+void Memo_Paper()
+{
+    char memo[500] = { 0 };
+    FILE *fp;
+    scanf("%s", memo);
+    fp = fopen("memo.txt", "at");
+    if (fp == NULL) {
+        fp = fopen("memo.txt", "wt");
+    }
+    fprintf(fp, "%s\n", memo);
+    fclose(fp);
+    return;
+
 }
