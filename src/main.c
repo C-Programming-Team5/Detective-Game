@@ -5,13 +5,13 @@
 int main(void)
 {
 	int selected = 0, saveNum = 0;
-    int number= 0;
+	int number= 0;
 	Player save[SAVESIZE]; // 세이브용 배열
 	Player player = {0, 0}; // 플레이용 임시 데이터
 
 	memset(save, 0, sizeof(save)); // 세이브 배열을 초기화합니다.
 
-    system("mode con cols=9001 lins=120");
+	system("mode con cols=9001 lins=120");
 	selected = StartScreen();
 	switch (selected)
 	{
@@ -34,8 +34,8 @@ int main(void)
 			memcpy(&player, save + saveNum - '1', sizeof(Player));
 			GameLoop(&player, save);
 			break;
-        case 2:
-            show_rnk();
+		case 2:
+			show_rnk();
 		case 3: // 게임 종료
 			break;
 		default:
@@ -84,8 +84,8 @@ void GameLoop(Player *player, Player save[])
 				if (OpenLock() == GAME_CLEAR)
 				{
 					PrintEnding();
-                    create_rnk();
-                    //show_rnk();
+					create_rnk();
+					//show_rnk();
 					return;
 				}
 				else
