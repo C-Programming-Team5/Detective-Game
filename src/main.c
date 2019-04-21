@@ -16,7 +16,7 @@ int main(void)
 	switch (selected)
 	{
 		case 0: // 게임 시작
-			Prologue(number);
+			Prolog();
 			GameLoop(&player, save);
 			break;
 		case 1: // 이어 하기
@@ -35,7 +35,7 @@ int main(void)
 			GameLoop(&player, save);
 			break;
 		case 2:
-			show_rnk();
+			ShowRnk();
 		case 3: // 게임 종료
 			break;
 		default:
@@ -63,13 +63,13 @@ void GameLoop(Player *player, Player save[])
 			case 0: // 퀴즈 풀기
 				while (item != 5)
 				{
-					PlaySound(TEXT("walking.wav"), NULL, SND_ASYNC);
+					PlaySound(L"walking.wav", NULL, SND_ASYNC);
 					LobbyScreen();
 					item = SelectItem();
 					if (item != 5)
 					{
 						if (item == 1)
-							PlaySound(TEXT("click.wav"), NULL, SND_ASYNC);
+							PlaySound(L"click.wav", NULL, SND_ASYNC);
 						Quiz(item);
 						Answer(player, item);
 					}
@@ -81,15 +81,14 @@ void GameLoop(Player *player, Player save[])
 				WAITFORKEY('n');
 				break;
 			case 2: // 자물쇠 풀기
-				if (OpenLock() == GAME_CLEAR)
 				{
-					PrintEnding();
-					create_rnk();
-					//show_rnk();
-					return;
-				}
-				else
-				{
+					if (OpenLock() == GAME_CLEAR)
+					{
+						PrintEnding();
+						CreateRnk();
+						//show_rnk();
+						return;
+					}
 					PrintFail();
 				}
 				break;

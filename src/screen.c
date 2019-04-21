@@ -92,7 +92,7 @@ int rightAnswer[] = { 2, 0, 2, 0, 2 };
 TCHAR Getch(void)
 {
 	DWORD mode, cc;
-	HANDLE h = GetStdHandle(STD_INPUT_HANDLE); // 입력 핸들러를 가져옵니다. 이를 통해 입력을 제어할 수 있습니다.
+	const HANDLE h = GetStdHandle(STD_INPUT_HANDLE); // 입력 핸들러를 가져옵니다. 이를 통해 입력을 제어할 수 있습니다.
 	TCHAR c = 0;
 	if (h == NULL)
 	{
@@ -105,14 +105,14 @@ TCHAR Getch(void)
 	return c;
 }
 
-void SetColor(int color)
+void SetColor(const int color)
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
 
-void CursorView(char show)
+void CursorView(const char show)
 {
-	HANDLE hConsole;
+	HANDLE hConsole = NULL;
 	CONSOLE_CURSOR_INFO ConsoleCursor;
 
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -123,15 +123,15 @@ void CursorView(char show)
 	SetConsoleCursorInfo(hConsole, &ConsoleCursor);
 }
 
-void GotoXY(int x, int y)
+void GotoXY(const int x, const int y)
 {
-	COORD pos = { x, y };
+	const COORD pos = { x, y };
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 }
 
 int StartScreen(void)
 {
-	int POS = 3;
+	int pos = 3;
 	int key = 0;
 
 	CLS;
@@ -144,34 +144,34 @@ int StartScreen(void)
 
 	do
 	{
-		SetColor(POS == 0 ? 3 : 15);
+		SetColor(pos == 0 ? 3 : 15);
 		GotoXY(53, 15); fputs("새로 하기", stdout);
-		SetColor(POS == 1 ? 3 : 15);
+		SetColor(pos == 1 ? 3 : 15);
 		GotoXY(53, 17); fputs("이어 하기", stdout);
-		SetColor(POS == 2 ? 3 : 15);
+		SetColor(pos == 2 ? 3 : 15);
 		GotoXY(53, 19); fputs("등수 보기", stdout);
-		SetColor(POS == 3 ? 3 : 15);
+		SetColor(pos == 3 ? 3 : 15);
 		GotoXY(53, 21); fputs("게임 종료", stdout);
 		SetColor(15);
 
 		key = GetKey();
 		if (key == VK_UP)
 		{
-			POS = (POS + 3) % 4;
+			pos = (pos + 3) % 4;
 		}
 		else if (key == VK_DOWN)
 		{
-			POS = (POS + 1) % 4;
+			pos = (pos + 1) % 4;
 		}
 
 		
 	} while (key != VK_RETURN);
 
 	CLS;
-	return POS;
+	return pos;
 }
 
-void PrintClues(const Player * const player, int number)
+void PrintClues(const Player * const player, const int number)
 {
 	CLS;
 
@@ -210,12 +210,12 @@ void PrintSaveList(const Player save[])
 
 
 
-void Prologue(int number)
+void Prolog()
 {
 
   
 	int i = 0;
-	char Prologe[7][132] =
+	char prolog[7][132] =
 	{
 		"'n'을 누르면 다음 페이지로 넘어갑니다.",
 		"지끈거리는 머리를 붙잡으며 정신을 차렸다.",
@@ -231,7 +231,7 @@ void Prologue(int number)
 	{
 		LobbyScreen();
 		GotoXY(1, 25);
-		puts(Prologe[i]);
+		puts(prolog[i]);
 		WAITFORKEY('n');
 		CLS;
 	}
@@ -273,7 +273,7 @@ int LobbyPlay(void)
 {
 	int select = 0;
 	int key = 0;
-	int POS = 4;
+	int pos = 4;
 
 	CLS;
 	LobbyScreen();
@@ -283,39 +283,39 @@ int LobbyPlay(void)
 
 	do
 	{
-		SetColor(POS == 0 ? 3 : 15);
+		SetColor(pos == 0 ? 3 : 15);
 		GotoXY(1, 27); printf("*물건을 찾아본다");
-		SetColor(POS == 1 ? 3 : 15);
+		SetColor(pos == 1 ? 3 : 15);
 		GotoXY(21, 27); printf("*단서를 본다");
-		SetColor(POS == 2 ? 3 : 15);
+		SetColor(pos == 2 ? 3 : 15);
 		GotoXY(41, 27); printf("*자물쇠를 연다");
-		SetColor(POS == 3 ? 3 : 15);
+		SetColor(pos == 3 ? 3 : 15);
 		GotoXY(61, 27); printf("*저장한다");
-		SetColor(POS == 4 ? 3 : 15);
+		SetColor(pos == 4 ? 3 : 15);
 		GotoXY(81, 27); printf("*종료한다");
 		SetColor(15);
 
 		key = GetKey();
 		if (key == VK_LEFT)
 		{
-			POS = (POS + 4) % 5;
+			pos = (pos + 4) % 5;
 		}
 		else if (key == VK_RIGHT)
 		{
-			POS = (POS + 1) % 5;
+			pos = (pos + 1) % 5;
 		}
 
 		
 	} while (key != VK_RETURN);
 
 	CLS;
-	return POS;
+	return pos;
 }
 
 int SelectItem(void)
 {
 	GotoXY(2, 25); printf("어떤 물건부터 찾아볼까?");
-	int POS = 5;
+	int pos = 5;
 	int key = 0;
 
 	CursorView(0);
@@ -323,32 +323,32 @@ int SelectItem(void)
 
 	do
 	{
-		SetColor(POS == 0 ? 3 : 15);
+		SetColor(pos == 0 ? 3 : 15);
 		GotoXY(1, 27); printf("*컴퓨터");
-		SetColor(POS == 1 ? 3 : 15);
+		SetColor(pos == 1 ? 3 : 15);
 		GotoXY(21, 27); printf("*책상 밑");
-		SetColor(POS == 2 ? 3 : 15);
+		SetColor(pos == 2 ? 3 : 15);
 		GotoXY(41, 27); printf("*책상 위");
-		SetColor(POS == 3 ? 3 : 15);
+		SetColor(pos == 3 ? 3 : 15);
 		GotoXY(61, 27); printf("*칠판");
-		SetColor(POS == 4 ? 3 : 15);
+		SetColor(pos == 4 ? 3 : 15);
 		GotoXY(81, 27); printf("*포스터");
-		SetColor(POS == 5 ? 3 : 15);
+		SetColor(pos == 5 ? 3 : 15);
 		GotoXY(101, 27); printf("*돌아가기");
 		SetColor(15);
 
 		key = GetKey();
 		if (key == VK_LEFT)
 		{
-			POS = (POS + 5) % 6;
+			pos = (pos + 5) % 6;
 		}
 		else if (key == VK_RIGHT)
 		{
-			POS = (POS + 1) % 6;
+			pos = (pos + 1) % 6;
 		}
 	} while (key != VK_RETURN);
 	
-	return POS;
+	return pos;
 }
 
 
@@ -356,10 +356,10 @@ void Quiz(int number)
 {
 	int i = 0;
 	char x[100];
-	int POS = 0;
+	int pos = 0;
 
 	vvfp quizScreen[5] = { Quiz1Screen, Quiz2Screen, Quiz3Screen, Quiz4Screen, Quiz5Screen };
-	vvfp MemoList[5] = { Memo1, Memo2, Memo3, Memo4, Memo5 };
+	vvfp memoList[5] = { Memo1, Memo2, Memo3, Memo4, Memo5 };
 	SetColor(15);
 	CLS;
 	for (i = 0; i < quizIndex[number]; i++)
@@ -368,12 +368,12 @@ void Quiz(int number)
 		GotoXY(1, 25);
 		puts(quiz[number][i]);
 		WAITFORKEY('n');
-		PlaySound(TEXT("next.wav"), NULL, SND_ASYNC);
+		PlaySound(L"next.wav", NULL, SND_ASYNC);
 		CLS;
 	}
 	quizScreen[number]();
-	POS = Solve(POS);
-	if(POS==1)
+	pos = Solve();
+	if(pos==1)
 	{
 		CLS;
 		for (i = 0; i < quizIndex[number]; i++)
@@ -382,15 +382,15 @@ void Quiz(int number)
 			GotoXY(1, 25);
 			puts(quiz[number][i]);
 			WAITFORKEY('n');
-			PlaySound(TEXT("next.wav"), NULL, SND_ASYNC);
+			PlaySound(L"next.wav", NULL, SND_ASYNC);
 			CLS;
 		}
 	}
 
-	else if (POS == 2)
+	else if (pos == 2)
 	{
 		CLS;
-		MemoList[number]();
+		memoList[number]();
 		Memo_Paper();
 	}
 	return;
@@ -398,7 +398,7 @@ void Quiz(int number)
 
 void Answer(Player *player, int number)
 {
-	int POS = 0, i = 0;
+	int pos = 0, i = 0;
 	int key = 0;
 	vvfp quizScreen[5] = { Quiz1Screen, Quiz2Screen, Quiz3Screen, Quiz4Screen, Quiz5Screen };
 
@@ -412,7 +412,7 @@ void Answer(Player *player, int number)
 	{
 		for (i = 0; i < answerIndex[number]; i++)
 		{
-			SetColor(POS == i ? 3 : 15);
+			SetColor(pos == i ? 3 : 15);
 			GotoXY(21 + i * 20, 27);
 			fputs(answer[number][i], stdout);
 		}
@@ -420,11 +420,11 @@ void Answer(Player *player, int number)
 		key = GetKey();
 		if (key == VK_LEFT)
 		{
-			POS = (POS + answerIndex[number] - 1) % answerIndex[number];
+			pos = (pos + answerIndex[number] - 1) % answerIndex[number];
 		}
 		else if (key == VK_RIGHT)
 		{
-			POS = (POS + 1) % answerIndex[number];
+			pos = (pos + 1) % answerIndex[number];
 		}
 	} while (key != VK_RETURN);
 
@@ -432,7 +432,7 @@ void Answer(Player *player, int number)
 	SetColor(15);
 	quizScreen[number]();
 
-	if (POS == rightAnswer[number])
+	if (pos == rightAnswer[number])
 	{
 		GotoXY(1, 25);
 		printf("단서가 나타났다!");
@@ -549,7 +549,7 @@ void PrintDoor2(void)
 
 int OpenLock(void)
 {
-	char CorrectPW[] = "wind";
+	char correctPw[] = "wind";
 	char answer[5] = "";
 
 	PrintDoor();
@@ -559,7 +559,7 @@ int OpenLock(void)
 	fgets(answer, sizeof(answer), stdin);
 
 	
-	if (strcmp(CorrectPW, answer) == 0)
+	if (strcmp(correctPw, answer) == 0)
 	{
 		PrintDoor();
 		Sleep(2000);
@@ -757,7 +757,7 @@ void PrintFail(void)
 
 int GetKeyboard(int *keyCode)
 {
-	HANDLE input = GetStdHandle(STD_INPUT_HANDLE); // console의 핸들을 얻습니다.
+	const HANDLE input = GetStdHandle(STD_INPUT_HANDLE); // console의 핸들을 얻습니다.
 	INPUT_RECORD rec; // key값을 저장하는 구조체입니다.
 	DWORD oldConsoleMode = 0, newConsoleMode = 0, readData = 0; // 콘솔의 설정을 컨트롤 하는 변수들과, 읽힌 횟수를 세는 변수입니다.
 
@@ -812,11 +812,11 @@ int GetKey(void)
 }
 
 
-int Solve(int pos)
+int Solve()
 {
 	int select = 0;
 	int key = 0;
-	int POS = 2;
+	int pos = 2;
 	int x = 0;
 
 	CursorView(0);
@@ -824,27 +824,27 @@ int Solve(int pos)
 
 	do
 	{
-		SetColor(POS == 0 ? 3 : 15);
+		SetColor(pos == 0 ? 3 : 15);
 		GotoXY(1, 27); printf("*문제를 푼다");
-		SetColor(POS == 1 ? 3 : 15);
+		SetColor(pos == 1 ? 3 : 15);
 		GotoXY(21, 27); printf("*다시 문제를 본다");
-		SetColor(POS == 2 ? 3 : 15);
+		SetColor(pos == 2 ? 3 : 15);
 		GotoXY(41, 27); printf("*메모장을 연다");
 		SetColor(15);
 
 		key = GetKey();
 		if (key == VK_LEFT)
 		{
-			POS = (POS + 2) % 3;
+			pos = (pos + 2) % 3;
 		}
 		else if (key == VK_RIGHT)
 		{
-			POS = (POS + 1) % 3;
+			pos = (pos + 1) % 3;
 		}
 	} while (key != VK_RETURN);
 	CLS;
 
-	return POS;
+	return pos;
 }
 
 void Memo1(void)
@@ -886,9 +886,9 @@ void Memo3(void)
 {
 	printf("Q.살아남자 미스터 화이트!\n");
 	printf("세 명의 총잡이가 서로 동시에 결투를 벌인다.\n");
-	printf("1.미스터 블랙은 명중률 100 % 의 사격 실력을 가지고 있다.\n");
-	printf("2.미스터 그레이는 명중률 70 % 의 사격 실력을 갖고 있다.\n");
-	printf("3.미스터 화이트는 명중률 30 % 의 사격 실력을 가지고 있다.\n");
+	printf("1.미스터 블랙은 명중률 100 %% 의 사격 실력을 가지고 있다.\n");
+	printf("2.미스터 그레이는 명중률 70 %% 의 사격 실력을 갖고 있다.\n");
+	printf("3.미스터 화이트는 명중률 30 %% 의 사격 실력을 가지고 있다.\n");
 	printf("그리고 총잡이들은 서로의 실력차를 감안해서, 화이트->그레이->블랙 순서대로 발포하기로 하며, 한 번에 한 발만 쏠 수 있다.\n");
 	printf("이 때 화이트는 어떻게 쏴야 가장 생존률이 높은가?\n\n");
 	printf("*블랙    *그레이    *허공\n\n");
@@ -919,61 +919,58 @@ void Memo5(void)
 	printf("-----------------------------------------------------------------------------------------------------------------------\n\n");
 }
 
-void create_rnk()
+void CreateRnk()
 {
 	CLS;
-	int i = 0;
-	int rnk_score;
+	
+	int rnkScore = 0;
 	char name[20] = { 0 };
-	FILE *fp;
+	FILE *fp = NULL;
 	printf("랭킹 등록을 위한 이름을 입력하세요[최대 10글자]: ");
 	scanf("%s", name);
 	fp = fopen("score.txt", "at");
 	if (fp == NULL) {
 		fp = fopen("score.txt", "wt");
 	}
-	rnk_score = StopWatch(END);
-	printf("이름: %s 시간: %d초\n", name, rnk_score);
-	fprintf(fp, "%s %d\n", name, rnk_score);
+	rnkScore = StopWatch(END);
+	printf("이름: %s 시간: %d초\n", name, rnkScore);
+	fprintf(fp, "%s %d\n", name, rnkScore);
 	fclose(fp);
 	printf("기록이 저장되었습니다!");
-	return;
-
 }
 
-void show_rnk() {
+void ShowRnk() {
 	CLS;
-	struct user_rnk {
+	struct UserRnk {
 		char name[20];
-		int rnk_score;
-	}data_rnk[200];
+		int rnkScore;
+	} dataRnk[200];
 	int n = 0;
-	struct user_rnk tmp;
+	struct UserRnk tmp;
 
 	FILE *fp = fopen("score.txt", "r");
-	if (access("score.txt", 0) == -1) {
+	if (_access("score.txt", 0) == -1) {
 		printf("기록이 존재하지 않습니다.\n");
 		return;
 	}
-	while (fscanf(fp, "%s %d", &tmp) != EOF)
+	while (fscanf(fp, "%s %d", &dataRnk[n].name, &dataRnk[n].rnkScore) != EOF)
 	{
-		fscanf(fp, "%s %d", &data_rnk[n].name, &data_rnk[n].rnk_score);
 		n++;
 	}
 	fclose(fp);
 	n -= 1;
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < i; j++) {
-				if (data_rnk[j].rnk_score > data_rnk[i].rnk_score) {
-					tmp = data_rnk[j];
-					data_rnk[j] = data_rnk[i];
-					data_rnk[i] = tmp;
+				if (dataRnk[j].rnkScore > dataRnk[i].rnkScore) {
+					tmp = dataRnk[j];
+					dataRnk[j] = dataRnk[i];
+					dataRnk[i] = tmp;
 				}
 			}
 		}
 		for (int i = 0; i < n; i++)
 		{
-			printf("%d등           %s              %d\n", i + 1, data_rnk[i].name, data_rnk[i].rnk_score);
+			printf("%d등           %s              %d\n", i + 1, dataRnk[i].name, dataRnk[i].rnkScore);
 		}
 		printf("[랭킹 시스템은 2회차 플레이 이후부터 가능합니다.]\n");
 	}
@@ -982,7 +979,7 @@ void show_rnk() {
 void Memo_Paper()
 {
 	char memo[500] = { 0 };
-	FILE *fp;
+	FILE *fp = NULL;
 	scanf("%s", memo);
 	fp = fopen("memo.txt", "at");
 	if (fp == NULL) {

@@ -1,7 +1,7 @@
 ﻿#include "save_io.h"
 #include "main.h"
 
-int GetClearedQuizCount(const Player save[], int id)
+int GetClearedQuizCount(const Player save[], const int id)
 {
 	int i = 0, result = 0;
 
@@ -12,7 +12,7 @@ int GetClearedQuizCount(const Player save[], int id)
 	return result;
 }
 
-int Save(const Player * const player, Player save[], int id)
+int Save(const Player * const player, Player save[], const int id)
 {
 	FILE *saveFile = fopen("save.sav", "wb");
 	uint8_t firstHash[SHA256_BYTES] = { 0 }, secondHash[SHA256_BYTES] = { 0 };
@@ -80,7 +80,7 @@ int LoadFromFile(Player save[])
 	sha256(save, sizeof(Player) * SAVESIZE, &firstHash);
 	sha256(&firstHash, SHA256_BYTES, &secondHash);
 
-	if (memcmp(fileHash, secondHash, SHA256_BYTES))
+	if (memcmp(fileHash, secondHash, SHA256_BYTES) != 0)
 	{
 		return FAIL;
 	}

@@ -2,9 +2,6 @@
 #define _SCREEN_H
 
 #include "player.h"
-#include <mmsystem.h>
-#include<malloc.h>
-#pragma comment(lib, "winmm.lib")
 
 #define PAUSE system("pause > nul")
 #define CLS system("cls")
@@ -44,7 +41,7 @@ void PrintClues(const Player * const player, int number);
 void PrintSaveList(const Player save[]);
 
 // 프롤로그를 출력하는 함수입니다.
-void Prologue(int nuber);
+void Prolog();
 
 // 로비 배경화면을 출력하는 함수입니다.
 void LobbyScreen(void);
@@ -104,7 +101,7 @@ int GetKeyboard(int *keyCode);
 // GetKeyboard의 사용을 Getch와 비슷하게 만들어주는 인터페이스입니다. 오류시 혹은 키를 뗄 시 0을, 키 입력시 VK값을 반환합니다.
 int GetKey(void);
 
-int Solve(int pos);
+int Solve();
 
 void Memo1(void);
 
@@ -116,9 +113,9 @@ void Memo4(void);
 
 void Memo5(void);
 
-void create_rnk(void);
+void CreateRnk(void);
 
-void show_rnk(void);
+void ShowRnk(void);
 
 void Memo_Paper(void);
 #endif
