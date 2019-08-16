@@ -926,7 +926,7 @@ void CreateRnk()
 	char name[20] = { 0 };
 	FILE *fp = NULL;
 	printf("랭킹 등록을 위한 이름을 입력하세요[최대 10글자]: ");
-	scanf("%s", name);
+	fgets(name, 11, stdin);
 	fp = fopen("score.txt", "at");
 	if (fp == NULL) {
 		fp = fopen("score.txt", "wt");
@@ -979,7 +979,7 @@ void Memo_Paper()
 {
 	char memo[500] = { 0 };
 	FILE *fp = NULL;
-	scanf("%s", memo);
+	fgets(memo, 500, stdout);
 	fp = fopen("memo.txt", "at");
 	if (fp == NULL) {
 		fp = fopen("memo.txt", "wt");
