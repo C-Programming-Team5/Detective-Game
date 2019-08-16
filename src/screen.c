@@ -355,7 +355,6 @@ int SelectItem(void)
 void Quiz(int number)
 {
 	int i = 0;
-	char x[100];
 	int pos = 0;
 
 	vvfp quizScreen[5] = { Quiz1Screen, Quiz2Screen, Quiz3Screen, Quiz4Screen, Quiz5Screen };
