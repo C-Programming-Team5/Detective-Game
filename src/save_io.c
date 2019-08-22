@@ -22,15 +22,13 @@ int Save(const Player * const player, Player save[], const int id)
 		return FAIL;
 	}
 
-	if (player != NULL && save != NULL)
-	{
-        memcpy(save + id, player, sizeof(Player));
-	}
-	else
+	if (player!= NULL || save != NULL)
 	{
 		fclose(saveFile);
 		return FAIL;
 	}
+	
+	memcpy(save + id, player, sizeof(Player));
 
 	// 두 번의 해싱 과정을 통해 보안성을 약간 강화하였습니다.
 	sha256(save, sizeof(Player) * SAVESIZE, &firstHash);
