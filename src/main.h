@@ -11,8 +11,10 @@
 
 #include "player.h"
 
-#define QUIZCOUNT 5 // 퀴즈가 총 몇개인지 나타내는 상수입니다.
+// 퀴즈가 총 몇개인지 나타내는 상수입니다.
+#define QUIZCOUNT 5
 
+// 게임의 성공 여부를 표시하기 위한 열거형입니다.
 enum
 {
 	GAME_OVER,
@@ -21,6 +23,7 @@ enum
 
 typedef void (*vvfp)(void);
 
+// 게임의 메인 루프를 돌리기 위한 함수입니다.
 void GameLoop(Player *player, Player save[]);
 
 #endif
